@@ -1,0 +1,217 @@
+[13-Nov-2024 08:46:56 UTC] PHP Warning:  Undefined variable $wwwroot in /home/itcodetech/public_html/projects/TechAdmin/add_event.php on line 388
+[13-Nov-2024 08:46:56 UTC] PHP Warning:  Undefined variable $wwwroot in /home/itcodetech/public_html/projects/TechAdmin/add_event.php on line 402
+[13-Nov-2024 08:47:41 UTC] PHP Warning:  Undefined variable $wwwroot in /home/itcodetech/public_html/projects/TechAdmin/add_event.php on line 388
+[13-Nov-2024 08:47:41 UTC] PHP Warning:  Undefined variable $wwwroot in /home/itcodetech/public_html/projects/TechAdmin/add_event.php on line 402
+[13-Nov-2024 08:47:57 UTC] PHP Warning:  Undefined variable $wwwroot in /home/itcodetech/public_html/projects/TechAdmin/add_publication.php on line 388
+[13-Nov-2024 08:47:57 UTC] PHP Warning:  Undefined variable $wwwroot in /home/itcodetech/public_html/projects/TechAdmin/add_publication.php on line 402
+[13-Nov-2024 09:25:29 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:25:29 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:25:35 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:25:35 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:25:47 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:25:47 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:26:18 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:26:18 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:27:17 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:27:17 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:27:44 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:27:44 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:27:58 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:27:58 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:28:20 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:28:20 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:31:26 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/add_event.php on line 3
+[13-Nov-2024 09:31:26 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/add_event.php on line 3
+[13-Nov-2024 09:32:24 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/add_event.php on line 3
+[13-Nov-2024 09:32:24 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/add_event.php on line 3
+[13-Nov-2024 09:34:52 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/publication.php on line 3
+[13-Nov-2024 09:34:52 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/publication.php on line 3
+[13-Nov-2024 09:34:57 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/publication.php on line 3
+[13-Nov-2024 09:34:57 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/publication.php on line 3
+[13-Nov-2024 09:35:02 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/publication.php on line 3
+[13-Nov-2024 09:35:02 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/publication.php on line 3
+[13-Nov-2024 09:35:43 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/publication.php on line 3
+[13-Nov-2024 09:35:43 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/publication.php on line 3
+[13-Nov-2024 09:35:44 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/publication.php on line 3
+[13-Nov-2024 09:35:44 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/publication.php on line 3
+[13-Nov-2024 09:37:18 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/event.php on line 3
+[13-Nov-2024 09:37:18 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/event.php on line 3
+[13-Nov-2024 09:41:23 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:41:23 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:41:53 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[13-Nov-2024 09:41:53 UTC] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/include/header.php on line 2
+[14-Nov-2024 10:51:27 Asia/Kolkata] PHP Warning:  Undefined array key "media" in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 156
+[14-Nov-2024 10:51:27 Asia/Kolkata] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 156
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Undefined variable $publicationinfo in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 115
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 115
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Undefined variable $publicationinfo in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 120
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 120
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Undefined variable $publicationinfo in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 126
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 126
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Undefined variable $publicationinfo in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 132
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 132
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Undefined variable $publicationinfo in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 138
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 138
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Undefined variable $publicationinfo in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 146
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 146
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Undefined variable $publicationinfo in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 158
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 158
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 167
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Undefined variable $publicationinfo in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 174
+[14-Nov-2024 11:11:32 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_publication.php on line 174
+[15-Nov-2024 21:55:16 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 21:55:16 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 21:55:16 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 21:55:16 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 21:55:16 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 21:55:16 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 21:55:16 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 21:55:16 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 21:55:16 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 21:55:16 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 21:55:16 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 21:55:16 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 21:56:35 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 21:56:35 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 21:56:35 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 21:56:35 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 21:56:35 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 21:56:35 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 21:56:35 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 21:56:35 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 21:56:35 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 21:56:35 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 21:56:35 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 21:56:35 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 21:59:31 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where id = '4'' at line 1 in /home/itcodetech/public_html/projects/TechAdmin/include/library.php:228
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/include/library.php(228): mysqli_query(Object(mysqli), 'insert into ban...')
+#1 /home/itcodetech/public_html/projects/TechAdmin/update_banner.php(11): updateBanner(Object(mysqli), Array, '')
+#2 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 228
+[15-Nov-2024 22:00:22 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:00:22 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:00:22 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:00:22 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:00:22 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:00:22 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:00:22 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:00:22 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:00:22 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:00:22 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:00:22 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 22:00:22 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 22:00:33 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:00:33 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:00:33 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:00:33 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:00:33 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:00:33 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:00:33 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:00:33 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:00:33 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:00:33 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:00:33 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 22:00:33 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 22:00:44 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:00:44 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:00:44 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:00:44 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:00:44 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:00:44 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:00:44 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:00:44 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:00:44 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:00:44 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:00:44 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 22:00:44 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 22:00:57 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:00:57 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:00:57 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:00:57 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:00:57 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:00:57 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:00:57 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:00:57 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:00:57 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:00:57 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:00:57 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 22:00:57 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 22:01:13 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:01:13 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:01:13 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:01:13 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:01:13 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:01:13 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:01:13 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:01:13 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:01:13 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:01:13 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:01:13 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 22:01:13 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 22:01:41 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:01:41 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:01:41 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:01:41 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:01:41 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:01:41 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:01:41 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:01:41 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:01:41 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:01:41 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:01:41 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 22:01:41 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 22:03:47 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:03:47 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 116
+[15-Nov-2024 22:03:47 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:03:47 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 121
+[15-Nov-2024 22:03:47 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:03:47 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 127
+[15-Nov-2024 22:03:47 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:03:47 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 133
+[15-Nov-2024 22:03:47 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:03:47 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 139
+[15-Nov-2024 22:03:47 Asia/Kolkata] PHP Warning:  Undefined variable $bannerinfo in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 22:03:47 Asia/Kolkata] PHP Warning:  Trying to access array offset on null in /home/itcodetech/public_html/projects/TechAdmin/update_banner.php on line 146
+[15-Nov-2024 23:20:21 Asia/Kolkata] PHP Warning:  Undefined array key "image" in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 224
+[15-Nov-2024 23:20:21 Asia/Kolkata] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 224
+[15-Nov-2024 23:20:21 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'title' in 'INSERT INTO' in /home/itcodetech/public_html/projects/TechAdmin/include/library.php:228
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/include/library.php(228): mysqli_query(Object(mysqli), 'insert into ban...')
+#1 /home/itcodetech/public_html/projects/TechAdmin/add_people.php(9): addPeople(Object(mysqli), Array, '')
+#2 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 228
+[15-Nov-2024 23:22:34 Asia/Kolkata] PHP Warning:  Undefined array key "image" in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 224
+[15-Nov-2024 23:22:34 Asia/Kolkata] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 224
+[15-Nov-2024 23:22:34 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'title' in 'INSERT INTO' in /home/itcodetech/public_html/projects/TechAdmin/include/library.php:228
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/include/library.php(228): mysqli_query(Object(mysqli), 'insert into ban...')
+#1 /home/itcodetech/public_html/projects/TechAdmin/add_people.php(9): addPeople(Object(mysqli), Array, '')
+#2 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 228
+[15-Nov-2024 23:26:33 Asia/Kolkata] PHP Warning:  Undefined array key "image" in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 224
+[15-Nov-2024 23:26:33 Asia/Kolkata] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 224
+[15-Nov-2024 23:26:33 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'itcodetech_stlaw.peopel' doesn't exist in /home/itcodetech/public_html/projects/TechAdmin/include/library.php:253
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/include/library.php(253): mysqli_query(Object(mysqli), 'insert into peo...')
+#1 /home/itcodetech/public_html/projects/TechAdmin/add_people.php(9): addPeople(Object(mysqli), Array, '')
+#2 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 253
+[15-Nov-2024 23:27:50 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'itcodetech_stlaw.peopel' doesn't exist in /home/itcodetech/public_html/projects/TechAdmin/include/library.php:252
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/include/library.php(252): mysqli_query(Object(mysqli), 'insert into peo...')
+#1 /home/itcodetech/public_html/projects/TechAdmin/add_people.php(9): addPeople(Object(mysqli), Array, '')
+#2 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 252
+[17-Nov-2024 13:20:07 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 in /home/itcodetech/public_html/projects/TechAdmin/include/library.php:230
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/include/library.php(230): mysqli_query(Object(mysqli), 'insert into lat...')
+#1 /home/itcodetech/public_html/projects/TechAdmin/add_latest_update.php(9): addLatestUpdate(Object(mysqli), Array, '')
+#2 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 230
+[17-Nov-2024 13:22:03 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 in /home/itcodetech/public_html/projects/TechAdmin/include/library.php:230
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/include/library.php(230): mysqli_query(Object(mysqli), 'insert into lat...')
+#1 /home/itcodetech/public_html/projects/TechAdmin/add_latest_update.php(9): addLatestUpdate(Object(mysqli), Array, '')
+#2 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/include/library.php on line 230

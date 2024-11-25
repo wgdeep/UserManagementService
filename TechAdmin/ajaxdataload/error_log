@@ -1,0 +1,63 @@
+[14-Nov-2024 12:10:01 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'action' in 'ORDER BY' in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php:43
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php(43): mysqli_query(Object(mysqli), 'SELECT * FROM e...')
+#1 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php on line 43
+[14-Nov-2024 12:10:02 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'action' in 'ORDER BY' in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php:43
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php(43): mysqli_query(Object(mysqli), 'SELECT * FROM e...')
+#1 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php on line 43
+[14-Nov-2024 12:10:02 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'action' in 'ORDER BY' in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php:43
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php(43): mysqli_query(Object(mysqli), 'SELECT * FROM e...')
+#1 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php on line 43
+[14-Nov-2024 12:10:02 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'action' in 'ORDER BY' in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php:43
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php(43): mysqli_query(Object(mysqli), 'SELECT * FROM e...')
+#1 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php on line 43
+[14-Nov-2024 12:12:14 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'action' in 'ORDER BY' in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php:43
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php(43): mysqli_query(Object(mysqli), 'SELECT * FROM e...')
+#1 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php on line 43
+[14-Nov-2024 12:15:39 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'action' in 'ORDER BY' in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php:43
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php(43): mysqli_query(Object(mysqli), 'SELECT * FROM e...')
+#1 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php on line 43
+[14-Nov-2024 12:15:40 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'action' in 'ORDER BY' in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php:43
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php(43): mysqli_query(Object(mysqli), 'SELECT * FROM e...')
+#1 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php on line 43
+[14-Nov-2024 12:15:47 Asia/Kolkata] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'action' in 'ORDER BY' in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php:43
+Stack trace:
+#0 /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php(43): mysqli_query(Object(mysqli), 'SELECT * FROM e...')
+#1 {main}
+  thrown in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allevent.php on line 43
+[24-Nov-2024 18:45:26 Asia/Kolkata] PHP Warning:  Undefined variable $response in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 13
+[24-Nov-2024 18:45:26 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:26 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:26 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:26 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:26 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:26 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:26 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:26 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:26 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:26 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:26 Asia/Kolkata] PHP Warning:  Undefined variable $response in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 83
+[24-Nov-2024 18:45:47 Asia/Kolkata] PHP Warning:  Undefined variable $response in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 13
+[24-Nov-2024 18:45:47 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:47 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:47 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:47 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:47 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:47 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:47 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:47 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:47 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
+[24-Nov-2024 18:45:47 Asia/Kolkata] PHP Warning:  Undefined array key "msg" in /home/itcodetech/public_html/projects/TechAdmin/ajaxdataload/allpublication.php on line 73
