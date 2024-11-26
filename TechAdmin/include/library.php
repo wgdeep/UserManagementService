@@ -63,7 +63,7 @@ function AdminLogin($con, $req, &$outputMsg)
 function Login($con, $req, &$outputMsg)
 {
 
-  $sqlLogin = "select * from user where user_email='" . trim($req['email']) . "' and user_password='" . trim(md5($req['password'])) . "'"; 
+  $sqlLogin = "select * from user where user_email='" . trim($req['email']) . "' and user_password='" . trim(md5($req['password'])) . "'";
 
 
 
@@ -73,6 +73,12 @@ function Login($con, $req, &$outputMsg)
 
   $rowLogin = mysqli_num_rows($resLogin);
 
+
+  if ($rowLogin > 0) {
+    $sqlActiveUser = "update user set status = '1' where user_email='" . trim($req['email']) . "' and user_password='" . trim(md5($req['password'])) . "'";
+
+    $resUserActive = mysqli_query($con, $sqlActiveUser);
+  }
 
 
   if ($rowLogin > 0) {
@@ -90,11 +96,11 @@ function Login($con, $req, &$outputMsg)
     $_SESSION['Name'] = $dataLogin->user_name;
 
 
-    
+
     $_SESSION['Email'] = $dataLogin->user_email;
-    
+
     $_SESSION['Status'] = $dataLogin->status;
-    
+
     $_SESSION['Role'] = $dataLogin->role;
 
 
@@ -125,8 +131,7 @@ function Login($con, $req, &$outputMsg)
       $_SESSION['role_remove'] = $dataRole->role_remove;
 
       $_SESSION['role_add'] = $dataRole->role_add;
-
-    }else{
+    } else {
       $outputMsg = 'Role not Found!!';
 
       return false;
@@ -501,31 +506,51 @@ function adminAddFormReport($con, $req, &$outputMsg)
 function addRole($con, $req, &$outputMsg)
 {
 
-  $status= trim($req['status']);
-   
+  $status = trim($req['status']);
+
 
   $sqlQry = mysqli_query($con, "select * from permission where id = '1'");
 
   $permissionInfo = array_slice(mysqli_fetch_assoc($sqlQry), 1);
 
-  foreach($permissionInfo as $permissionInfo){
+  foreach ($permissionInfo as $permissionInfo) {
     ${$permissionInfo} = '0';
   }
 
-  foreach($req['permission'] as $permission){
+  foreach ($req['permission'] as $permission) {
     ${preg_replace('/\s+/', '', $permission)} = '1';
   }
 
   $name = trim($req['role_name']);
-   // Updated key
-  
- 
+
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
 
   $sqlQry = mysqli_query($con, "INSERT INTO role SET role_name = '" . $name . "', user_show = '" . $UserShow . "', user_edit = '" . $UserEdit . "', user_remove = '" . $UserRemove . "', user_add = '" . $UserAdd . "', role_show = '" . $RoleShow . "', role_edit = '" . $RoleEdit . "', role_remove = '" . $RoleRemove . "',  role_add = '" . $RoleAdd . "', status = '" . $status . "', edate = '" . $curdate . "', etime = '" . $curtime . "'") or die(mysqli_error($con));
 
   header("location: role_management.php?act=add");
+  // Always include exit after a header redirect
+  return true;
+}
+
+
+function addUser($con, $req, &$outputMsg)
+{
+  $name = trim($req['user_name']);
+  $email = trim($req['user_email']);
+  $password = trim(md5($req['user_password']));
+  $role = trim($req['role_name']);
+  $status = trim($req['status']);
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
+
+
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
+
+  $sqlQry = mysqli_query($con, "INSERT INTO user SET user_name = '" . $name . "', user_email = '" . $email . "', user_password = '" . $password . "', role= '" . $role . "',status = '" . $status . "', edate = '" . $curdate . "', etime = '" . $curtime . "'") or die(mysqli_error($con));
+
+  header("location: user_management.php?act=add");
   // Always include exit after a header redirect
   return true;
 }

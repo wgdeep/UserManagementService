@@ -76,7 +76,7 @@
                                         <button class="btn btn-primary btn-block w-100" type="submit">Send Password Reset Link </button>
                                     </div>
                                 </form>
-                                <a href="../login.html" class="text-center">
+                                <a href="../index.php" class="text-center">
                                     <p>
                                         <i class="fa fa-long-arrow-left me-2"></i>Back to Login Page
                                     </p>
