@@ -1,6 +1,6 @@
 <?php
 if (empty($_SESSION['ID']) && ($_SESSION['Name'] == "")) {
-  header("location:login.php");
+  header("location:index.php");
   exit();
 }
 ?>

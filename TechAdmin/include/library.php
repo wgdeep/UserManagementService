@@ -63,7 +63,7 @@ function AdminLogin($con, $req, &$outputMsg)
 function Login($con, $req, &$outputMsg)
 {
 
-  $sqlLogin = "select * from user where user_email='" . trim($req['email']) . "' and user_password='" . trim(md5($req['password'])) . "'";
+  $sqlLogin = "select * from user where user_email='" . trim($req['email']) . "' and user_password='" . trim(md5($req['password'])) . "'"; 
 
 
 
@@ -161,16 +161,16 @@ function Register($con, $req, &$outputMsg)
 
   $name = trim($req['user_name']);
   $email = trim($req['user_email']);
-  $password = trim(md5($req['user_password']));
+  $password = trim(md5($req['password']));
   $edate = date('Y-m-d');
   $etime = date('H:i:s');
 
 
-  $sqlLogin = "insert into user set user_name='" . $name . "', user_email='" . $email . "', user_password='" . $password . "', edate='" . $edate . "', etime='" . $etime . "'";
+  $sqlLogin = "insert into user set user_name='" . $name . "', user_email='" . $email . "', user_password='" . $password . "', image='null', edate='" . $edate . "', etime='" . $etime . "'";
 
   $resLogin = mysqli_query($con, $sqlLogin);
 
-  header("location:login.php?act=reg");
+  header("location:index.php?act=reg");
   exit();
   return true;
 }
@@ -501,11 +501,8 @@ function adminAddFormReport($con, $req, &$outputMsg)
 function addRole($con, $req, &$outputMsg)
 {
 
-  if($req['status'] == 'active'){
-    $statusInt = '1';
-  }else{
-    $statusInt = '0';
-  }
+  $status= trim($req['status']);
+   
 
   $sqlQry = mysqli_query($con, "select * from permission where id = '1'");
 
@@ -520,7 +517,7 @@ function addRole($con, $req, &$outputMsg)
   }
 
   $name = trim($req['role_name']);
-  $status = $statusInt; // Updated key
+   // Updated key
   
  
   $curtime = date('H:i:s');

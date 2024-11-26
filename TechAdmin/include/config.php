@@ -7,7 +7,7 @@ date_default_timezone_set('Asia/Kolkata');
 	define("HOST","localhost");
 	define("USER","root");
 	define("PASSWORD","");
-	define("DATABASE","itcodetech_stlaw");
+	define("DATABASE","itcodetech_stlaw2");
 
 	$con = mysqli_connect(HOST,USER,PASSWORD,DATABASE);
 	if(mysqli_connect_errno())

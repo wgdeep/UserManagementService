@@ -72,8 +72,8 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'register') {
                         <div id="logerr_msg">
                             <!-- <?php if (isset($error) && $error != "") echo '<span style="color:red;">' . $error . '</span>';
                                     else echo ''; ?> -->
-                            <?php if (isset($error) && $error != "") echo '<a href="/projects/TechAdmin/login.php" style="color:red;margin-left: 5px;">Already have an account? Click here to <button class="btn btn-primary btn-sm btn-block bg-green" style="margin-bottom: 5px;">LOGIN</button> </a>';
-                            else echo '<a style="margin-bottom: 7px;margin-left: 7px;" href="/projects/TechAdmin/login.php" class="btn btn-primary btn-sm btn-block bg-green">LOGIN</a>'; ?>
+                            <?php if (isset($error) && $error != "") echo '<a href="/projects/TechAdmin/index.php" style="color:red;margin-left: 5px;">Already have an account? Click here to <button class="btn btn-primary btn-sm btn-block bg-green" style="margin-bottom: 5px;">LOGIN</button> </a>';
+                            else echo '<a style="margin-bottom: 7px;margin-left: 7px;" href="/projects/TechAdmin/index.php" class="btn btn-primary btn-sm btn-block bg-green">LOGIN</a>'; ?>
                         </div>
 
                         <div class="login-main">

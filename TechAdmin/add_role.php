@@ -138,10 +138,10 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Role") {
                                                 </div>
                                                 <div class="col-sm-6">
 
-                                                    <label for="exampleSelect1" name="status" class="form-label">Status</label>
-                                                    <select class="form-select" id="exampleSelect1">
-                                                        <option value="active">Active</option>
-                                                        <option value="inactive">Inactive</option>
+                                                    <label for="exampleSelect1"  class="form-label">Status</label>
+                                                    <select class="form-select" name="status" id="exampleSelect1">
+                                                        <option value="1">Active</option>
+                                                        <option value="0">Inactive</option>
                                                     </select>
 
                                                 </div>

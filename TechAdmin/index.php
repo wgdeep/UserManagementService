@@ -1,9 +1,8 @@
 <?php
 require_once("include/config.php");
 require_once("include/library.php");
-if(isset($_POST['submit'])&&$_POST['submit']=='login')
-{
-  AdminLogin($con,$_POST,$error);
+if (isset($_POST['submit']) && $_POST['submit'] == 'login') {
+    Login($con, $_POST, $error);
 }
 ?>
 <!DOCTYPE html>
@@ -47,6 +46,14 @@ if(isset($_POST['submit'])&&$_POST['submit']=='login')
     <link id="color" rel="stylesheet" href="assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .show-hide {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -61,15 +68,19 @@ if(isset($_POST['submit'])&&$_POST['submit']=='login')
                                     class="img-fluid for-dark" src="assets/images/logo/logo.png"
                                     alt="looginpage"></a></div>
 
-                                     
-                <div id="logerr_msg">
-                  <!-- <?php if(isset($error) && $error!="") echo '<span style="color:red;">'.$error.'</span>'; else echo''; ?> -->
-                  <?php if(isset($error) && $error!="") echo '<a href="/register.php" style="color:red;margin-left: 5px;">Need an account? Click here to <button class="btn btn-primary btn-sm btn-block bg-green" style="margin-bottom: 5px;">REGISTER</button> </a>'; else echo'<a style="margin-bottom: 7px;margin-left: 7px;" href="/register.php" class="btn btn-primary btn-sm btn-block bg-green">REGISTER</a>'; ?>
-                </div>
-         
+
+                        <div id="logerr_msg">
+                            <!-- <?php if (isset($error) && $error != "") echo '<span style="color:red;">' . $error . '</span>';
+                                    else echo ''; ?> -->
+                            <?php if (isset($error) && $error != "") echo '<a href="/projects/TechAdmin/register.php" style="color:red;margin-left: 5px;">Need an account? Click here to <button class="btn btn-primary btn-sm btn-block bg-green" style="margin-bottom: 5px;">REGISTER</button> </a>';
+                            else echo '<a style="margin-bottom: 7px;margin-left: 7px;" href="/projects/TechAdmin/register.php" class="btn btn-primary btn-sm btn-block bg-green">REGISTER</a>'; ?>
+                        </div>
+
                         <div class="login-main">
-                        <form class="theme-form" action="" method="post">
-                             
+                            <form class="theme-form" action="" method="post">
+                                <h3><?php if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'reg') {
+                                        echo '<span style="color:green;float:right;">Register successfully</span>';
+                                    }  ?></h3>
                                 <h3>Sign in to account</h3>
                                 <p>Enter your email & password to login</p>
 
@@ -81,15 +92,17 @@ if(isset($_POST['submit'])&&$_POST['submit']=='login')
                                 <div class="form-group">
                                     <label class="col-form-label">Password</label>
                                     <div class="form-input position-relative">
-                                    <input type="password" name="password" class="form-control" id="signin-password" value="" placeholder="Password" required>
-                                        <div class="show-hide"><span class="show"> </span></div>
+                                        <input type="password" name="password" class="form-control" id="signin-password" placeholder="Password" required>
+                                        <!-- Eye icon that toggles between 'eye' and 'eye-slash' -->
+                                        <div class="show-hide" onclick="togglePassword()">
+                                            <i class="fa fa-eye" id="toggle-icon"></i>
+                                        </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group mb-0 text-end">
-                                    <a class="text-muted" href="password/reset.html">Forgot password?</a>
+                                    <a class="text-muted" href="#">Forgot password?</a>
                                     <div class="text-end mt-3">
-                                    <button type="submit" name="submit" value="login" class="btn btn-primary btn-lg btn-block bg-green">LOGIN</button>
+                                        <button type="submit" name="submit" value="login" class="btn btn-primary btn-lg btn-block bg-green">LOGIN</button>
                                     </div>
                                 </div>
                             </form>
@@ -100,6 +113,23 @@ if(isset($_POST['submit'])&&$_POST['submit']=='login')
             </div>
         </div>
     </div>
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById('signin-password');
+            var toggleIcon = document.getElementById('toggle-icon');
+
+            // Toggle the type of the input
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye'); // Remove the 'eye' icon
+                toggleIcon.classList.add('fa-eye-slash'); // Add the 'eye-slash' icon
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash'); // Remove the 'eye-slash' icon
+                toggleIcon.classList.add('fa-eye'); // Add the 'eye' icon
+            }
+        }
+    </script>
     <!-- latest jquery-->
     <script src="assets/js/jquery.min.js"></script>
     <!-- Bootstrap js-->
@@ -116,6 +146,6 @@ if(isset($_POST['submit'])&&$_POST['submit']=='login')
     <script src="assets/js/script.js"></script>
 </body>
 
- 
+
 
 </html>
