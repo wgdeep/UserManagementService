@@ -6,19 +6,19 @@ require_once("include/header.php");
 
 $error = '';
 $wwwroot = "/projects/TechAdmin";
-if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add People") {
-    addPeople($con, $_REQUEST, $error);
+if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Seo") {
+    addSeo($con, $_REQUEST, $error);
 }
 
 
-if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Edit People") {
-    updatePeople($con, $_REQUEST, $error);
+if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Edit Seo") {
+    updateSeo($con, $_REQUEST, $error);
 }
 
 
 if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
     $edit_id = $_REQUEST['edit_id'];
-    $peopleinfo = editData($con, 'people', $edit_id);
+    $seoinfo = editData($con, 'seo', $edit_id);
 }
 
 ?>
@@ -109,7 +109,7 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                     <div class="page-title" style="margin-top: 0px;">
                         <div class="row">
                             <div class="col-sm-6 ps-0">
-                                <h3 style="padding-bottom: 14px;margin-left: 15px;">Update People</h3>
+                                <h3 style="padding-bottom: 14px;margin-left: 15px;">Update Seo</h3>
                             </div>
 
                             <!-- Container-fluid starts-->
@@ -117,78 +117,100 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                                 <div class="row">
                                     <div class="card">
                                         <div class="card-body add-post">
-                                            <form class="row needs-validation" action="?id=<?php echo $peopleinfo['id']; ?>" method="POST" enctype="multipart/form-data">
+                                            <form class="row needs-validation" action="?id=<?php echo $seoinfo['id']; ?>" method="POST" enctype="multipart/form-data">
 
                                                 <div class="col-sm-6">
                                                     <label for="validationCustom01">Title:</label>
                                                     <input class="form-control" id="validationCustom01" type="text"
-                                                        placeholder="Post Title" name="title" value="<?php echo $peopleinfo['title'] ?>">
+                                                        placeholder="Post Title" name="title" value="<?php echo $seoinfo['title'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Post1:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
-                                                        placeholder="Post Post1" name="post1" value="<?php echo $peopleinfo['post1'] ?>">
+                                                    <label for="meta_title">Meta Title:</label>
+                                                    <input class="form-control" id="meta_title" type="text"
+                                                        placeholder="Post Meta Title" name="meta_title" value="<?php echo $seoinfo['meta_title'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Post2:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
-                                                        placeholder="Post Post2" name="post2" value="<?php echo $peopleinfo['post2'] ?>">
+                                                    <label for="meta_keyword">Meta Keyword:</label>
+                                                    <input class="form-control" id="meta_keyword" type="text"
+                                                        placeholder="Post Meta Keyword" name="meta_keyword" value="<?php echo $seoinfo['meta_keyword'] ?>">
+                                                    <div class="valid-feedback">Looks good!</div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <label for="header">Header:</label>
+                                                    <input class="form-control" id="header" type="text"
+                                                        placeholder="Post Header" name="header" value="<?php echo $seoinfo['header'] ?>">
+                                                    <div class="valid-feedback">Looks good!</div>
+                                                </div>
+
+
+                                                <div class="col-sm-6">
+                                                    <label for="footer">Footer:</label>
+                                                    <input class="form-control" id="footer" type="text"
+                                                        placeholder="Post Footer" name="footer" value="<?php echo $seoinfo['footer'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Post3:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
-                                                        placeholder="Post Post3" name="post3" value="<?php echo $peopleinfo['post3'] ?>">
-                                                    <div class="valid-feedback">Looks good!</div>
+                                                    <label for="exampleSelect1" class="form-label mt-4">Status</label>
+                                                    <select class="form-select" name="status" id="exampleSelect1">
+                                                        <?php if ($seoinfo['status'] > 0) { ?>
+                                                            <option value="1" selected>Active</option>
+                                                            <option value="0">Inactive</option>
+                                                        <?php } else { ?>
+                                                            <option value="1">Active</option>
+                                                            <option value="0" selected>Inactive</option>
+                                                        <?php } ?>
+
+                                                    </select>
                                                 </div>
+                                                <div class="col-sm-6">
+
+                                                    <div class="col-sm-6" style="padding-top: 15px;padding-left: 0px;left: 15px;"">
+                                                    <div class=" input-group">
+                                                        <div >
+                                                            <div class="input-group-prepend" style="margin-top: 10px;margin-right: 15px;"><span class="input-group-text col-sm-">Image</span></div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="card form-control mb-2" style="display: flex; flex-direction:row;margin-left: calc(var(--bs-border-width) * 3);padding-right: 4.75rem;border-right-width: 1px;margin-top: 5px;margin-bottom: 0px; width: 82%;">
+                                                                <?php
+                                                                $Image = $seoinfo['image'];
+                                                                if (!empty($Image)) {
+                                                                    $imagePath = "./data/seo/" . htmlspecialchars(trim($Image));
+                                                                    echo "<a class='socialContainerBanner'><img id='bannerImg' width='150' class='socialSvg instagramSvg' src='$imagePath' alt='Image'></a>";
+                                                                } else {
+                                                                    echo "<p style='margin-left: 25px;margin-bottom: 0rem;'>No banner image available.</p>";
+                                                                }
+                                                                ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="existing_image" value="<?php echo htmlspecialchars($Image); ?>">
+
                                                 <div class="col-sm-12">
-                                                    <div class="col-sm-6">
-                                                        <label for="validationCustom01">Mail:</label>
-                                                        <input class="form-control" id="validationCustom01" type="text"
-                                                            placeholder="Post Mail" name="mail" value="<?php echo $peopleinfo['mail'] ?>">
-                                                        <div class="valid-feedback">Looks good!</div>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col-sm-6" style="padding-top: 15px;padding-left: 0px;left: 15px;"">
-                                                    <div class=" input-group mb-3">
-                                                    <div class="input-group-prepend" style="padding-left: -0.25rem;border-left-style: solid;margin-left: 13px;border-left-width: 0px;"><span class="input-group-text">Banner</span></div>
-                                                    <div class="card form-control" style="display: flex; flex-direction:row;margin-left: calc(var(--bs-border-width) * 17);padding-right: 4.75rem;border-right-width: 1px;">
-                                                        <?php
-                                                        $Image = $peopleinfo['image'];
-                                                        if (!empty($Image)) {
-                                                            $imagePath = "./data/people/" . htmlspecialchars(trim($Image));
-                                                            echo "<a class='socialContainerBanner'><img id='bannerImg' width='150' class='socialSvg instagramSvg' src='$imagePath' alt='Image'></a>";
-                                                        } else {
-                                                            echo "<p style='margin-left: 25px;margin-bottom: 0rem;'>No banner image available.</p>";
-                                                        }
-                                                        ?>
+                                                    <div class="col-sm-6" style="padding-left: 0px;padding-bottom: 15px;">
+                                                        <input style="padding-left: 10px;padding-top: 10px;border-left-width: 0px;margin-left: 2px;" type="file" name="attached_image" id="image" class="form-control">
                                                     </div>
                                                 </div>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <input class="col-sm-6" type="hidden" name="existing_image" value="<?php echo htmlspecialchars($Image); ?>">
-                                        </div>
 
-                                        <div class="col-sm-6" style="padding-left: 0px;padding-bottom: 15px;">
-                                            <input style="padding-left: 10px;padding-top: 10px;border-left-width: 0px;margin-left: 15px;" type="file" name="attached_image" id="image" class="form-control">
-                                        </div>
+
+
                                         <div class="col-sm-12">
                                             <div class="email-wrapper">
                                                 <div class="theme-form">
                                                     <div class="mb-3">
                                                         <label>Description:</label>
-                                                        <textarea id="text-box" name="description" cols="10" rows="2">  <?php echo $peopleinfo['description'] ?> </textarea>
+                                                        <textarea id="text-box" name="description" cols="10" rows="2"><?php echo $seoinfo['meta_description'] ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="btn-showcase text-end">
-                                            <button class="btn btn-primary" name="submit" value="Edit People" type="submit">Update</button>
+                                            <button class="btn btn-primary" name="submit" value="Edit Seo" type="submit">Update</button>
                                         </div>
 
                                         </form>

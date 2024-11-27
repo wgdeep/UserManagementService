@@ -82,7 +82,7 @@ while ($row = mysqli_fetch_assoc($empRecords)) {
         "image" => '<img src="./data/seo/' . $row['image'] . '"  width="50" alt="">',
         "edate" => $row['edate'],
         "etime" => $row['etime'],
-        "action" => '<a title="Delete" href="seo.php?del_id=' . $row['id'] . '"><i class="fa fa-trash-o"></i></a> <a title="Edit" href="update_seo.php?edit_id=' . $row['id'] . '" style="margin-left: 10px;"><i class="fa fa-pencil"></i></a>',
+        "action" => '<a title="Delete" href="manage_seo.php?del_id=' . $row['id'] . '"><i class="fa fa-trash-o"></i></a> <a title="Edit" href="update_seo.php?edit_id=' . $row['id'] . '" style="margin-left: 10px;"><i class="fa fa-pencil"></i></a>',
     );
 }
 

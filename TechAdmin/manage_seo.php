@@ -9,9 +9,9 @@ require_once("include/library.php");
 
 if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '') {
 
-    deleteDataWithImg($con, 'people', $_REQUEST['del_id']);
+    deleteDataWithImg($con, 'seo', $_REQUEST['del_id']);
 
-    echo "<script>window.location = '" . $wwwroot . "/people.php';</script>";
+    echo "<script>window.location = '" . $wwwroot . "/manage_seo.php?act=del';</script>";
 
     exit();
 }
@@ -81,7 +81,7 @@ date_default_timezone_set("Asia/Kolkata");
 </head>
 
 <body>
-<?php
+    <?php
     require_once("include/header.php");
 
     ?>
@@ -169,9 +169,18 @@ date_default_timezone_set("Asia/Kolkata");
                                                 $('#tableshowid').DataTable({
 
                                                     "columnDefs": [{
-                                                        "orderable": false,
-                                                        "targets": 0
-                                                    }],
+                                                            "orderable": false,
+                                                            "targets": 0
+                                                        }, 
+                                                        {
+                                                            "targets": 4, // Assuming "Meta Description" is the 4th column (index starts from 0)
+                                                            "render": function(data, type, row) {
+                                                                // Truncate if text length exceeds 50 characters and decode HTML entities
+                                                                let decodedData = $('<div>').html(data).text(); // Decode HTML entities
+                                                                return decodedData.length > 15 ? decodedData.substring(0, 15) + '...' : decodedData;
+                                                            }
+                                                        }
+                                                    ],
 
                                                     dom: 'Blfrtip',
 
