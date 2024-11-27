@@ -418,7 +418,49 @@ function addPeople($con, $req, &$outputMsg)
   $unitsql = mysqli_query($con, "insert into people set title = '" . $title . "', post1 = '" . $post1 . "', post2 = '" . $post2 . "',post3 = '" . $post3 . "', description = '" . htmlentities($description) . "', mail = '" . $mail . "',image = '" . $image . "', edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
 
   header("location:people.php?act=add");
-  header("location:people.php?act=add");
+  return true;
+}
+
+function addPurpose($con, $req, &$outputMsg)
+{
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+
+  $title    = trim($req['title']);
+  $sub_title    = trim($req['sub_title']);
+  $description   = trim($req['description']);
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
+
+  $image = '';
+
+  if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
+    $original_filename = $_FILES['attached_image']['name'];
+    $file_ext = substr($original_filename, strripos($original_filename, '.')); // Get extension
+
+    if (($file_ext != '.png') && ($file_ext != '.jpg') && ($file_ext != '.jpeg') && ($file_ext != '.gif')) {
+      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+      return false;
+    }
+
+    $minute = date('i');
+    $second = date('s');
+
+    $renamed_banner = $minute . $second . $original_filename;
+
+    $image = $renamed_banner;
+    $target_img   = "./data/purpose/image/" . $image;
+
+    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
+      $outputMsg = "File upload failed.";
+      return false;
+    }
+  }
+
+  $unitsql = mysqli_query($con, "insert into purpose set title = '" . $title . "', sub_title = '" . $sub_title . "', description = '" . htmlentities($description) . "',image = '" . $image . "', status ='1' ,edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
+
+  header("location:purpose.php?act=add");
   return true;
 }
 
