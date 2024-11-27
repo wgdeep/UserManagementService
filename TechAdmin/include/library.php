@@ -458,7 +458,7 @@ function addPurpose($con, $req, &$outputMsg)
     }
   }
 
-  $unitsql = mysqli_query($con, "insert into purpose set title = '" . $title . "', sub_title = '" . $sub_title . "', description = '" . htmlentities($description) . "',image = '" . $image . "', status ='1' ,edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
+  $unitsql = mysqli_query($con, "insert into purpose set title = '" . $title . "', sub_title = '" . $sub_title . "', description = '" . $description . "',image = '" . $image . "', status ='1' ,edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
 
   header("location:purpose.php?act=add");
   return true;
@@ -946,6 +946,60 @@ function updatePeople($con, $req, &$outputMsg)
   $unitsql = mysqli_query($con, "update people set title = '" . $title . "', post1 = '" . $post1 . "', post2 = '" . $post2 . "',post3 = '" . $post3 . "', description = '" . htmlentities($description) . "', mail = '" . $mail . "',image = '" . $image . "', edate= '" . $curdate . "', etime= '" . $curtime . "' where id = '" . $edit_id . "'") or die(mysqli_error($con));
 
   header("location:people.php?act=edit");
+
+  return true;
+}
+
+function updatePurpose($con, $req, &$outputMsg)
+{
+  $title    = trim($req['title']);
+  $sub_title    = trim($req['sub_title']);
+  $description = trim($req['description']);
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
+
+
+
+  $edit_id = $req['id'];
+
+
+  $image = '';
+
+  if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
+    $original_filename = $_FILES['attached_image']['name'];
+    $file_ext = substr($original_filename, strripos($original_filename, '.'));
+
+    if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+      return false;
+    }
+
+    $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
+
+
+    $minute = date('i');
+    $second = date('s');
+
+    $renamed_image = $minute . $second . $original_filename_without_numbers;
+
+
+    $image = $renamed_image;
+    $target_img = "./data/people/" . $image;
+
+
+    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
+      $outputMsg = "File upload failed.";
+      return false;
+    }
+  } else {
+    $image = $_POST['existing_image'] ?? '';
+  }
+
+  // echo "update publication set title = '" . htmlentities($title) . "',date = '" . $date . "',venue  = '" . $venue  . "',media  = '" . $media  . "',description = '" . htmlentities($description) . "', banner_image = '" . $banner_image . "',url = '" . htmlentities($url) . "', edate = '" . $curdate . "', etime = '" . $curtime . "' where id='" . $edit_id . "'"; die;
+
+  $unitsql = mysqli_query($con, "update purpose set title = '" . $title . "', sub_title = '" . $sub_title . "', description = '" . $description . "',image = '" . $image . "', status='1' , edate= '" . $curdate . "', etime= '" . $curtime . "' where id = '" . $edit_id . "'") or die(mysqli_error($con));
+
+  header("location:purpose.php?act=edit");
 
   return true;
 }
