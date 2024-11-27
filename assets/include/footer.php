@@ -18,7 +18,7 @@
         <div class="col-xl-4">
           <div class="widget footer-widget">
             <div class="footer-about"> 
-               <div class="copyright-logo"><a href="index.php"><img src="assets/img/logo-dark.png" alt="logo" style="max-width:280px;"></a></div>
+               <div class="copyright-logo"><a href="home"><img src="assets/img/logo-dark.png" alt="logo" style="max-width:280px;"></a></div>
 			  </div>
           </div>
         </div>
@@ -29,18 +29,18 @@
               <div class="col-auto">
                 <div class="menu-all-pages-container">
                   <ul class="menu">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="event.php">Events</a></li>
-                    <li><a href="purpose.php">Purpose</a></li>
+                    <li><a href="home">Home</a></li>
+                    <li><a href="event">Events</a></li>
+                    <li><a href="purpose">Purpose</a></li>
                   </ul>
                 </div>
               </div>
               <div class="col-auto">
                 <div class="menu-all-pages-container">
                   <ul class="menu">
-                    <li><a href="people.php">People</a></li>
-                    <li><a href="publications.php">Publications</a></li>
-                    <li><a href="contact_us.php">Contact Us</a></li>
+                    <li><a href="people">People</a></li>
+                    <li><a href="publications">Publications</a></li>
+                    <li><a href="contact_us">Contact Us</a></li>
                   </ul>
                 </div>
               </div>

@@ -2,7 +2,7 @@
 .header-logo img {
     max-width: 420px;
     height: auto;
-    margin-top: -70px;
+    margin-top: 0px;
 }
 .footer-layout2 .footer-top {
     padding-bottom: 320px;
@@ -63,7 +63,7 @@
 		<li class="menu-item-has-children"><a href="event.php"><span class="has-new-lable">Events</span></a> </li>               
 		<li class="menu-item-has-children"><a href="publications.php">Publications & News</a></li>
 		<li class="menu-item-has-children"><a href="reports.php">Reports</a></li>
-		<li class="menu-item-has-children"><a href="contact_us.php">Contact us</a></li>
+		<li class="menu-item-has-children"><a href="contact_us">Contact us</a></li>
 </ul>
     </div>
   </div>
@@ -123,7 +123,7 @@
             <button class="vs-menu-toggle d-inline-block d-lg-none"><i class="fal fa-bars"></i></button>
           </div>
    
-          <div class="col-auto d-none d-xl-block"><a href="contact_us.php" class="vs-btn">Contact Us</a></div>
+          <div class="col-auto d-none d-xl-block"><a href="contact_us" class="vs-btn">Contact Us</a></div>
         </div>
       </div>
     </div>

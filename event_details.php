@@ -13,8 +13,6 @@ if (isset($_GET['url'])) {
 
 ?>
 
-
-
 <!doctype html>
 
 
@@ -137,21 +135,21 @@ if (isset($_GET['url'])) {
   <div class="vs-menu-wrapper">
     <div class="vs-menu-area text-center">
       <button class="vs-menu-toggle"><i class="fal fa-times"></i></button>
-      <div class="mobile-logo"><a href="/projects/index.php"><img src="../assets/img/logo-2.png" alt="SHARE"></a></div>
+      <div class="mobile-logo"><a href="/projects/home"><img src="../assets/img/logo-2.png" alt="SHARE"></a></div>
       <div class="vs-mobile-menu">
 
         <ul>
-          <li class="menu-item-has-children"><a href="/projects/index.php"><span class="has-new-lable">Home</span></a> </li>
-          <li class="menu-item-has-children"><a href="/projects/purpose.php">About Us</a>
+          <li class="menu-item-has-children"><a href="/projects/home"><span class="has-new-lable">Home</span></a> </li>
+          <li class="menu-item-has-children"><a href="/projects/purpose">About Us</a>
             <ul class="sub-menu">
-              <li><a href="/projects/purpose.php">Purpose</a></li>
-              <li><a href="/projects/people.php">People</a></li>
+              <li><a href="/projects/purpose">Purpose</a></li>
+              <li><a href="/projects/people">People</a></li>
             </ul>
           </li>
-          <li class="menu-item-has-children"><a href="/projects/event.php"><span class="has-new-lable">Events</span></a> </li>
-          <li class="menu-item-has-children"><a href="/projects/publications.php">Publications & News</a></li>
-          <li class="menu-item-has-children"><a href="/projects/reports.php">Reports</a></li>
-          <li class="menu-item-has-children"><a href="/projects/contact_us.php">Contact us</a></li>
+          <li class="menu-item-has-children"><a href="/projects/event"><span class="has-new-lable">Events</span></a> </li>
+          <li class="menu-item-has-children"><a href="/projects/publications">Publications & News</a></li>
+          <li class="menu-item-has-children"><a href="/projects/report">Reports</a></li>
+          <li class="menu-item-has-children"><a href="/projects/contact_us">Contact us</a></li>
         </ul>
       </div>
     </div>
@@ -191,32 +189,34 @@ if (isset($_GET['url'])) {
         <div class="container">
           <div class="row align-items-center justify-content-between">
             <div class="col-auto">
-              <div class="header-logo"><a href="/projects/index.php"><img src="../assets/img/logo.png" alt="SHARE"></a></div>
+              <div class="header-logo"><a href="/projects/home"><img src="../assets/img/logo.png" alt="SHARE"></a></div>
             </div>
             <div class="col-auto col-xl text-xl-center">
               <nav class="main-menu menu-style1 d-none d-lg-block">
                 <ul>
-                  <li><a href="/projects/index.php"><span class="has-new-lable">Home</span></a> </li>
-                  <li><a href="/projects/purpose.php">About Us</a>
+                  <li><a href="/projects/home"><span class="has-new-lable">Home</span></a> </li>
+                  <li><a href="/projects/purpose">About Us</a>
                     <ul class="sub-menu">
-                      <li><a href="/projects/purpose.php">Purpose</a></li>
-                      <li><a href="/projects/people.php">People</a></li>
+                      <li><a href="/projects/purpose">Purpose</a></li>
+                      <li><a href="/projects/people">People</a></li>
                     </ul>
                   </li>
                   <li><a href="/projects/event"><span class="has-new-lable">Events</span></a> </li>
-                  <li><a href="/projects/publications.php">Publications & News</a></li>
-                  <li><a href="/projects/reports.php">Reports</a></li>
+                  <li><a href="/projects/publications">Publications & News</a></li>
+                  <li><a href="/projects/report">Reports</a></li>
                 </ul>
               </nav>
               <button class="vs-menu-toggle d-inline-block d-lg-none"><i class="fal fa-bars"></i></button>
             </div>
 
-            <div class="col-auto d-none d-xl-block"><a href="/projects/contact_us.php" class="vs-btn">Contact Us</a></div>
+            <div class="col-auto d-none d-xl-block"><a href="/projects/contact_us" class="vs-btn">Contact Us</a></div>
           </div>
         </div>
       </div>
     </div>
   </header>
+
+
 
 
   <div class="breadcumb-wrapper" data-bg-src="../assets/img/subpage-header-bg.jpg">
@@ -225,7 +225,7 @@ if (isset($_GET['url'])) {
         <h1 class="breadcumb-title"><?php echo $rows['title'] ?></h1>
         <div class="breadcumb-menu-wrap">
           <ul class="breadcumb-menu">
-            <li><a href="/projects/index.php"> Home</a></li>
+            <li><a href="/projects/home"> Home</a></li>
             <li>Events</li>
           </ul>
         </div>
@@ -360,7 +360,7 @@ if (isset($_GET['url'])) {
           <div class="col-xl-4">
             <div class="widget footer-widget">
               <div class="footer-about">
-                <div class="copyright-logo"><a href="/projects/index.php"><img src="../assets/img/logo-dark.png" alt="logo" style="max-width:280px;"></a></div>
+                <div class="copyright-logo"><a href="/projects/home"><img src="../assets/img/logo-dark.png" alt="logo" style="max-width:280px;"></a></div>
               </div>
             </div>
           </div>
@@ -371,18 +371,18 @@ if (isset($_GET['url'])) {
                 <div class="col-auto">
                   <div class="menu-all-pages-container">
                     <ul class="menu">
-                      <li><a href="/projects/index.php">Home</a></li>
+                      <li><a href="/projects/home">Home</a></li>
                       <li><a href="/projects/event">Events</a></li>
-                      <li><a href="/projects/purpose.php">Purpose</a></li>
+                      <li><a href="/projects/purpose">Purpose</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-auto">
                   <div class="menu-all-pages-container">
                     <ul class="menu">
-                      <li><a href="/projects/people.php">People</a></li>
-                      <li><a href="/projects/publications.php">Publications</a></li>
-                      <li><a href="/projects/contact_us.php">Contact Us</a></li>
+                      <li><a href="/projects/people">People</a></li>
+                      <li><a href="/projects/publications">Publications</a></li>
+                      <li><a href="/projects/contact_us">Contact Us</a></li>
                     </ul>
                   </div>
                 </div>

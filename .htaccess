@@ -8,6 +8,7 @@
     RewriteRule ^purpose$ purpose.php [L,QSA]
     RewriteRule ^people$ people.php [L,QSA]
     RewriteRule ^report$ reports.php [L,QSA]
+    RewriteRule ^contact_us$ contact_us.php [L,QSA]
 
     # Rewrite /projects/event_details/{url} to /projects/event_details.php?url={url}
     RewriteRule ^event/([^/]+)$ event_details.php?url=$1 [L,QSA]

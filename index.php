@@ -73,7 +73,7 @@ include_once("./TechAdmin/include/library.php");
 
         <div style="font-size:36px; color:000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; left:160px; top:610px;" class="ls-l ls-hide-tablet ls-hide-phone ls-html-layer" data-ls="offsetyin:100; durationin:1500; delayin:800; easingin:easeOutQuint; offsetyout:100; durationout:1500; easingout:easeOutQuint;">
 
-          <a href="contact_us.php" class="vs-btn ls-vs-btn">Contact Us</a>
+          <a href="contact_us" class="vs-btn ls-vs-btn">Contact Us</a>
 
           <!--a href="mailto:offfice@theshare.in" class="play-btn style3 popup-video"><i class="fas fa-play"></i></a-->
 
@@ -109,7 +109,7 @@ include_once("./TechAdmin/include/library.php");
 
         <div style="font-size:36px; color:000; text-align:left; font-style:normal; text-decoration:none; text-transform:none; font-weight:400; letter-spacing:0px; background-position:0% 0%; background-repeat:no-repeat; left:160px; top:610px;" class="ls-l ls-hide-tablet ls-hide-phone ls-html-layer" data-ls="offsetyin:100; durationin:1500; delayin:800; easingin:easeOutQuint; offsetyout:100; durationout:1500; easingout:easeOutQuint;">
 
-          <a href="contact_us.php" class="vs-btn ls-vs-btn">Contact Us</a>
+          <a href="contact_us" class="vs-btn ls-vs-btn">Contact Us</a>
 
           <!--a href="mailto:offfice@theshare.in" class="play-btn style3 popup-video"><i class="fas fa-play"></i></a-->
 
@@ -243,7 +243,7 @@ include_once("./TechAdmin/include/library.php");
         ?>
           <div class="col-xl-4">
             <div class="vs-blog blog-style1">
-              <div class="blog-img"><a href="event_details.php?url=<?php echo $data['url']; ?>"><img src="TechAdmin/data/event/banner/<?php echo $data['banner_image'] ?>" alt="Blog Image" class="w-100"></a></div>
+              <div class="blog-img"><a href="event/<?php echo urlencode($data['url']); ?>"><img src="TechAdmin/data/event/banner/<?php echo $data['banner_image'] ?>" alt="Blog Image" class="w-100"></a></div>
               <div class="blog-content">
                 <div class="blog-bottom">
 
@@ -254,9 +254,9 @@ include_once("./TechAdmin/include/library.php");
 
                 </div>
 
-                <h3 class="blog-title h5"><a href="event_details.php?url=<?php echo $data['url']; ?>"><?php echo $data['title'] ?></a></h3>
+                <h3 class="blog-title h5"><a href="event/<?php echo urlencode($data['url']); ?>"><?php echo $data['title'] ?></a></h3>
                 <p class="blog-writter"><i class="fas fa-user"></i> Presented by SHARE</p>
-                <div class="blog-category"><a href="event_details.php?url=<?php echo $data['url']; ?>"><i class="fas fa-location"></i> Venue: <?php echo $data['venue'] ?></a></div>
+                <div class="blog-category"><a href="event/<?php echo urlencode($data['url']); ?>"><i class="fas fa-location"></i> Venue: <?php echo $data['venue'] ?></a></div>
 
               </div>
             </div>

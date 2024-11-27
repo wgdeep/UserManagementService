@@ -421,6 +421,53 @@ function addPeople($con, $req, &$outputMsg)
   return true;
 }
 
+function addSeo($con, $req, &$outputMsg)
+{
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+
+  $title    = trim($req['title']);
+  $meta_title   = trim($req['meta_title']);
+  $meta_description   = trim($req['meta_description']);
+  $meta_keyword   = trim($req['meta_keyword']);
+  $header   = trim($req['header']);
+  $footer   = trim($req['footer']);
+  $status = trim($req['status']);
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
+
+  $image = '';
+
+  if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
+    $original_filename = $_FILES['attached_image']['name'];
+    $file_ext = substr($original_filename, strripos($original_filename, '.')); // Get extension
+
+    if (($file_ext != '.png') && ($file_ext != '.jpg') && ($file_ext != '.jpeg') && ($file_ext != '.gif')) {
+      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+      return false;
+    }
+
+    $minute = date('i');
+    $second = date('s');
+
+    $renamed_banner = $minute . $second . $original_filename;
+
+    $image = $renamed_banner;
+    $target_img   = "./data/seo/" . $image;
+
+    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
+      $outputMsg = "File upload failed.";
+      return false;
+    }
+  }
+
+  $unitsql = mysqli_query($con, "insert into seo set title = '" . $title . "', meta_title = '" . $meta_title . "', meta_description = '" . $meta_description . "',meta_keyword = '" . $meta_keyword . "', header = '" . $header . "', footer = '" . $footer . "',status = '" . $status . "',image = '" . $image . "', edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
+
+  header("location:manage_seo.php?act=add");
+  return true;
+}
+
 function addPurpose($con, $req, &$outputMsg)
 {
   ini_set('display_errors', 1);
