@@ -49,11 +49,11 @@
 <div class="vs-menu-wrapper">
   <div class="vs-menu-area text-center">
     <button class="vs-menu-toggle"><i class="fal fa-times"></i></button>
-    <div class="mobile-logo"><a href="index.php"><img src="assets/img/logo-2.png" alt="SHARE"></a></div>
+    <div class="mobile-logo"><a href="home"><img src="assets/img/logo-2.png" alt="SHARE"></a></div>
     <div class="vs-mobile-menu">
        
 <ul>
-        <li class="menu-item-has-children"><a href="index.php"><span class="has-new-lable">Home</span></a> </li>
+        <li class="menu-item-has-children"><a href="home"><span class="has-new-lable">Home</span></a> </li>
         <li class="menu-item-has-children"><a href="purpose.php">About Us</a>
 			<ul class="sub-menu">
 				<li><a href="purpose.php">Purpose</a></li>
@@ -103,21 +103,21 @@
       <div class="container">
         <div class="row align-items-center justify-content-between">
           <div class="col-auto">
-            <div class="header-logo"><a href="index.php"><img src="assets/img/logo.png" alt="SHARE"></a></div>
+            <div class="header-logo"><a href="home"><img src="assets/img/logo.png" alt="SHARE"></a></div>
           </div>
           <div class="col-auto col-xl text-xl-center">
             <nav class="main-menu menu-style1 d-none d-lg-block">
               <ul>
-                <li><a href="index.php"><span class="has-new-lable">Home</span></a> </li>
-                <li><a href="purpose.php">About Us</a>
+                <li><a href="home"><span class="has-new-lable">Home</span></a> </li>
+                <li><a href="purpose">About Us</a>
 					<ul class="sub-menu">
-						<li><a href="purpose.php">Purpose</a></li>
-						<li><a href="people.php">People</a></li>
+						<li><a href="purpose">Purpose</a></li>
+						<li><a href="people">People</a></li>
 					</ul>
 				</li>
-				<li><a href="event.php"><span class="has-new-lable">Events</span></a> </li>               
-				<li><a href="publications.php">Publications & News</a></li>
-                 <li><a href="reports.php">Reports</a></li>
+				<li><a href="event"><span class="has-new-lable">Events</span></a> </li>               
+				<li><a href="publications">Publications & News</a></li>
+                 <li><a href="report">Reports</a></li>
               </ul>
             </nav>
             <button class="vs-menu-toggle d-inline-block d-lg-none"><i class="fal fa-bars"></i></button>

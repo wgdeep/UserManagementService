@@ -15,6 +15,7 @@ date_default_timezone_set('Asia/Kolkata');
           echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 	$wwwroot = "/projects/TechAdmin";
+	$basepath = "/projects/";
 	$create_u = 'user_add';
 	$view_u = 'user_show';
 	$update_u = 'user_edit';

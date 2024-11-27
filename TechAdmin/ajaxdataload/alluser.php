@@ -30,7 +30,6 @@ if ($searchValue != '') {
     )";
 }
 
-
 $sel = mysqli_query($con, "select count(*) as total from user");
 
 $records = mysqli_fetch_assoc($sel);

@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Rewrite /projects/event to /projects/event.php
+    RewriteRule ^event$ event.php [L,QSA]
+    RewriteRule ^publications$ publications.php [L,QSA]
+    RewriteRule ^home$ index.php [L,QSA]
+    RewriteRule ^purpose$ purpose.php [L,QSA]
+    RewriteRule ^people$ people.php [L,QSA]
+    RewriteRule ^report$ reports.php [L,QSA]
+
+    # Rewrite /projects/event_details/{url} to /projects/event_details.php?url={url}
+    RewriteRule ^event/([^/]+)$ event_details.php?url=$1 [L,QSA]
+</IfModule>

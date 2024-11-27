@@ -144,7 +144,14 @@ include_once("./TechAdmin/include/library.php");
                     </div>
 
 
-                    <a href="event_details.php?url=<?php echo $data['url']; ?>" class="icon-btn style4"><i class="far fa-long-arrow-right"></i></a>
+                    <a href="event/<?php echo urlencode($data['url']); ?>" class="icon-btn style4"><i class="far fa-long-arrow-right"></i></a>
+                
+
+                    <!-- <a href="event_details.php?url=<?php echo $data['url']; ?>"
+                      class="icon-btn style4"
+                      id="dynamicLink">
+                      <i class="far fa-long-arrow-right"></i>
+                    </a> -->
 
                   </div>
 
@@ -165,6 +172,20 @@ include_once("./TechAdmin/include/library.php");
 
 
   <?php include('assets/include/footer.php'); ?>
+
+  <script>
+    // Get the anchor element
+    const link = document.getElementById('dynamicLink');
+
+    // Extract the URL parameter from the current href
+    const currentHref = link.getAttribute('href');
+    const urlParam = new URLSearchParams(currentHref.split('?')[1]).get('url');
+
+    // Update the href to the rewritten structure
+    if (urlParam) {
+      link.setAttribute('href', `event/${encodeURIComponent(urlParam)}`);
+    }
+  </script>
 
   <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
   <script src="assets/js/app.min.js"></script>
