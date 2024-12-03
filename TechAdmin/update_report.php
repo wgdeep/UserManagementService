@@ -116,14 +116,14 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                                             <form class="row needs-validation" action="?id=<?php echo $reportinfo['id']; ?>" method="POST" enctype="multipart/form-data">
 
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Title:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Title">Title:</label>
+                                                    <input class="form-control" id="Title" type="text"
                                                         placeholder="Post Title" name="title" value="<?php echo $reportinfo['title'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">PDF URL:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="URL">PDF URL:</label>
+                                                    <input class="form-control" id="URL" type="text"
                                                         placeholder="Post PDF URL" name="pdf" value="<?php echo $reportinfo['pdf'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>

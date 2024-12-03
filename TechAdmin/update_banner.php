@@ -116,33 +116,33 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                                             <form class="row needs-validation" action="?id=<?php echo $bannerinfo['id']; ?>" method="POST" enctype="multipart/form-data">
 
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Title1:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Title1">Title1:</label>
+                                                    <input class="form-control" id="Title1" type="text"
                                                         placeholder="Post Title1" name="title1" value="<?php echo $bannerinfo['title1'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Title2:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Title2">Title2:</label>
+                                                    <input class="form-control" id="Title2" type="text"
                                                         placeholder="Post Title2" name="title2" value="<?php echo $bannerinfo['title2'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Title3:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Title3">Title3:</label>
+                                                    <input class="form-control" id="Title3" type="text"
                                                         placeholder="Post Title3" name="title3" value="<?php echo $bannerinfo['title3'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Button Name:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Name">Button Name:</label>
+                                                    <input class="form-control" id="Name" type="text"
                                                         placeholder="Button Name" name="button_name" value="<?php echo $bannerinfo['button_name'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <label for="validationCustom01">Button URL:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="URL">Button URL:</label>
+                                                    <input class="form-control" id="URL" type="text"
                                                         placeholder="Button URL" name="button_url" value="<?php echo $bannerinfo['button_url'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>

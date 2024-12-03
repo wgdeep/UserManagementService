@@ -28,11 +28,7 @@ if ($searchValue != '') {
     $searchQuery = " AND (
         id LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
         title LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
-        post1 LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
-        post2 LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
-        post3 LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
-        mail LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
-        image LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
+        sub_title LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
         edate LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
         etime LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' 
 

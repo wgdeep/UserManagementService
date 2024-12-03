@@ -62,7 +62,6 @@ function AdminLogin($con, $req, &$outputMsg)
 
 function Login($con, $req, &$outputMsg)
 {
-
   $sqlLogin = "select * from user where user_email='" . trim($req['email']) . "' and user_password='" . trim(md5($req['password'])) . "'";
 
 
@@ -89,7 +88,7 @@ function Login($con, $req, &$outputMsg)
 
 
 
-    $_SESSION['ID'] = $dataLogin->id;
+    $_SESSION['ID']  = $dataLogin->id;
 
 
 
@@ -163,7 +162,6 @@ function Login($con, $req, &$outputMsg)
 
 function Register($con, $req, &$outputMsg)
 {
-
   $name = trim($req['user_name']);
   $email = trim($req['user_email']);
   $password = trim(md5($req['password']));
@@ -187,7 +185,6 @@ function downloadPdf($pdf)
 
 function addEvent($con, $req, &$outputMsg)
 {
-
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
@@ -375,6 +372,7 @@ function addBanner($con, $req, &$outputMsg)
   header("location:banner.php?act=add");
   return true;
 }
+
 function addPeople($con, $req, &$outputMsg)
 {
   ini_set('display_errors', 1);
@@ -433,6 +431,7 @@ function addSeo($con, $req, &$outputMsg)
   $meta_keyword   = trim($req['meta_keyword']);
   $header   = trim($req['header']);
   $footer   = trim($req['footer']);
+  $body   = trim($req['body']);
   $status = trim($req['status']);
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
@@ -462,7 +461,7 @@ function addSeo($con, $req, &$outputMsg)
     }
   }
 
-  $unitsql = mysqli_query($con, "insert into seo set title = '" . $title . "', meta_title = '" . $meta_title . "', meta_description = '" . $meta_description . "',meta_keyword = '" . $meta_keyword . "', header = '" . $header . "', footer = '" . $footer . "',status = '" . $status . "',image = '" . $image . "', edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
+  $unitsql = mysqli_query($con, "insert into seo set title = '" . $title . "', meta_title = '" . $meta_title . "', meta_description = '" . $meta_description . "',meta_keyword = '" . $meta_keyword . "', header = '" . $header . "', footer = '" . $footer . "', body = '" . $body . "',status = '" . $status . "',image = '" . $image . "', edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
 
   header("location:manage_seo.php?act=add");
   return true;
@@ -513,7 +512,7 @@ function addPurpose($con, $req, &$outputMsg)
 
 function addReport($con, $req, &$outputMsg)
 {
-  $title    = trim($req['title']);
+  $title  = trim($req['title']);
   $pdf    = trim($req['pdf']);
 
   $curtime = date('H:i:s');
@@ -594,9 +593,7 @@ function adminAddFormReport($con, $req, &$outputMsg)
 
 function addRole($con, $req, &$outputMsg)
 {
-
   $status = trim($req['status']);
-
 
   $sqlQry = mysqli_query($con, "select * from permission where id = '1'");
 
@@ -625,7 +622,7 @@ function addRole($con, $req, &$outputMsg)
 
 function addUser($con, $req, &$outputMsg)
 {
-  $name = trim($req['user_name']);
+  $name  = trim($req['user_name']);
   $email = trim($req['user_email']);
   $password = trim(md5($req['user_password']));
   $role = trim($req['role_name']);
@@ -646,7 +643,7 @@ function addUser($con, $req, &$outputMsg)
 
 function updateFormReport($con, $req, &$outputMsg)
 {
-  $name = trim($req['name']);
+  $name  = trim($req['name']);
   $email = trim($req['email']);
   $phone = trim($req['phone']); // Updated key
   $message = trim($req['message']);
@@ -670,8 +667,8 @@ function updateBanner($con, $req, &$outputMsg)
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
 
-  $id    = trim($req['id']);
-  $title1    = trim($req['title1']);
+  $id       = trim($req['id']);
+  $title1   = trim($req['title1']);
   $title2   = trim($req['title2']);
   $title3   = trim($req['title3']);
   $button_name   = strtoupper(trim($req['button_name']));
@@ -688,8 +685,8 @@ function updateBanner($con, $req, &$outputMsg)
 function updateEvent($con, $req, &$outputMsg)
 {
   $title = trim($req['title']);
-  $url = clean(trim($req['title']));
-  $date = trim($req['date']);
+  $url   = clean(trim($req['title']));
+  $date  = trim($req['date']);
   $venue = trim($req['venue']);
   $description = trim($req['description']);
   $curtime = date('H:i:s');
@@ -778,8 +775,8 @@ function updateEvent($con, $req, &$outputMsg)
 
 function updatePublication($con, $req, &$outputMsg)
 {
-  $title    = trim($req['title']);
-  $date   = trim($req['date']);
+  $title   = trim($req['title']);
+  $date    = trim($req['date']);
   $venue   = trim($req['venue']);
   $media   = trim($req['media']);
   $description = trim($req['description']);
@@ -835,7 +832,7 @@ function updatePublication($con, $req, &$outputMsg)
 
 function updateLatestUpdate($con, $req, &$outputMsg)
 {
-  $title    = trim($req['title']);
+  $title   = trim($req['title']);
 
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
@@ -885,19 +882,14 @@ function updateLatestUpdate($con, $req, &$outputMsg)
 
   return true;
 }
+
 function updateReport($con, $req, &$outputMsg)
 {
-  $title    = trim($req['title']);
-  $pdf    = trim($req['pdf']);
-
+  $title   = trim($req['title']);
+  $pdf     = trim($req['pdf']);
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
-
-
-
   $edit_id = $req['id'];
-
-
   $image = '';
 
   if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
@@ -950,12 +942,7 @@ function updatePeople($con, $req, &$outputMsg)
   $description = trim($req['description']);
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
-
-
-
   $edit_id = $req['id'];
-
-
   $image = '';
 
   if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
@@ -1004,7 +991,61 @@ function updatePurpose($con, $req, &$outputMsg)
   $description = trim($req['description']);
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
+  $edit_id = $req['id'];
 
+
+  $image = '';
+
+  if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
+    $original_filename = $_FILES['attached_image']['name'];
+    $file_ext = substr($original_filename, strripos($original_filename, '.'));
+
+    if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+      return false;
+    }
+
+    $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
+
+
+    $minute = date('i');
+    $second = date('s');
+
+    $renamed_image = $minute . $second . $original_filename_without_numbers;
+
+    $image = $renamed_image;
+    $target_img = "./data/people/" . $image;
+
+
+    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
+      $outputMsg = "File upload failed.";
+      return false;
+    }
+  } else {
+    $image = $_POST['existing_image'] ?? '';
+  }
+
+  // echo "update publication set title = '" . htmlentities($title) . "',date = '" . $date . "',venue  = '" . $venue  . "',media  = '" . $media  . "',description = '" . htmlentities($description) . "', banner_image = '" . $banner_image . "',url = '" . htmlentities($url) . "', edate = '" . $curdate . "', etime = '" . $curtime . "' where id='" . $edit_id . "'"; die;
+
+  $unitsql = mysqli_query($con, "update purpose set title = '" . $title . "', sub_title = '" . $sub_title . "', description = '" . $description . "',image = '" . $image . "', status='1' , edate= '" . $curdate . "', etime= '" . $curtime . "' where id = '" . $edit_id . "'") or die(mysqli_error($con));
+
+  header("location:purpose.php?act=edit");
+
+  return true;
+}
+
+function updateSeo($con, $req, &$outputMsg)
+{
+  $title    = trim($req['title']);
+  $meta_title   = trim($req['meta_title']);
+  $meta_description   = trim($req['meta_description']);
+  $meta_keyword   = trim($req['meta_keyword']);
+  $header   = trim($req['header']);
+  $footer   = trim($req['footer']);
+  $body   = trim($req['body']);
+  $status = trim($req['status']);
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
 
 
   $edit_id = $req['id'];
@@ -1031,7 +1072,7 @@ function updatePurpose($con, $req, &$outputMsg)
 
 
     $image = $renamed_image;
-    $target_img = "./data/people/" . $image;
+    $target_img = "./data/seo/" . $image;
 
 
     if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
@@ -1044,43 +1085,25 @@ function updatePurpose($con, $req, &$outputMsg)
 
   // echo "update publication set title = '" . htmlentities($title) . "',date = '" . $date . "',venue  = '" . $venue  . "',media  = '" . $media  . "',description = '" . htmlentities($description) . "', banner_image = '" . $banner_image . "',url = '" . htmlentities($url) . "', edate = '" . $curdate . "', etime = '" . $curtime . "' where id='" . $edit_id . "'"; die;
 
-  $unitsql = mysqli_query($con, "update purpose set title = '" . $title . "', sub_title = '" . $sub_title . "', description = '" . $description . "',image = '" . $image . "', status='1' , edate= '" . $curdate . "', etime= '" . $curtime . "' where id = '" . $edit_id . "'") or die(mysqli_error($con));
+  $unitsql = mysqli_query($con, "update seo set title = '" . $title . "', meta_title = '" . $meta_title . "', meta_description = '" . $meta_description . "',meta_keyword = '" . $meta_keyword . "', header = '" . $header . "', footer = '" . $footer . "',body = '" . $body . "',status = '" . $status . "',image = '" . $image . "', edate= '" . $curdate . "', etime= '" . $curtime . "' where id = '" . $edit_id . "'") or die(mysqli_error($con));
 
-  header("location:purpose.php?act=edit");
+  header("location:manage_seo.php?act=edit");
 
   return true;
 }
 
-
-
 function viewData($con, $table, $id)
 {
-
   $getQur = mysqli_query($con, "select * from $table WHERE id = '" . $id . "'");
-
-
-
   $result = mysqli_fetch_assoc($getQur);
-
-
 
   return $result;
 }
 
-
-
-
-
 function editData($con, $table, $id)
 {
-
   $getQur = mysqli_query($con, "select * from $table WHERE id = '" . $id . "'");
-
-
-
   $result = mysqli_fetch_assoc($getQur);
-
-
 
   return $result;
 }
@@ -1088,43 +1111,18 @@ function editData($con, $table, $id)
 
 function deleteDataWithImg($con, $table, $id)
 {
-
-
-
   $result = mysqli_fetch_assoc(mysqli_query($con, "select * from $table WHERE id = '" . $id . "'"));
-
-
-
   unlink('upload/' . $table . '/' . $result['image']);
-
-
-
   $true = mysqli_query($con, "delete from $table WHERE id = '" . $id . "'");
-
-
 
   return $true;
 }
 
 
 function clean($string)
-
-
-
 {
-
-
-
   $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
-
-
-
   $string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
 
-
-
-  return strtolower(preg_replace('/-+/', '-', $string)); // Replaces multiple hyphens with single one.
-
-
-
+  return strtolower(preg_replace('/-+/', '-', $string)); // Replaces multiple hyphens with single one.  
 }

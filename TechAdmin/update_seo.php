@@ -126,35 +126,8 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="meta_title">Meta Title:</label>
-                                                    <input class="form-control" id="meta_title" type="text"
-                                                        placeholder="Post Meta Title" name="meta_title" value="<?php echo $seoinfo['meta_title'] ?>">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="meta_keyword">Meta Keyword:</label>
-                                                    <input class="form-control" id="meta_keyword" type="text"
-                                                        placeholder="Post Meta Keyword" name="meta_keyword" value="<?php echo $seoinfo['meta_keyword'] ?>">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-
-                                                <div class="col-sm-6">
-                                                    <label for="header">Header:</label>
-                                                    <input class="form-control" id="header" type="text"
-                                                        placeholder="Post Header" name="header" value="<?php echo $seoinfo['header'] ?>">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-
-
-                                                <div class="col-sm-6">
-                                                    <label for="footer">Footer:</label>
-                                                    <input class="form-control" id="footer" type="text"
-                                                        placeholder="Post Footer" name="footer" value="<?php echo $seoinfo['footer'] ?>">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="exampleSelect1" class="form-label mt-4">Status</label>
-                                                    <select class="form-select" name="status" id="exampleSelect1">
+                                                    <label for="Status" class="form-label">Status</label>
+                                                    <select class="form-select" name="status" id="Status">
                                                         <?php if ($seoinfo['status'] > 0) { ?>
                                                             <option value="1" selected>Active</option>
                                                             <option value="0">Inactive</option>
@@ -166,10 +139,47 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                                                     </select>
                                                 </div>
                                                 <div class="col-sm-6">
+                                                    <div>
+                                                        <label for="Title" class="form-label mt-4">Meta Title:</label>
+                                                        <textarea class="form-control" name="meta_title" id="Title" rows="3"><?php echo $seoinfo['meta_title'] ?></textarea>
+                                                    </div>
+                                                    <div class="valid-feedback">Looks good!</div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        <label for="Keyword" class="form-label mt-4">Meta Keyword:</label>
+                                                        <textarea class="form-control" name="meta_keyword" id="Keyword" rows="3"><?php echo $seoinfo['meta_keyword'] ?></textarea>
+                                                    </div>
+                                                    <div class="valid-feedback">Looks good!</div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        <label for="Header" class="form-label mt-4">Header:</label>
+                                                        <textarea class="form-control" name="header" id="Header" rows="3"><?php echo $seoinfo['header'] ?></textarea>
+                                                    </div>
+                                                    <div class="valid-feedback">Looks good!</div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        <label for="footer" class="form-label mt-4">Footer:</label>
+                                                        <textarea class="form-control" name="footer" id="footer" rows="3"><?php echo $seoinfo['footer'] ?></textarea>
+                                                    </div>
+                                                    <div class="valid-feedback">Looks good!</div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        <label for="body" class="form-label mt-4">Body:</label>
+                                                        <textarea class="form-control" name="body" id="body" rows="3"><?php echo $seoinfo['body'] ?></textarea>
+                                                    </div>
+                                                    <div class="valid-feedback">Looks good!</div>
+                                                </div>
+
+                                                <div class="col-sm-6">
 
                                                     <div class="col-sm-6" style="padding-top: 15px;padding-left: 0px;left: 15px;"">
                                                     <div class=" input-group">
-                                                        <div >
+                                                        <div>
                                                             <div class="input-group-prepend" style="margin-top: 10px;margin-right: 15px;"><span class="input-group-text col-sm-">Image</span></div>
                                                         </div>
                                                         <div class="col-sm-4">
@@ -202,8 +212,8 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                                             <div class="email-wrapper">
                                                 <div class="theme-form">
                                                     <div class="mb-3">
-                                                        <label>Description:</label>
-                                                        <textarea id="text-box" name="description" cols="10" rows="2"><?php echo $seoinfo['meta_description'] ?></textarea>
+                                                        <label>Meta Description:</label>
+                                                        <textarea id="text-box" name="meta_description" cols="10" rows="2"><?php echo $seoinfo['meta_description'] ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>

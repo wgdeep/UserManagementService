@@ -105,32 +105,32 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Banner") {
                                         <div class="card-body add-post">
                                             <form class="row needs-validation" method="post" action="" novalidate="" enctype="multipart/form-data">
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Title1:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Title1">Title1:</label>
+                                                    <input class="form-control" id="Title1" type="text"
                                                         placeholder="Post Title1" name="title1">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Ttitle2:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Ttitle2">Ttitle2:</label>
+                                                    <input class="form-control" id="Ttitle2" type="text"
                                                         placeholder="Post Title2" name="title2">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Title3:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Title3">Title3:</label>
+                                                    <input class="form-control" id="Title3" type="text"
                                                         placeholder="Post Title3" name="title3">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Button Name:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Name">Button Name:</label>
+                                                    <input class="form-control" id="Name" type="text"
                                                         placeholder="Button Name" name="button_name">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Button URL:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="URL">Button :</label>
+                                                    <input class="form-control" id="URL" type="text"
                                                         placeholder="Button URL" name="button_url">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>

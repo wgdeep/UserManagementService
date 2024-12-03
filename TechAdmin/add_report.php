@@ -105,20 +105,20 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Report") {
                                         <div class="card-body add-post">
                                             <form class="row needs-validation" method="post" action="" novalidate="" enctype="multipart/form-data">
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Title:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Title">Title:</label>
+                                                    <input class="form-control" id="Title" type="text"
                                                         placeholder="Post Title" name="title" required="">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Pdf URL:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="URL">Pdf URL:</label>
+                                                    <input class="form-control" id="URL" type="text"
                                                         placeholder="Post Pdf URL" name="pdf">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <label for="validationCustom01">Image:</label>
-                                                    <input type="file" name="attached_image" id="image" class="form-control" multiple>
+                                                    <label for="Image">Image:</label>
+                                                    <input type="file" name="attached_image" id="Image" class="form-control" multiple>
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
 

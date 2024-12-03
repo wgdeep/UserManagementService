@@ -239,7 +239,7 @@ include_once("./TechAdmin/include/library.php");
 
         $qry = mysqli_query($con, $sql);
 
-        while ($data = mysqli_fetch_array($qry)) {
+        $data = mysqli_fetch_array($qry) 
         ?>
           <div class="col-xl-4">
             <div class="vs-blog blog-style1">
@@ -261,9 +261,6 @@ include_once("./TechAdmin/include/library.php");
               </div>
             </div>
           </div>
-
-        <?php  }   ?>
-
 
         <!-- <div class="col-xl-4">
           <div class="vs-blog blog-style1">

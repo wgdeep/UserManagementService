@@ -104,41 +104,17 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Seo") {
                                     <div class="card">
                                         <div class="card-body add-post">
                                             <form class="row needs-validation" method="post" action="" novalidate="" enctype="multipart/form-data">
+
                                                 <div class="col-sm-6">
                                                     <label for="validationCustom01">Title:</label>
                                                     <input class="form-control" id="validationCustom01" type="text"
                                                         placeholder="Post Title" name="title" required="">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
-                                                <div class="col-sm-6">
-                                                    <label for="Meta Title">Meta Title:</label>
-                                                    <input class="form-control" id="Meta Title" type="text"
-                                                        placeholder="Enter Meta Title" name="meta_title">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
 
-                                                <div class="col-sm-6">
-                                                    <label for="Meta Keyword">Meta Keyword:</label>
-                                                    <input class="form-control" id="Meta Keyword" type="text"
-                                                        placeholder="Enter Meta Keyword" name="meta_keyword">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="Header">Header:</label>
-                                                    <input class="form-control" id="Header" type="text"
-                                                        placeholder="Post Header" name="header">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-
-                                                <div class="col-sm-6">
-                                                    <label for="Footer">Footer:</label>
-                                                    <input class="form-control" id="Footer" type="text"
-                                                        placeholder="Post Footer" name="footer">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
                                                 <div class="col-sm-6">
                                                     <div>
-                                                        <label for="exampleSelect1" class="form-label mt-4">Status</label>
+                                                        <label for="exampleSelect1" class="form-label" style="margin-bottom: 0px;">Status</label>
                                                         <select class="form-select" name="status" id="exampleSelect1">
                                                             <option value="1">Active</option>
                                                             <option value="0">Inactive</option>
@@ -146,6 +122,49 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Seo") {
                                                     </div>
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
+
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        <label for="Title" class="form-label mt-4">Meta Title:</label>
+                                                        <textarea class="form-control" id="Title" name="meta_title" rows="3"></textarea>
+                                                        <div class="valid-feedback">Looks good!</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        <label for="Keyword" class="form-label mt-4">Meta Keyword:</label>
+                                                        <textarea class="form-control" id="Keyword" name="meta_keyword" rows="3"></textarea>
+                                                        <div class="valid-feedback">Looks good!</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        <label for="Header" class="form-label mt-4">Header</label>
+                                                        <textarea class="form-control" id="Header" name="header" rows="3"></textarea>
+                                                        <div class="valid-feedback">Looks good!</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        <label for="Footer" class="form-label mt-4">Footer</label>
+                                                        <textarea class="form-control" id="Footer" name="footer" rows="3"></textarea>
+                                                        <div class="valid-feedback">Looks good!</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        <label for="Body" class="form-label mt-4">Body</label>
+                                                        <textarea class="form-control" id="Body" name="body" rows="3"></textarea>
+                                                        <div class="valid-feedback">Looks good!</div>
+
+                                                    </div>
+                                                </div>
+
+
 
                                                 <div class="col-sm-6">
                                                     <label for="validationCustom01">Image:</label>

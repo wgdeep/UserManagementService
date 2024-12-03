@@ -2,11 +2,11 @@
 
 require_once("include/config.php");
 require_once("include/library.php");
-require_once("include/header.php");
+
 
 $error = '';
-if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Publication") {
-    addPublication($con, $_REQUEST, $error);
+if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add User"){
+    addUser($con, $_REQUEST, $error);
 }
 ?>
 
@@ -62,25 +62,23 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Publication") {
     <style>
         label {
             margin-bottom: .5rem;
-            margin: 20px 0px 0px 10px;
+            margin: 0px 0px 10px 0px;
+        }
+
+        .per-label {
+            margin-bottom: .5rem;
+            margin: 0px 20px 0px 0px;
         }
     </style>
 </head>
 
 <body>
     <!-- Loader starts-->
-    <div class="loader-wrapper">
-        <div class="loader"></div>
-    </div>
-    <!-- Loader ends-->
-    <!-- tap on top starts-->
-    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
-    <!-- tap on tap ends-->
-    <!-- page-wrapper Start-->
-    <div class="page-wrapper" id="pageWrapper">
+
         <!-- Page Header Start-->
-
-
+        <?php
+          require_once("include/header.php");  
+        ?>
         <!-- Page Header Ends-->
         <!-- Page Body Start-->
         <div class="page-body-wrapper" style="margin-top: 0px;">
@@ -95,7 +93,7 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Publication") {
                     <div class="page-title" style="margin-top: 0px;">
                         <div class="row">
                             <div class="col-sm-6 ps-0">
-                                <h3 style="padding-bottom: 14px;margin-left: 15px;">Add Publication</h3>
+                                <h3 style="padding-bottom: 14px;margin-left: 15px;"><?php echo $_SESSION['Name'] ?></h3>
                             </div>
 
                             <!-- Container-fluid starts-->
@@ -105,55 +103,50 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Publication") {
                                         <div class="card-body add-post">
                                             <form class="row needs-validation" method="post" action="" novalidate="" enctype="multipart/form-data">
                                                 <div class="col-sm-6">
-                                                    <label for="Title">Title:</label>
-                                                    <input class="form-control" id="Title" type="text"
-                                                        placeholder="Post Title" name="title" required="">
+                                                    <label for="Name">Name:</label>
+                                                    <input class="form-control" style="margin-bottom: 10px;" id="Name" type="text"
+                                                        placeholder="Enter Name" name="user_name" value="<?php echo $_SESSION['Name'] ?>"  required="">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="Media">Media:</label>
-                                                    <input class="form-control" id="Media" type="text"
-                                                        placeholder="Post Media" name="media">
+                                                    <label for="Email">Email:</label>
+                                                    <input class="form-control" style="margin-bottom: 10px;" id="Email" type="text"
+                                                        placeholder="Enter Email" name="user_email" value="<?php echo $_SESSION['Email'] ?>" required="">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="Venue">Venue:</label>
-                                                    <input class="form-control" id="Venue" type="text"
-                                                        placeholder="Post Venue" name="venue">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
+
+                                                    <label for="exampleSelect1" class="form-label">Role</label>
+                                                    <select class="form-select" name="role_name" id="exampleSelect1">
+                                                        <?php
+                                                        // Execute the query to get all roles
+                                                        $roleQry = mysqli_query($con, "SELECT role_name FROM role");
+
+                                                        // Loop through each row of the result set
+                                                        while ($role = mysqli_fetch_assoc($roleQry)) {
+                                                        ?>
+                                                            <option value="<?php echo $role['role_name']; ?>"><?php echo $role['role_name']; ?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+
+                                                </div>             
                                                 <div class="col-sm-6">
-                                                    <label for="URL">Media URL:</label>
-                                                    <input class="form-control" id="URL" type="text"
-                                                        placeholder="URL" name="url">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="Date">Date:</label>
-                                                    <input class="form-control" id="Date" type="text"
-                                                        placeholder="Post Date" name="date">
-                                                    <div class="valid-feedback">Looks good!</div>
+
+                                                    <label for="exampleSelect1" class="form-label">Status</label>
+                                                    <select class="form-select" name="status" id="exampleSelect1">
+                                                      
+                                                            <option value="1">Active</option>
+                                                            <option value="0">Inactive</option>
+                                                        
+                                                    </select>
+
                                                 </div>
 
-                                                <div class="col-sm-6">
-                                                    <label for="Banner">Banner:</label>
-                                                    <input type="file" name="attached_banner" id="Banner" class="form-control" multiple>
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-
-                                                <div class="col-sm-12">
-                                                    <div class="email-wrapper">
-                                                        <div class="theme-form">
-                                                            <div class="mb-3">
-                                                                <label>Description:</label>
-                                                                <textarea id="text-box" name="description" cols="10" rows="2"></textarea>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
 
                                                 <div class="btn-showcase text-end">
-                                                    <button class="btn btn-primary" name="submit" value="Add Publication" type="submit">Add</button>
+                                                    <button class="btn btn-primary" name="submit" value="Add User" type="submit">Add</button>
                                                 </div>
 
                                             </form>

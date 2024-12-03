@@ -138,6 +138,7 @@ date_default_timezone_set("Asia/Kolkata");
                                                 <th>Meta Keyword</th>
                                                 <th>Header</th>
                                                 <th>Footer</th>
+                                                <th>Body</th>
                                                 <th>Status</th>
                                                 <th>Image</th>
                                                 <th>Date</th>
@@ -229,6 +230,9 @@ date_default_timezone_set("Asia/Kolkata");
                                                         },
                                                         {
                                                             data: 'footer'
+                                                        },  
+                                                        {
+                                                            data: 'body'
                                                         },
                                                         {
                                                             data: 'status'

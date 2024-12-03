@@ -136,14 +136,14 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Event") {
                                         </script>
 
                                         <div class="col-sm-6 mb-3">
-                                            <label for="validationCustom01">Date:</label>
-                                            <input class="form-control" id="validationCustom01" type="text"
+                                            <label for="Date">Date:</label>
+                                            <input class="form-control" id="Date" type="text"
                                                 placeholder="Post Date" name="date">
                                             <div class="valid-feedback">Looks good!</div>
                                         </div>
                                         <div class="col-sm-6 mb-3">
-                                            <label for="validationCustom01">Venue:</label>
-                                            <input class="form-control" id="validationCustom01" type="text"
+                                            <label for="Venue">Venue:</label>
+                                            <input class="form-control" id="Venue" type="text"
                                                 placeholder="Post Venue" name="venue">
                                             <div class="valid-feedback">Looks good!</div>
                                         </div>
@@ -171,12 +171,7 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Event") {
                                                 </div>
                                             </div>
                                         </div>
-
-
-
-
-
-
+                                        
                                         <div class="btn-showcase text-end">
                                             <button class="btn btn-primary" name="submit" value="Add Event" type="submit">Add</button>
                                         </div>

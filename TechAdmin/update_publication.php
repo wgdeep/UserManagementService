@@ -120,32 +120,32 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                                             <form class="row needs-validation" action="?id=<?php echo $publicationinfo['id']; ?>" method="POST" enctype="multipart/form-data">
 
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Title:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Title">Title:</label>
+                                                    <input class="form-control" id="Title" type="text"
                                                         placeholder="Post Title" name="title" value="<?php echo $publicationinfo['title'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Media:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Media">Media:</label>
+                                                    <input class="form-control" id="Media" type="text"
                                                         placeholder="Post Media" name="media" value="<?php echo $publicationinfo['media'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Venue:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Venue">Venue:</label>
+                                                    <input class="form-control" id="Venue" type="text"
                                                         placeholder="Post Venue" name="venue" value="<?php echo $publicationinfo['venue'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Media URL:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="URL">Media URL:</label>
+                                                    <input class="form-control" id="URL" type="text"
                                                         placeholder="URL" name="url" value="<?php echo $publicationinfo['url'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Date:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Date">Date:</label>
+                                                    <input class="form-control" id="Date" type="text"
                                                         placeholder="Post Date" name="date" value="<?php echo $publicationinfo['date'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>

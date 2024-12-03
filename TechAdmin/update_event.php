@@ -125,16 +125,16 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                                             <form class="row needs-validation" id="update_event" action="?id=<?php echo $eventinfo['id']; ?>" method="POST" enctype="multipart/form-data">
 
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Title:</label>
-                                                    <input class="form-control" id="title" type="text"
+                                                    <label for="Title">Title:</label>
+                                                    <input class="form-control" id="Title" type="text"
                                                         placeholder="Post Title" name="title"
                                                         value="<?php echo $eventinfo['title']; ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
 
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">URL:</label>
-                                                    <input class="form-control" id="url" type="text"
+                                                    <label for="URL">URL:</label>
+                                                    <input class="form-control" id="URL" type="text"
                                                         placeholder="URL" name="url"
                                                         value="<?php echo $eventinfo['url']; ?>">
                                                     <div class="valid-feedback">Looks good!</div>
@@ -168,14 +168,14 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                                                 </script>
 
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Date:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Date">Date:</label>
+                                                    <input class="form-control" id="Date" type="text"
                                                         placeholder="Post Date" name="date" value="<?php echo $eventinfo['date'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Venue:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Venue">Venue:</label>
+                                                    <input class="form-control" id="Venue" type="text"
                                                         placeholder="Post Venue" name="venue" value="<?php echo $eventinfo['venue'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>

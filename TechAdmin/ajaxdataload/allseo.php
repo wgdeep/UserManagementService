@@ -28,11 +28,13 @@ if ($searchValue != '') {
     $searchQuery = " AND (
         id LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
         title LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
-        post1 LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
-        post2 LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
-        post3 LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
-        mail LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
-        image LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
+        meta_title LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
+        meta_description LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
+        meta_keyword LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
+        header LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
+        footer LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
+        body LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
+        status LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
         edate LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
         etime LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' 
 
@@ -78,6 +80,7 @@ while ($row = mysqli_fetch_assoc($empRecords)) {
         "meta_keyword" => $row['meta_keyword'],
         "header" => $row['header'],
         "footer" => $row['footer'],
+        "body" => $row['body'],
         "status" => $row['status'],
         "image" => '<img src="./data/seo/' . $row['image'] . '"  width="50" alt="">',
         "edate" => $row['edate'],

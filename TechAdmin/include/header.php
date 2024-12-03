@@ -92,6 +92,7 @@ if (empty($_SESSION['ID']) && ($_SESSION['Name'] == "")) {
                 </div>
               </div>
               <ul class="profile-dropdown onhover-show-div">
+                <li><a href="./admin_myprofile.php"><i data-feather="log-in"> </i><span>My Profile</span></a></li>
                 <li><a href="./user_logout.php"><i data-feather="log-in"> </i><span>Log out</span></a></li>
                 <!-- <form action="logout" method="POST" class="d-none" id="logout-form">
                   <input type="hidden" name="_token" value="22L2XEuVkyArsNxlWA9Eta0oPNeFipVYrysTArfC" autocomplete="off">

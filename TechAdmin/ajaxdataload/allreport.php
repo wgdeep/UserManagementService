@@ -27,8 +27,6 @@ if ($searchValue != '') {
   $searchQuery = " AND (
         id LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
         title LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
-        image LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
-        pdf LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
         edate LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
         etime LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' 
 

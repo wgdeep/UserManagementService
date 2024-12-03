@@ -116,8 +116,8 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                                             <form class="row needs-validation" action="?id=<?php echo $latestupdateinfo['id']; ?>" method="POST" enctype="multipart/form-data">
 
                                                 <div class="col-sm-6">
-                                                    <label for="validationCustom01">Title:</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
+                                                    <label for="Title">Title:</label>
+                                                    <input class="form-control" id="Title" type="text"
                                                         placeholder="Post Title" name="title" value="<?php echo $latestupdateinfo['title'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>

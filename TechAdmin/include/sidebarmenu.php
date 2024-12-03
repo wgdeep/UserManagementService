@@ -24,7 +24,7 @@ require_once("include/library.php");
                             </svg><span>Home</span></a>
                         <ul class="sidebar-submenu custom-scrollbar">
                             <li class="sidebar-head">Home</li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="javascript:void(0)">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/banner.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -34,12 +34,8 @@ require_once("include/library.php");
                                     <svg class="arrow">
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
-                                <ul class="submenu-wrapper">
-                                    <li><a href="<?php echo $wwwroot ?>/banner.php">Manage Banner</a></li>
-                                    <li><a href="<?php echo $wwwroot ?>/add_banner.php">Add Banner</a></li>
-                                </ul>
                             </li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="javascript:void(0)">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/latest_update.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -49,10 +45,6 @@ require_once("include/library.php");
                                     <svg class="arrow">
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
-                                <ul class="submenu-wrapper">
-                                    <li><a href="<?php echo $wwwroot ?>/latest_update.php">Manage Latest Update</a></li>
-                                    <li><a href="<?php echo $wwwroot ?>/add_latest_update.php">Add Latest Update</a></li>
-                                </ul>
                             </li>
                         </ul>
                     </li>
@@ -65,7 +57,7 @@ require_once("include/library.php");
                             </svg><span>About Us</span></a>
                         <ul class="sidebar-submenu custom-scrollbar">
                             <li class="sidebar-head">About Us</li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="javascript:void(0)">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/people.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -75,12 +67,8 @@ require_once("include/library.php");
                                     <svg class="arrow">
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
-                                <ul class="submenu-wrapper">
-                                    <li><a href="<?php echo $wwwroot ?>/people.php">Manage People</a></li>
-                                    <li><a href="<?php echo $wwwroot ?>/add_people.php">Add People</a></li>
-                                </ul>
                             </li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="javascript:void(0)">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/purpose.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -91,7 +79,7 @@ require_once("include/library.php");
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
                                 <ul class="submenu-wrapper">
-                                    <li><a href="<?php echo $wwwroot ?>/purpose.php">Manage Purpose</a></li>
+                                    <li><a href="">Manage Purpose</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -121,7 +109,7 @@ require_once("include/library.php");
                             </svg><span>Reports</span></a>
                         <ul class="sidebar-submenu custom-scrollbar">
                             <li class="sidebar-head">Reports</li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="javascript:void(0)">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/report.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -131,11 +119,8 @@ require_once("include/library.php");
                                     <svg class="arrow">
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
-                                <ul class="submenu-wrapper">
-                                    <li><a href="<?php echo $wwwroot ?>/report.php">Manage Reports</a></li>
-                                </ul>
                             </li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="javascript:void(0)">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/form_report.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -145,10 +130,6 @@ require_once("include/library.php");
                                     <svg class="arrow">
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
-                                <ul class="submenu-wrapper">
-                                    <li><a href="<?php echo $wwwroot ?>/form_report.php">Manage Report Form</a></li>
-                                    <li><a href="<?php echo $wwwroot ?>/add_form_report.php">Add Report Form</a></li>
-                                </ul>
                             </li>
                         </ul>
                     </li>
@@ -161,7 +142,7 @@ require_once("include/library.php");
                             </svg><span>SEO</span></a>
                         <ul class="sidebar-submenu custom-scrollbar">
                             <li class="sidebar-head">Search Engine Optimization</li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="javascript:void(0)">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/manage_seo.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -171,9 +152,6 @@ require_once("include/library.php");
                                     <svg class="arrow">
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
-                                <ul class="submenu-wrapper">
-                                    <li><a href="<?php echo $wwwroot ?>/manage_seo.php">Manage</a></li>
-                                </ul>
                             </li>
                         </ul>
                     </li>
@@ -186,7 +164,7 @@ require_once("include/library.php");
                             </svg><span>Management System</span></a>
                         <ul class="sidebar-submenu custom-scrollbar">
                             <li class="sidebar-head">Management System</li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="javascript:void(0)">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/user_management.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -196,11 +174,8 @@ require_once("include/library.php");
                                     <svg class="arrow">
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
-                                <ul class="submenu-wrapper">
-                                    <li><a href="<?php echo $wwwroot ?>/user_management.php">Manage User</a></li>
-                                </ul>
                             </li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="javascript:void(0)">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/role_management.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -210,9 +185,6 @@ require_once("include/library.php");
                                     <svg class="arrow">
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
-                                <ul class="submenu-wrapper">
-                                    <li><a href="<?php echo $wwwroot ?>/role_management.php">Manage Role</a></li>
-                                </ul>
                             </li>
                         </ul>
                     </li>
