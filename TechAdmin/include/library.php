@@ -418,6 +418,86 @@ function addPeople($con, $req, &$outputMsg)
   header("location:people.php?act=add");
   return true;
 }
+function addSetting($con, $req, &$outputMsg)
+{
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+
+  $address1    = trim($req['address1']);
+  $address2   = trim($req['address2']);
+  $address3   = trim($req['address3']);
+  $phone1   = trim($req['phone1']);
+  $phone2   = trim($req['phone2']);
+  $phone3   = trim($req['phone3']);
+  $email1 = trim($req['email1']);
+  $email2 = trim($req['email2']);
+  $email3 = trim($req['email3']);
+  $fburl = trim($req['fburl']);
+  $igurl = trim($req['igurl']);
+  $yturl = trim($req['yturl']);
+  $liurl = trim($req['liurl']);
+  $pturl = trim($req['pturl']);
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
+
+
+  $logo = '';
+
+  if (isset($_FILES['attached_logo']['name']) && $_FILES['attached_logo']['error'] == 0) {
+    $original_filename = $_FILES['attached_logo']['name'];
+    $file_ext = substr($original_filename, strripos($original_filename, '.')); // Get extension
+
+    if (($file_ext != '.png') && ($file_ext != '.jpg') && ($file_ext != '.jpeg') && ($file_ext != '.gif')) {
+      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+      return false;
+    }
+
+    $minute = date('i');
+    $second = date('s');
+
+    $renamed_logo = $minute . $second . $original_filename;
+
+    $logo = $renamed_logo;
+    $target_img   = "./data/logo/" . $logo;
+
+    if (!move_uploaded_file($_FILES["attached_logo"]["tmp_name"], $target_img)) {
+      $outputMsg = "File upload failed.";
+      return false;
+    }
+  }
+
+  $faviconLogo = '';
+
+  if (isset($_FILES['attached_faviconLogo']['name']) && $_FILES['attached_faviconLogo']['error'] == 0) {
+    $original_filename = $_FILES['attached_faviconLogo']['name'];
+    $file_ext = substr($original_filename, strripos($original_filename, '.')); // Get extension
+
+    if (($file_ext != '.png') && ($file_ext != '.jpg') && ($file_ext != '.jpeg') && ($file_ext != '.gif')) {
+      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+      return false;
+    }
+
+    $minute = date('i');
+    $second = date('s');
+
+    $renamed_faviconLogo = $minute . $second . $original_filename;
+
+    $faviconLogo = $renamed_faviconLogo;
+    $target_img   = "./data/favicon_logo/" . $faviconLogo;
+
+    if (!move_uploaded_file($_FILES["attached_faviconLogo"]["tmp_name"], $target_img)) {
+      $outputMsg = "File upload failed.";
+      return false;
+    }
+  }
+
+
+  $unitsql = mysqli_query($con, "insert into setting set address1 = '" . $address1 . "', address2 = '" . $address2 . "', address3 = '" . $address3 . "',phone1 = '" . $phone1 . "', phone2 = '" . $phone2 . "', phone3 = '" . $phone3 . "',email1 = '" . $email1 . "',email2 = '" . $email2 . "',email3 = '" . $email3 . "',fburl = '" . $fburl . "',igurl = '" . $igurl . "',yturl = '" . $yturl . "',liurl = '" . $liurl . "',pturl = '" . $pturl . "',logo = '" . $logo . "',faviconLogo = '" . $faviconLogo . "',status = '1', edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
+
+  header("location:setting.php?act=add");
+  return true;
+}
 
 function addSeo($con, $req, &$outputMsg)
 {
@@ -637,6 +717,79 @@ function addUser($con, $req, &$outputMsg)
   $sqlQry = mysqli_query($con, "INSERT INTO user SET user_name = '" . $name . "', user_email = '" . $email . "', user_password = '" . $password . "', role= '" . $role . "',status = '" . $status . "', edate = '" . $curdate . "', etime = '" . $curtime . "'") or die(mysqli_error($con));
 
   header("location: user_management.php?act=add");
+  // Always include exit after a header redirect
+  return true;
+}
+function updateUser($con, $req, &$outputMsg)
+{
+  $name  = trim($req['user_name']);
+  $email = trim($req['user_email']);
+  $password = trim(md5($req['user_password']));
+  $role = trim($req['role_name']);
+  $status = trim($req['status']);
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
+  $edit_id = $req['id'];
+
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
+
+  $sqlQry = mysqli_query($con, "UPDATE user SET user_name = '" . $name . "', user_email = '" . $email . "', user_password = '" . $password . "', role= '" . $role . "',status = '" . $status . "', edate = '" . $curdate . "', etime = '" . $curtime . "' where id = '" . $edit_id . "' ") or die(mysqli_error($con));
+
+  header("location: user_management.php?act=edit");
+  // Always include exit after a header redirect
+  return true;
+}
+
+
+function updateProfile($con, $req, &$outputMsg)
+{
+  $name  = trim($req['user_name']);
+  $email = trim($req['user_email']);
+  $password = trim(md5($req['new_password']));
+  $role = trim($req['role_name']);
+  $status = trim($req['status']);
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
+  $edit_id = $req['id'];
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
+
+  $image = '';
+
+  if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
+    $original_filename = $_FILES['attached_image']['name'];
+    $file_ext = substr($original_filename, strripos($original_filename, '.'));
+
+    if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+      return false;
+    }
+
+    $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
+
+
+    $minute = date('i');
+    $second = date('s');
+
+    $renamed_image = $minute . $second . $original_filename_without_numbers;
+
+
+    $image = $renamed_image;
+    $target_img = "./data/user/image/" . $image;
+
+
+    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
+      $outputMsg = "File upload failed.";
+      return false;
+    }
+  } else {
+    $image = $_POST['existing_image'] ?? '';
+  }
+
+  $sqlQry = mysqli_query($con, "UPDATE user SET user_name = '" . $name . "', user_email = '" . $email . "', user_password = '" . $password . "', role= '" . $role . "',status = '" . $status . "',image = '" . $image . "', edate = '" . $curdate . "', etime = '" . $curtime . "' where id = '" . $edit_id . "' ") or die(mysqli_error($con));
+
+  header("location: user_management.php?act=edit");
   // Always include exit after a header redirect
   return true;
 }
@@ -1092,9 +1245,156 @@ function updateSeo($con, $req, &$outputMsg)
   return true;
 }
 
+function editSetting($con, $req, &$outputMsg)
+{
+
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+
+
+  $address1    = trim($req['address1']);
+  $address2   = trim($req['address2']);
+  $address3   = trim($req['address3']);
+  $phone1   = trim($req['phone1']);
+  $phone2   = trim($req['phone2']);
+  $phone3   = trim($req['phone3']);
+  $email1 = trim($req['email1']);
+  $email2 = trim($req['email2']);
+  $email3 = trim($req['email3']);
+  $fburl = trim($req['fburl']);
+  $igurl = trim($req['igurl']);
+  $yturl = trim($req['yturl']);
+  $liurl = trim($req['liurl']);
+  $pturl = trim($req['pturl']);
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
+
+  $edit_id = $req['id'];
+
+
+  $logo = '';
+
+  if (isset($_FILES['attached_logo']['name']) && $_FILES['attached_logo']['error'] == 0) {
+    $original_filename = $_FILES['attached_logo']['name'];
+    $file_ext = substr($original_filename, strripos($original_filename, '.'));
+
+    if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+      return false;
+    }
+
+    $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
+
+
+    $minute = date('i');
+    $second = date('s');
+
+    $renamed_logo = $minute . $second . $original_filename_without_numbers;
+
+
+    $logo = $renamed_logo;
+    $target_img = "./data/logo/" . $logo;
+
+
+    if (!move_uploaded_file($_FILES["attached_logo"]["tmp_name"], $target_img)) {
+      $outputMsg = "File upload failed.";
+      return false;
+    }
+  } else {
+    $logo = $_POST['existing_logo'] ?? '';
+  }
+
+  $faviconLogo = '';
+
+  if (isset($_FILES['attached_faviconLogo']['name']) && $_FILES['attached_faviconLogo']['error'] == 0) {
+    $original_filename = $_FILES['attached_faviconLogo']['name'];
+    $file_ext = substr($original_filename, strripos($original_filename, '.'));
+
+    if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+      return false;
+    }
+
+    $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
+
+
+    $minute = date('i');
+    $second = date('s');
+
+    $renamed_faviconLogo = $minute . $second . $original_filename_without_numbers;
+
+
+    $faviconLogo = $renamed_faviconLogo;
+    $target_img = "./data/favicon_logo/" . $faviconLogo;
+
+
+    if (!move_uploaded_file($_FILES["attached_faviconLogo"]["tmp_name"], $target_img)) {
+      $outputMsg = "File upload failed.";
+      return false;
+    }
+  } else {
+    $faviconLogo = $_POST['existing_faviconLogo'] ?? '';
+  }
+
+  // echo "update publication set title = '" . htmlentities($title) . "',date = '" . $date . "',venue  = '" . $venue  . "',media  = '" . $media  . "',description = '" . htmlentities($description) . "', banner_image = '" . $banner_image . "',url = '" . htmlentities($url) . "', edate = '" . $curdate . "', etime = '" . $curtime . "' where id='" . $edit_id . "'"; die;
+
+  $unitsql = mysqli_query($con, "update setting set address1 = '" . $address1 . "', address2 = '" . $address2 . "', address3 = '" . $address3 . "',phone1 = '" . $phone1 . "', phone2 = '" . $phone2 . "', phone3 = '" . $phone3 . "',email1 = '" . $email1 . "',email2 = '" . $email2 . "',email3 = '" . $email3 . "',fburl = '" . $fburl . "',igurl = '" . $igurl . "',yturl = '" . $yturl . "',liurl = '" . $liurl . "',pturl = '" . $pturl . "',logo = '" . $logo . "',faviconLogo = '" . $faviconLogo . "',status = '1', edate= '" . $curdate . "', etime= '" . $curtime . "' where id = '" . $edit_id . "'") or die(mysqli_error($con));
+
+  header("location:setting.php?act=edit");
+
+  return true;
+}
+
+function updateRole($con, $req, &$outputMsg)
+{
+  $status = trim($req['status']);
+
+  $sqlQry = mysqli_query($con, "select * from permission where id = '1'");
+
+  $permissionInfo = array_slice(mysqli_fetch_assoc($sqlQry), 1);
+
+  $edit_id = $req['id'];
+
+  foreach ($permissionInfo as $permissionInfo) {
+    ${$permissionInfo} = '0';
+  }
+
+  foreach ($req['permission'] as $permission) {
+    ${preg_replace('/\s+/', '', $permission)} = '1';
+  }
+
+  $name = trim($req['role_name']);
+
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
+
+  $sqlQry = mysqli_query($con, "update role SET role_name = '" . $name . "', user_show = '" . $UserShow . "', user_edit = '" . $UserEdit . "', user_remove = '" . $UserRemove . "', user_add = '" . $UserAdd . "', role_show = '" . $RoleShow . "', role_edit = '" . $RoleEdit . "', role_remove = '" . $RoleRemove . "',  role_add = '" . $RoleAdd . "', status = '" . $status . "', edate = '" . $curdate . "', etime = '" . $curtime . "' where id = '" . $edit_id . "'") or die(mysqli_error($con));
+
+  header("location: role_management.php?act=edit");
+  // Always include exit after a header redirect
+  return true;
+}
+
 function viewData($con, $table, $id)
 {
   $getQur = mysqli_query($con, "select * from $table WHERE id = '" . $id . "'");
+  $result = mysqli_fetch_assoc($getQur);
+
+  return $result;
+}
+
+function getData($con, $table)
+{
+  $getQur = mysqli_query($con, "select * from $table");
+  $result = mysqli_fetch_assoc($getQur);
+
+  return $result;
+}
+
+function getPermissionName($con, $table)
+{
+  $getQur = mysqli_query($con, "select * from $table");
   $result = mysqli_fetch_assoc($getQur);
 
   return $result;

@@ -4,6 +4,8 @@ include_once("./TechAdmin/include/config.php");
 
 include_once("./TechAdmin/include/library.php");
 
+      $settinginfo = getData($con, 'setting');
+
 ?>
 
 
@@ -19,7 +21,7 @@ include_once("./TechAdmin/include/library.php");
   <meta name="keywords" content="Society for Harmonising Aspirations for Responsible Engagement">
   <meta name="robots" content="INDEX,FOLLOW">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-  <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./TechAdmin/data/favicon_logo/<?php echo $settinginfo['faviconLogo'] ?>" type="image/x-icon">
   <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
   <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com/">

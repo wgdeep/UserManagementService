@@ -103,6 +103,8 @@ date_default_timezone_set("Asia/Kolkata");
                                                         echo '<span style="color:green;float:right;">Deleted successfully</span>';
                                                     } else if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'add') {
                                                         echo '<span style="color:green;float:right;">Added successfully</span>';
+                                                    }else if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'settingAdd') {
+                                                        echo '<span style="color:green;float:right;">Setting Added successfully</span>';
                                                     } else if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'edit') {
                                                         echo '<span style="color:green;float:right;">Updated successfully</span>';
                                                     } else if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'status') {

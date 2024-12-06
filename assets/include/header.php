@@ -1,3 +1,7 @@
+<?php 
+      $settinginfo = getData($con, 'setting');
+?>
+
 <style>
 .header-logo img {
     max-width: 420px;
@@ -88,10 +92,14 @@
           </div>
         </div-->
         <div class="col-auto">
-          <div class="header-social"><span class="social-label">Get In Touch:</span> 
-          	<a href="https://www.facebook.com/profile.php?id=61564442941071"  target="_blank"><i class="fab fa-facebook-f"></i></a> 
-          	<a href="https://www.linkedin.com/company/share-society-to-harmonise-aspirations-for-responsible-engagement/posts/?feedView=all" target="_blank"><i class="fab fa-linkedin"></i></a> 
-          	<!--a href="#"><i class="fab fa-youtube"></i></a> 
+          <div class="header-social"><span class="social-label">Get In Touch:</span>
+      
+
+          	<!-- <a href="https://www.facebook.com/profile.php?id=61564442941071"  target="_blank"><i class="fab fa-facebook-f"></i></a> -->
+          	<a href="<?php echo $settinginfo['fburl'] ?>"  target="_blank"><i class="fab fa-facebook-f"></i></a>
+          	<!-- <a href="https://www.linkedin.com/company/share-society-to-harmonise-aspirations-for-responsible-engagement/posts/?feedView=all" target="_blank"><i class="fab fa-linkedin"></i></a>  -->
+          	<a href="<?php echo $settinginfo['liurl'] ?>" target="_blank"><i class="fab fa-linkedin"></i></a>
+          	<!--a href="#"><i class="fab fa-youtube"></i></a>
           	<a href="#"><i class="fab fa-instagram"></i></a-->
           </div>
         </div>

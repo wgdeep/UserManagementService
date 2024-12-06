@@ -2,12 +2,24 @@
 
 require_once("include/config.php");
 require_once("include/library.php");
-
+require_once("include/header.php");
 
 $error = '';
-if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add User"){
-    addUser($con, $_REQUEST, $error);
+
+if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Edit Role") {
+    updateRole($con, $_REQUEST, $error);
 }
+
+if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
+    $edit_id = $_REQUEST['edit_id'];
+    $roleinfo = editData($con, 'role', $edit_id);
+    $permissionName = getPermissionName($con, 'permission_name');
+}
+
+
+
+
+
 ?>
 
 
@@ -74,11 +86,18 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add User"){
 
 <body>
     <!-- Loader starts-->
-
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+    <!-- Loader ends-->
+    <!-- tap on top starts-->
+    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <!-- tap on tap ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper" id="pageWrapper">
         <!-- Page Header Start-->
-        <?php
-          require_once("include/header.php");  
-        ?>
+
+
         <!-- Page Header Ends-->
         <!-- Page Body Start-->
         <div class="page-body-wrapper" style="margin-top: 0px;">
@@ -93,7 +112,7 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add User"){
                     <div class="page-title" style="margin-top: 0px;">
                         <div class="row">
                             <div class="col-sm-6 ps-0">
-                                <h3 style="padding-bottom: 14px;margin-left: 15px;"><?php echo $_SESSION['Name'] ?></h3>
+                                <h3 style="padding-bottom: 14px;margin-left: 15px;">Add People</h3>
                             </div>
 
                             <!-- Container-fluid starts-->
@@ -102,51 +121,53 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add User"){
                                     <div class="card">
                                         <div class="card-body add-post">
                                             <form class="row needs-validation" method="post" action="" novalidate="" enctype="multipart/form-data">
+                                                    <input class="form-control" id="Role" type="hidden"
+                                                        placeholder="Enter Role" name="id" value="<?php echo $roleinfo['id'] ?>" required="">
                                                 <div class="col-sm-6">
-                                                    <label for="Name">Name:</label>
-                                                    <input class="form-control" style="margin-bottom: 10px;" id="Name" type="text"
-                                                        placeholder="Enter Name" name="user_name" value="<?php echo $_SESSION['Name'] ?>"  required="">
+                                                    <label for="Role">Role Name:</label>
+                                                    <input class="form-control" id="Role" type="text"
+                                                        placeholder="Enter Role" name="role_name" value="<?php echo $roleinfo['role_name'] ?>" required="">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
-                                                <div class="col-sm-6">
-                                                    <label for="Email">Email:</label>
-                                                    <input class="form-control" style="margin-bottom: 10px;" id="Email" type="text"
-                                                        placeholder="Enter Email" name="user_email" value="<?php echo $_SESSION['Email'] ?>" required="">
-                                                    <div class="valid-feedback">Looks good!</div>
+                                                <div class="col-sm-12">
+                                                    <fieldset>
+                                                        <legend class="mt-4">Permission</legend>
+                                                        <div class="d-flex" style="margin: 2px 2px 25px 2px;">
+                                                            <?php
+                                                            $edit_id = '1';
+                                                            $permissionInfo = viewData($con, 'permission', $edit_id);
+                                                            $permissionInfo = array_slice($permissionInfo, 1);
+                                                            ?>
+                                                            <?php foreach ($permissionInfo as $index => $permission) { ?>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[]" <?php if ($roleinfo[$permissionName[$permission]] > 0) { ?> checked <?php } ?> value="<?php echo $permission; ?>" id="flexCheckDefault<?php echo $index; ?>">
+                                                                    <label class="form-check-label per-label" for="flexCheckDefault<?php echo $index; ?>">
+                                                                        <?php echo $permission; ?>
+                                                                    </label>
+                                                                </div>
+                                                            <?php } ?>
+
+                                                        </div>
+                                                    </fieldset>
                                                 </div>
-                                                <div class="col-sm-6">
-
-                                                    <label for="exampleSelect1" class="form-label">Role</label>
-                                                    <select class="form-select" name="role_name" id="exampleSelect1">
-                                                        <?php
-                                                        // Execute the query to get all roles
-                                                        $roleQry = mysqli_query($con, "SELECT role_name FROM role");
-
-                                                        // Loop through each row of the result set
-                                                        while ($role = mysqli_fetch_assoc($roleQry)) {
-                                                        ?>
-                                                            <option value="<?php echo $role['role_name']; ?>"><?php echo $role['role_name']; ?></option>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-
-                                                </div>             
                                                 <div class="col-sm-6">
 
                                                     <label for="exampleSelect1" class="form-label">Status</label>
                                                     <select class="form-select" name="status" id="exampleSelect1">
-                                                      
-                                                            <option value="1">Active</option>
+                                                        <?php if ($roleinfo['status'] == '1') { ?>
+                                                            <option value="1" selected>Active</option>
                                                             <option value="0">Inactive</option>
-                                                        
+                                                        <?php } else { ?>
+                                                            <option value="1">Active</option>
+                                                            <option value="0" selected>Inactive</option>
+                                                        <?php } ?>
                                                     </select>
 
                                                 </div>
 
 
                                                 <div class="btn-showcase text-end">
-                                                    <button class="btn btn-primary" name="submit" value="Add User" type="submit">Add</button>
+                                                    <button class="btn btn-primary" name="submit" value="Edit Role" type="submit">Add</button>
                                                 </div>
 
                                             </form>

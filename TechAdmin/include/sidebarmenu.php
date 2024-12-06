@@ -185,10 +185,20 @@ require_once("include/library.php");
                                     <svg class="arrow">
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
+                            </li> 
+                             <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/setting.php">
+                                    <svg class="stroke-icon">
+                                        <use href="assets/svg/icon-sprite.svg#home"></use>
+                                    </svg>
+                                    <svg class="fill-icon">
+                                        <use href="assets/svg/icon-sprite.svg#fill-home"></use>
+                                    </svg>Settings
+                                    <svg class="arrow">
+                                        <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
+                                    </svg></a>
                             </li>
                         </ul>
                     </li>
-
                 </ul>
                 </li>
                 </ul>

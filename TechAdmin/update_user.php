@@ -6,11 +6,12 @@ require_once("include/library.php");
 
 $error = '';
 if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Update User") {
-    addUser($con, $_REQUEST, $error);
+    updateUser($con, $_REQUEST, $error);
 }
 
-if(isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] !== ''){
-    
+if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
+    $edit_id = $_REQUEST['edit_id'];
+    $userinfo = editData($con, 'user', $edit_id);
 }
 
 ?>
@@ -80,189 +81,199 @@ if(isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] !== ''){
 <body>
     <!-- Loader starts-->
 
-        <!-- Page Header Start-->
+    <!-- Page Header Start-->
+    <?php
+    require_once("include/header.php");
+    ?>
+    <!-- Page Header Ends-->
+    <!-- Page Body Start-->
+    <div class="page-body-wrapper" style="margin-top: 0px;">
+        <!-- Page Sidebar Start-->
         <?php
-          require_once("include/header.php");  
+
+        require_once("include/sidebarmenu.php");
         ?>
-        <!-- Page Header Ends-->
-        <!-- Page Body Start-->
-        <div class="page-body-wrapper" style="margin-top: 0px;">
-            <!-- Page Sidebar Start-->
-            <?php
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+            <div class="container-fluid">
+                <div class="page-title" style="margin-top: 0px;">
+                    <div class="row">
+                        <div class="col-sm-6 ps-0">
+                            <h3 style="padding-bottom: 14px;margin-left: 15px;">Add People</h3>
+                        </div>
 
-            require_once("include/sidebarmenu.php");
-            ?>
-            <!-- Page Sidebar Ends-->
-            <div class="page-body">
-                <div class="container-fluid">
-                    <div class="page-title" style="margin-top: 0px;">
-                        <div class="row">
-                            <div class="col-sm-6 ps-0">
-                                <h3 style="padding-bottom: 14px;margin-left: 15px;">Add People</h3>
-                            </div>
+                        <!-- Container-fluid starts-->
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-body add-post">
+                                        <form class="row needs-validation" method="post" action="" novalidate="" enctype="multipart/form-data">
+                                            <input type="hidden" name="id" value="<?php echo $userinfo['id'] ?>">
+                                            <div class="col-sm-6">
+                                                <label for="Name">Name:</label>
+                                                <input class="form-control" style="margin-bottom: 10px;" id="Name" type="text"
+                                                    placeholder="Enter Name" name="user_name" value="<?php echo $userinfo['user_name'] ?>" required="">
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="Email">Email:</label>
+                                                <input class="form-control" style="margin-bottom: 10px;" id="Email" type="text"
+                                                    placeholder="Enter Email" name="user_email" value="<?php echo $userinfo['user_email'] ?>" required="">
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="Password">Passwrod:</label>
+                                                <input class="form-control" style="margin-bottom: 10px;" id="Password" type="password"
+                                                    placeholder="Enter Password" name="user_password" value="user_password" required="">
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
 
-                            <!-- Container-fluid starts-->
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="card">
-                                        <div class="card-body add-post">
-                                            <form class="row needs-validation" method="post" action="" novalidate="" enctype="multipart/form-data">
-                                                <div class="col-sm-6">
-                                                    <label for="Name">Name:</label>
-                                                    <input class="form-control" style="margin-bottom: 10px;" id="Name" type="text"
-                                                        placeholder="Enter Name" name="user_name" required="">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="Email">Email:</label>
-                                                    <input class="form-control" style="margin-bottom: 10px;" id="Email" type="text"
-                                                        placeholder="Enter Email" name="user_email" required="">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="Password">Passwrod:</label>
-                                                    <input class="form-control" style="margin-bottom: 10px;" id="Password" type="password"
-                                                    placeholder="Enter Password" name="user_password" required="">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
+                                            <div class="col-sm-6">
 
-                                                <div class="col-sm-6">
+                                                <label for="exampleSelect1" class="form-label">Role</label>
+                                                <select class="form-select" name="role_name" id="exampleSelect1">
+                                                    <?php
+                                                    // Execute the query to get all roles
+                                                    $roleQry = mysqli_query($con, "SELECT role_name FROM role");
 
-                                                    <label for="exampleSelect1" class="form-label">Role</label>
-                                                    <select class="form-select" name="role_name" id="exampleSelect1">
-                                                        <?php
-                                                        // Execute the query to get all roles
-                                                        $roleQry = mysqli_query($con, "SELECT role_name FROM role");
-
-                                                        // Loop through each row of the result set
-                                                        while ($role = mysqli_fetch_assoc($roleQry)) {
-                                                        ?>
+                                                    // Loop through each row of the result set
+                                                    while ($role = mysqli_fetch_assoc($roleQry)) {
+                                                    ?>
+                                                        <?php if ($userinfo['role'] == $role['role_name']) { ?>
+                                                            <option selected value="<?php echo $role['role_name']; ?>"><?php echo $role['role_name']; ?></option>
+                                                        <?php } else { ?>
                                                             <option value="<?php echo $role['role_name']; ?>"><?php echo $role['role_name']; ?></option>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </select>
+                                                    <?php }
+                                                    } ?>
+                                                </select>
 
-                                                </div>             
-                                                <div class="col-sm-6">
+                                            </div>
+                                            <div class="col-sm-6">
 
-                                                    <label for="exampleSelect1" class="form-label">Role</label>
-                                                    <select class="form-select" name="status" id="exampleSelect1">
-                                                      
-                                                            <option value="1">Active</option>
-                                                            <option value="0">Inactive</option>
-                                                        
-                                                    </select>
+                                                <label for="exampleSelect1" class="form-label">Status</label>
+                                                <select class="form-select" name="status" id="exampleSelect1">
+                                                    <?php if ($userinfo['status'] == '1') { ?>
+                                                        <option selected value="1">Active</option>
+                                                        <option value="0">Inactive</option>
+                                                    <?php } else { ?>
+                                                        <option value="1">Active</option>
+                                                        <option selected value="0">Inactive</option>
 
-                                                </div>
+                                                    <?php } ?>
 
 
-                                                <div class="btn-showcase text-end">
-                                                    <button class="btn btn-primary" name="submit" value="Update User" type="submit">Update</button>
-                                                </div>
 
-                                            </form>
+                                                </select>
 
-                                        </div>
+                                            </div>
+
+
+                                            <div class="btn-showcase text-end">
+                                                <button class="btn btn-primary" name="submit" value="Update User" type="submit">Update</button>
+                                            </div>
+
+                                        </form>
+
                                     </div>
                                 </div>
-
-                                <!-- Container-fluid Ends-->
                             </div>
-                            <!-- footer start-->
-                            <?php include('include/footer.php'); ?>
+
+                            <!-- Container-fluid Ends-->
                         </div>
+                        <!-- footer start-->
+                        <?php include('include/footer.php'); ?>
                     </div>
-                    <!-- latest jquery-->
-                    <script src="assets/js/jquery.min.js"></script>
-                    <!-- Bootstrap js-->
-                    <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-                    <!-- feather icon js-->
-                    <script src="assets/js/icons/feather-icon/feather.min.js"></script>
-                    <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
-                    <!-- scrollbar js-->
-                    <script src="assets/js/scrollbar/simplebar.js"></script>
-                    <script src="assets/js/scrollbar/custom.js"></script>
-                    <!-- Sidebar jquery-->
-                    <script src="assets/js/config.js"></script>
-                    <!-- Plugins JS start-->
-                    <script src="assets/js/sidebar-menu.js"></script>
-                    <script src="assets/js/slick/slick.min.js"></script>
-                    <script src="assets/js/slick/slick.js"></script>
-                    <script src="assets/js/header-slick.js"></script>
-                    <script src="assets/js/editor/ckeditor/ckeditor.js"></script>
-                    <script src="assets/js/editor/ckeditor/adapters/jquery.js"></script>
-                    <script src="assets/js/dropzone/dropzone.js"></script>
-                    <script src="assets/js/dropzone/dropzone-script.js"></script>
-                    <script src="assets/js/select2/select2.full.min.js"></script>
-                    <script src="assets/js/select2/select2-custom.js"></script>
-                    <script src="assets/js/email-app.js"></script>
-                    <script src="assets/js/form-validation-custom.js"></script>
-                    <!-- Plugins JS Ends-->
-                    <!-- Theme js-->
-                    <script src="assets/js/script.js"></script>
-                    <script src="assets/js/theme-customizer/customizer.js"></script>
+                </div>
+                <!-- latest jquery-->
+                <script src="assets/js/jquery.min.js"></script>
+                <!-- Bootstrap js-->
+                <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+                <!-- feather icon js-->
+                <script src="assets/js/icons/feather-icon/feather.min.js"></script>
+                <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
+                <!-- scrollbar js-->
+                <script src="assets/js/scrollbar/simplebar.js"></script>
+                <script src="assets/js/scrollbar/custom.js"></script>
+                <!-- Sidebar jquery-->
+                <script src="assets/js/config.js"></script>
+                <!-- Plugins JS start-->
+                <script src="assets/js/sidebar-menu.js"></script>
+                <script src="assets/js/slick/slick.min.js"></script>
+                <script src="assets/js/slick/slick.js"></script>
+                <script src="assets/js/header-slick.js"></script>
+                <script src="assets/js/editor/ckeditor/ckeditor.js"></script>
+                <script src="assets/js/editor/ckeditor/adapters/jquery.js"></script>
+                <script src="assets/js/dropzone/dropzone.js"></script>
+                <script src="assets/js/dropzone/dropzone-script.js"></script>
+                <script src="assets/js/select2/select2.full.min.js"></script>
+                <script src="assets/js/select2/select2-custom.js"></script>
+                <script src="assets/js/email-app.js"></script>
+                <script src="assets/js/form-validation-custom.js"></script>
+                <!-- Plugins JS Ends-->
+                <!-- Theme js-->
+                <script src="assets/js/script.js"></script>
+                <script src="assets/js/theme-customizer/customizer.js"></script>
 
-                    <!-- toastr js -->
-                    <script src="assets/js/toastr.min.js"></script>
+                <!-- toastr js -->
+                <script src="assets/js/toastr.min.js"></script>
 
-                    <script>
-                        $(document).ready(function() {
-                            $(document).on('change', '.toggle-status', function() {
-                                let status = $(this).prop('checked') ? 1 : 0;
-                                let url = $(this).data('route');
-                                let clickedToggle = $(this);
-                                $.ajax({
-                                    type: "POST",
-                                    url: url,
-                                    data: {
-                                        status: status,
-                                        _token: 'xq1sRXci9mJD7CPntesosEA0EJxzvhPdwg6knEKt',
-                                    },
-                                    success: function(data) {
-                                        clickedToggle.prop('checked', status);
-                                        toastr.success("Status Updated Successfully");
-                                    },
-                                    error: function(xhr, status, error) {
-                                        console.log(error)
-                                    }
-                                });
-                            });
-                        });
-                    </script>
-
-
-                    <script>
-                        $(document).ready(function() {
-                            $('.toastr-message').each(function() {
-                                var messageType = $(this).data('type');
-                                var messageText = $(this).text();
-                                toastr.options = {
-                                    "closeButton": false,
-                                    "progressBar": true,
-                                    "extendedTimeOut": 0,
-                                    "timeOut": 0,
-                                };
-
-                                switch (messageType) {
-                                    case 'success':
-                                        toastr.success(messageText);
-                                        break;
-                                    case 'error':
-                                        toastr.error(messageText);
-                                        break;
-                                    case 'info':
-                                        toastr.info(messageText);
-                                        break;
-                                    case 'warning':
-                                        toastr.warning(messageText);
-                                        break;
-                                    default:
-                                        toastr.info(messageText);
+                <script>
+                    $(document).ready(function() {
+                        $(document).on('change', '.toggle-status', function() {
+                            let status = $(this).prop('checked') ? 1 : 0;
+                            let url = $(this).data('route');
+                            let clickedToggle = $(this);
+                            $.ajax({
+                                type: "POST",
+                                url: url,
+                                data: {
+                                    status: status,
+                                    _token: 'xq1sRXci9mJD7CPntesosEA0EJxzvhPdwg6knEKt',
+                                },
+                                success: function(data) {
+                                    clickedToggle.prop('checked', status);
+                                    toastr.success("Status Updated Successfully");
+                                },
+                                error: function(xhr, status, error) {
+                                    console.log(error)
                                 }
                             });
                         });
-                    </script>
+                    });
+                </script>
+
+
+                <script>
+                    $(document).ready(function() {
+                        $('.toastr-message').each(function() {
+                            var messageType = $(this).data('type');
+                            var messageText = $(this).text();
+                            toastr.options = {
+                                "closeButton": false,
+                                "progressBar": true,
+                                "extendedTimeOut": 0,
+                                "timeOut": 0,
+                            };
+
+                            switch (messageType) {
+                                case 'success':
+                                    toastr.success(messageText);
+                                    break;
+                                case 'error':
+                                    toastr.error(messageText);
+                                    break;
+                                case 'info':
+                                    toastr.info(messageText);
+                                    break;
+                                case 'warning':
+                                    toastr.warning(messageText);
+                                    break;
+                                default:
+                                    toastr.info(messageText);
+                            }
+                        });
+                    });
+                </script>
 
 </body>
 

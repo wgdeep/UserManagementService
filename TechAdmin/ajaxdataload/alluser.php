@@ -55,9 +55,9 @@ $currdate = date('Y-m-d');
 
 while ($row = mysqli_fetch_assoc($empRecords)) {
   if ($row['status'] > 0) {
-    $status = 'Active';
+    $status = '<span class="active">Active</span>';
   } else {
-    $status = 'Inactive';
+    $status = '<span class="inactive">Inactive</span>';
   }
 
   if ($_SESSION['Role'] == 'Super Admin' || $_SESSION['Role'] == 'Admin') {

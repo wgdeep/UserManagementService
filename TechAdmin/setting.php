@@ -9,9 +9,9 @@ require_once("include/library.php");
 
 if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '') {
 
-    deleteDataWithImg($con, 'user', $_REQUEST['del_id']);
+    deleteDataWithImg($con, 'setting', $_REQUEST['del_id']);
 
-    echo "<script>window.location = '" . $wwwroot . "/user_management.php';</script>";
+    echo "<script>window.location = '" . $wwwroot . "/setting.php?act=del';</script>";
 
     exit();
 }
@@ -76,21 +76,14 @@ date_default_timezone_set("Asia/Kolkata");
             max-width: 90%;
             height: auto;
         }
-
-        .active{
-            color: green;
-        }
-        .inactive{
-            color: red;
-        }
     </style>
 
 </head>
 
 <body>
     <?php
-
     require_once("include/header.php");
+
     ?>
     <!-- Page Header Ends-->
     <!-- Page Body Start-->
@@ -106,24 +99,22 @@ date_default_timezone_set("Asia/Kolkata");
                 <div class="page-title" style="margin:0px;">
                     <div class="row">
                         <div class="col-sm-6 ps-0">
-                            <h3><b> User Management </b><?php if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'del') {
-                                                            echo '<span style="color:green;float:right;">Deleted successfully</span>';
-                                                        } else if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'add') {
-                                                            echo '<span style="color:green;float:right;">Added successfully</span>';
-                                                        } else if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'edit') {
-                                                            echo '<span style="color:green;float:right;">Updated successfully</span>';
-                                                        } else if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'status') {
-                                                            echo '<span style="color:green;float:right;">Changed successfully</span>';
-                                                        } ?></h3>
+                            <h3><b> People </b><?php if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'del') {
+                                                    echo '<span style="color:green;float:right;">Deleted successfully</span>';
+                                                } else if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'add') {
+                                                    echo '<span style="color:green;float:right;">Added successfully</span>';
+                                                } else if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'edit') {
+                                                    echo '<span style="color:green;float:right;">Updated successfully</span>';
+                                                } else if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'status') {
+                                                    echo '<span style="color:green;float:right;">Changed successfully</span>';
+                                                } ?></h3>
                         </div>
-                        <?php
-                        if (($_SESSION[$create_u] > 0)) { ?>
-                            <div class="col-sm-6 ps-0">
-                                <div class="btn-showcase text-end">
-                                    <a class="btn btn-primary" style="color: white;margin-bottom: 0px;margin-right: 0px;"" href=" add_user.php">Add User</a>
-                                </div>
+                        <!-- <div class="col-sm-6 ps-0">
+                            <div class="btn-showcase text-end">
+                                <a class="btn btn-primary" style="color: white;margin-bottom: 0px;margin-right: 0px;"" href=" add_setting.php">Add Setting</a>
                             </div>
-                        <?php } ?>
+                        </div> -->
+
                     </div>
                 </div>
             </div>
@@ -140,11 +131,26 @@ date_default_timezone_set("Asia/Kolkata");
                                         <thead>
                                             <tr>
                                                 <th><input name="product_all" class="checked_all" type="checkbox"></th>
-                                                <th>Name</th>
-                                                <th>Role</th>
+                                                <th>Action</th>
+                                                <th>Address 1</th>
+                                                <th>Address 2</th>
+                                                <th>Address 3</th>
+                                                <th>Phone1</th>
+                                                <th>Phone2</th>
+                                                <th>Phone3</th>
+                                                <th>Email1</th>
+                                                <th>Email2</th>
+                                                <th>Email3</th>
+                                                <th>Facebook URL</th>
+                                                <th>Instagram URL</th>
+                                                <th>Youtube URL</th>
+                                                <th>Linkedin URL</th>
+                                                <th>Pinterest URL</th>
+                                                <th>Logo</th>
+                                                <th>Favicon Logo</th>
                                                 <th>Status</th>
-                                                <th>Edit</th>
-                                                <th>Remove</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
                                             </tr>
                                         </thead>
 
@@ -174,7 +180,43 @@ date_default_timezone_set("Asia/Kolkata");
                                                     "columnDefs": [{
                                                         "orderable": false,
                                                         "targets": 0
-                                                    }],
+                                                    }, {
+                                                        "targets": 11, // Assuming "Meta Description" is the 4th column (index starts from 0)
+                                                        "render": function(data, type, row) {
+                                                            // Truncate if text length exceeds 50 characters and decode HTML entities
+                                                            let decodedData = $('<div>').html(data).text(); // Decode HTML entities
+                                                            return decodedData.length > 30 ? decodedData.substring(0, 30) + '...' : decodedData;
+                                                        }
+                                                    }, {
+                                                        "targets": 12, // Assuming "Meta Description" is the 4th column (index starts from 0)
+                                                        "render": function(data, type, row) {
+                                                            // Truncate if text length exceeds 50 characters and decode HTML entities
+                                                            let decodedData = $('<div>').html(data).text(); // Decode HTML entities
+                                                            return decodedData.length > 30 ? decodedData.substring(0, 30) + '...' : decodedData;
+                                                        }
+                                                    }, {
+                                                        "targets": 13, // Assuming "Meta Description" is the 4th column (index starts from 0)
+                                                        "render": function(data, type, row) {
+                                                            // Truncate if text length exceeds 50 characters and decode HTML entities
+                                                            let decodedData = $('<div>').html(data).text(); // Decode HTML entities
+                                                            return decodedData.length > 30 ? decodedData.substring(0, 30) + '...' : decodedData;
+                                                        }
+                                                    }, {
+                                                        "targets": 14, // Assuming "Meta Description" is the 4th column (index starts from 0)
+                                                        "render": function(data, type, row) {
+                                                            // Truncate if text length exceeds 50 characters and decode HTML entities
+                                                            let decodedData = $('<div>').html(data).text(); // Decode HTML entities
+                                                            return decodedData.length > 30 ? decodedData.substring(0, 30) + '...' : decodedData;
+                                                        }
+                                                    }, {
+                                                        "targets": 15, // Assuming "Meta Description" is the 4th column (index starts from 0)
+                                                        "render": function(data, type, row) {
+                                                            // Truncate if text length exceeds 50 characters and decode HTML entities
+                                                            let decodedData = $('<div>').html(data).text(); // Decode HTML entities
+                                                            return decodedData.length > 30 ? decodedData.substring(0, 30) + '...' : decodedData;
+                                                        }
+                                                    }, 
+                                                ],
 
                                                     dom: 'Blfrtip',
 
@@ -194,43 +236,80 @@ date_default_timezone_set("Asia/Kolkata");
 
                                                     "ajax": {
 
-                                                        url: "ajaxdataload/alluser.php",
+                                                        url: "ajaxdataload/allsetting.php",
 
                                                         type: "post"
 
                                                     },
 
-                                                    'columns': [
-
-                                                        {
+                                                    'columns': [{
                                                             data: 'id'
                                                         },
                                                         {
-                                                            data: 'name'
+                                                            data: 'action'
                                                         },
                                                         {
-                                                            data: 'role'
+                                                            data: 'address1'
+                                                        },
+                                                        {
+                                                            data: 'address2'
+                                                        },
+                                                        {
+                                                            data: 'address3'
+                                                        },
+                                                        {
+                                                            data: 'phone1'
+                                                        },
+                                                        {
+                                                            data: 'phone2'
+                                                        },
+                                                        {
+                                                            data: 'phone3'
+                                                        },
+                                                        {
+                                                            data: 'email1'
+                                                        },
+                                                        {
+                                                            data: 'email2'
+                                                        },
+                                                        {
+                                                            data: 'email3'
+                                                        },
+                                                        {
+                                                            data: 'fburl'
+                                                        },
+                                                        {
+                                                            data: 'igurl'
+                                                        },
+                                                        {
+                                                            data: 'yturl'
+                                                        },
+                                                        {
+                                                            data: 'liurl'
+                                                        },
+                                                        {
+                                                            data: 'pturl'
+                                                        },
+                                                        {
+                                                            data: 'logo'
+                                                        },
+                                                        {
+                                                            data: 'faviconLogo'
                                                         },
                                                         {
                                                             data: 'status'
                                                         },
                                                         {
-                                                            data: 'edit'
+                                                            data: 'edate'
                                                         },
                                                         {
-                                                            data: 'remove'
-                                                        },
-
-
+                                                            data: 'etime'
+                                                        }
                                                     ]
-
                                                 });
 
                                             });
                                         </script>
-
-
-
                                     </table>
                                 </div>
                             </div>

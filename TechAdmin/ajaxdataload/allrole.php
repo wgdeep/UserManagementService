@@ -70,7 +70,7 @@ while ($row = mysqli_fetch_assoc($empRecords)) {
     "role_name" => $row['role_name'],
     "status" => $status,
     "show" => '<a class="btn btn-info" title="Show" href="showuser.php?show_id=' . $row['id'] . '">Show</a>',
-    "edit" => '<a class="btn btn-primary" title="Edit" href="edituser.php?edit_id=' . $row['id'] . '">Edit</a>',
+    "edit" => '<a class="btn btn-primary" title="Edit" href="update_role.php?edit_id=' . $row['id'] . '">Edit</a>',
     "remove" => '<a class="btn btn-danger" title="Remove" href="role_management.php?del_id=' . $row['id'] . '">Remove</a>',
   );
 }
