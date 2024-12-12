@@ -5,7 +5,11 @@ require_once("include/config.php");
 
 require_once("include/library.php");
 
+$inputData = json_decode(file_get_contents('php://input'), true);
 
+if (isset($_REQUEST)) {
+    addPermission($inputData, $con);
+}
 
 if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '') {
 
@@ -76,6 +80,14 @@ date_default_timezone_set("Asia/Kolkata");
             max-width: 90%;
             height: auto;
         }
+
+        .active {
+            color: green;
+        }
+
+        .inactive {
+            color: red;
+        }
     </style>
 
 </head>
@@ -99,7 +111,7 @@ date_default_timezone_set("Asia/Kolkata");
                 <div class="page-title" style="margin:0px;">
                     <div class="row">
                         <div class="col-sm-6 ps-0">
-                            <h3><b> Latest Update </b><?php if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'del') {
+                            <h3><b> Role Management </b><?php if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'del') {
                                                             echo '<span style="color:green;float:right;">Deleted successfully</span>';
                                                         } else if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'add') {
                                                             echo '<span style="color:green;float:right;">Added successfully</span>';
@@ -111,7 +123,7 @@ date_default_timezone_set("Asia/Kolkata");
                         </div>
                         <div class="col-sm-6 ps-0">
                             <div class="btn-showcase text-end">
-                                <a class="btn btn-primary" style="color: white;margin-bottom: 0px;margin-right: 0px;"" href="add_role.php">Add Role</a>
+                                <a class="btn btn-primary" style="color: white;margin-bottom: 0px;margin-right: 0px;"" href=" add_role.php">Add Role</a>
                             </div>
                         </div>
 
@@ -135,7 +147,6 @@ date_default_timezone_set("Asia/Kolkata");
                                                 <th>Status</th>
                                                 <th></th>
                                                 <th></th>
-                                                <th></th>
                                             </tr>
                                         </thead>
 
@@ -156,6 +167,7 @@ date_default_timezone_set("Asia/Kolkata");
                                         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
                                         <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+
 
                                         <script>
                                             $(document).ready(function() {
@@ -195,15 +207,12 @@ date_default_timezone_set("Asia/Kolkata");
 
                                                         {
                                                             data: 'id'
-                                                        }, 
+                                                        },
                                                         {
                                                             data: 'role_name'
                                                         },
                                                         {
                                                             data: 'status'
-                                                        },
-                                                        {
-                                                            data: 'show'
                                                         },
                                                         {
                                                             data: 'edit'
@@ -232,6 +241,38 @@ date_default_timezone_set("Asia/Kolkata");
                 <?php include('include/footer.php'); ?>
             </div>
         </div>
+        <script>
+            let permissionName1 = [];
+            let pnames1 = {};
+            let names1 = document.getElementsByClassName('sidebar-menu');
+
+            for (let name of names1) {
+                permissionName1.push(name.textContent.trim());
+            }
+
+            console.log(permissionName1);
+
+
+            for (let permission of permissionName1) {
+                let key = permission.toLowerCase().replace(/\s+/g, '_'); // Convert to lowercase and replace spaces
+                pnames1[key] = permission;
+                console.log(pnames1[key]); //Dynamically create properties
+            }
+
+            // Send `pnames` to the backend
+            fetch('role_management.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(pnames1)
+                })
+                .then(response => response.json())
+                .then(data => console.log('Success:', data))
+                .catch(error => console.error('Error:', error));
+        </script>
+
+
         <!-- latest jquery-->
         <script src="assets/js/jquery.min.js"></script>
         <!-- Bootstrap js-->
@@ -279,29 +320,37 @@ date_default_timezone_set("Asia/Kolkata");
         <script src="assets/js/toastr.min.js"></script>
 
         <script>
-            $(document).ready(function() {
-                $(document).on('change', '.toggle-status', function() {
-                    let status = $(this).prop('checked') ? 1 : 0;
-                    let url = $(this).data('route');
-                    let clickedToggle = $(this);
-                    $.ajax({
-                        type: "PUT",
-                        url: url,
-                        data: {
-                            status: status,
-                            _token: '22L2XEuVkyArsNxlWA9Eta0oPNeFipVYrysTArfC',
-                        },
-                        success: function(data) {
-                            clickedToggle.prop('checked', status);
-                            toastr.success("Status Updated Successfully");
-                        },
-                        error: function(xhr, status, error) {
-                            console.log(error)
-                        }
-                    });
-                });
-            });
+            let permissionName = [];
+            let pnames = {};
+            let names = document.getElementsByClassName('sidebar-menu');
+
+            // Collect text content of sidebar-menu items
+            for (let name of names) {
+                // Use `textContent` and trim leading/trailing spaces
+                permissionName.push(name.textContent.trim());
+            }
+
+            // Create `pnames` with dynamic keys
+            for (let permission of permissionName) {
+                let key = permission.toLowerCase().replace(/\s+/g, '_'); // Convert spaces to underscores
+                pnames[key] = permission;
+            }
+
+            console.log(pnames);
+
+            // Send `pnames` to the backend
+            fetch('role_management.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(pnames),
+                })
+                .then((response) => response.json())
+                .then((data) => console.log('Success:', data))
+                .catch((error) => console.error('Error:', error));
         </script>
+
 
 
         <script>

@@ -106,11 +106,14 @@ date_default_timezone_set("Asia/Kolkata");
                                                     echo '<span style="color:green;float:right;">Changed successfully</span>';
                                                 } ?></h3>
                         </div>
-                        <div class="col-sm-6 ps-0">
-                            <div class="btn-showcase text-end">
-                                <a class="btn btn-primary" style="color: white;margin-bottom: 0px;margin-right: 0px;"" href="add_banner.php">Add Banner</a>
+                        <?php if ($_SESSION[$create_banner] > 0) { ?>
+                            <div class="col-sm-6 ps-0">
+                                <div class="btn-showcase text-end">
+                                    <a class="btn btn-primary" style="color: white;margin-bottom: 0px;margin-right: 0px;"" href=" add_banner.php">Add Banner</a>
+                                </div>
                             </div>
-                        </div>
+                        <?php } else { ?>
+                        <?php } ?>
 
                     </div>
                 </div>

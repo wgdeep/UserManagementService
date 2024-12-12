@@ -7,7 +7,7 @@ require_once("include/header.php");
 $error = '';
 if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Edit Setting") {
     editSetting($con, $_REQUEST, $error);
-}
+}  
 
 if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
     $edit_id = $_REQUEST['edit_id'];

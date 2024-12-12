@@ -1,5 +1,6 @@
 <?php
 require_once("include/library.php");
+require_once("include/config.php");
 ?>
 
 <div class="sidebar-wrapper" data-layout="stroke-svg">
@@ -9,7 +10,7 @@ require_once("include/library.php");
             <div class="back-btn"><i class="fa fa-angle-left"> </i></div>
         </div>
         <nav class="sidebar-main">
-            <div id="sidebar-menu">
+            <div id="sidebar-menu sidebarName">
                 <ul class="sidebar-links" id="simple-bar">
                     <li class="back-btn"><a href="<?php echo $wwwroot ?>publication.php"></a>
                         <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2"
@@ -24,18 +25,26 @@ require_once("include/library.php");
                             </svg><span>Home</span></a>
                         <ul class="sidebar-submenu custom-scrollbar">
                             <li class="sidebar-head">Home</li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/banner.php">
-                                    <svg class="stroke-icon">
-                                        <use href="assets/svg/icon-sprite.svg#home"></use>
-                                    </svg>
-                                    <svg class="fill-icon">
-                                        <use href="assets/svg/icon-sprite.svg#fill-home"></use>
-                                    </svg>Banner
-                                    <svg class="arrow">
-                                        <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
-                                    </svg></a>
-                            </li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/latest_update.php">
+
+                            <?php if ($_SESSION[$view_banner] > 0) { ?>
+                                <li class="main-submenu"><a class="d-flex sidebar-menu sidebarName" href="<?php echo $wwwroot ?>/banner.php">
+                                        <svg class="stroke-icon">
+                                            <use href="assets/svg/icon-sprite.svg#home"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="assets/svg/icon-sprite.svg#fill-home"></use>
+                                        </svg>Banner
+                                        <svg class="arrow">
+                                            <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
+                                        </svg></a>
+                                </li>
+                            <?php  } else { ?>
+
+                            <?php } ?>
+
+
+
+                            <li class="main-submenu"><a class="d-flex sidebar-menu sidebarName" href="<?php echo $wwwroot ?>/latest_update.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -57,7 +66,7 @@ require_once("include/library.php");
                             </svg><span>About Us</span></a>
                         <ul class="sidebar-submenu custom-scrollbar">
                             <li class="sidebar-head">About Us</li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/people.php">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu sidebarName" href="<?php echo $wwwroot ?>/people.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -68,7 +77,7 @@ require_once("include/library.php");
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
                             </li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/purpose.php">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu sidebarName" href="<?php echo $wwwroot ?>/purpose.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -84,7 +93,7 @@ require_once("include/library.php");
                             </li>
                         </ul>
                     </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="<?php echo $wwwroot ?>/event.php">
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title sidebarName" href="<?php echo $wwwroot ?>/event.php">
                             <svg class="stroke-icon">
                                 <use href="assets/svg/icon-sprite.svg#home"></use>
                             </svg>
@@ -92,7 +101,7 @@ require_once("include/library.php");
                                 <use href="assets/svg/icon-sprite.svg#fill-home"></use>
                             </svg><span>Event</span></a>
                     </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="<?php echo $wwwroot ?>/publication.php">
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title sidebarName" href="<?php echo $wwwroot ?>/publication.php">
                             <svg class="stroke-icon">
                                 <use href="assets/svg/icon-sprite.svg#home"></use>
                             </svg>
@@ -109,7 +118,7 @@ require_once("include/library.php");
                             </svg><span>Reports</span></a>
                         <ul class="sidebar-submenu custom-scrollbar">
                             <li class="sidebar-head">Reports</li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/report.php">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu sidebarName" href="<?php echo $wwwroot ?>/report.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -120,7 +129,7 @@ require_once("include/library.php");
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
                             </li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/form_report.php">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu sidebarName" href="<?php echo $wwwroot ?>/form_report.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -142,7 +151,7 @@ require_once("include/library.php");
                             </svg><span>SEO</span></a>
                         <ul class="sidebar-submenu custom-scrollbar">
                             <li class="sidebar-head">Search Engine Optimization</li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/manage_seo.php">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu sidebarName" href="<?php echo $wwwroot ?>/manage_seo.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -164,7 +173,7 @@ require_once("include/library.php");
                             </svg><span>Management System</span></a>
                         <ul class="sidebar-submenu custom-scrollbar">
                             <li class="sidebar-head">Management System</li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/user_management.php">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu sidebarName" href="<?php echo $wwwroot ?>/user_management.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -175,7 +184,7 @@ require_once("include/library.php");
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
                             </li>
-                            <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/role_management.php">
+                            <li class="main-submenu"><a class="d-flex sidebar-menu sidebarName" href="<?php echo $wwwroot ?>/role_management.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -185,8 +194,19 @@ require_once("include/library.php");
                                     <svg class="arrow">
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
-                            </li> 
-                             <li class="main-submenu"><a class="d-flex sidebar-menu" href="<?php echo $wwwroot ?>/setting.php">
+                            </li>
+                            <!-- <li class="main-submenu"><a class="d-flex sidebar-menu sidebarName" href="<?php echo $wwwroot ?>/permission_management.php">
+                                    <svg class="stroke-icon">
+                                        <use href="assets/svg/icon-sprite.svg#home"></use>
+                                    </svg>
+                                    <svg class="fill-icon">
+                                        <use href="assets/svg/icon-sprite.svg#fill-home"></use>
+                                    </svg>Permissions
+                                    <svg class="arrow">
+                                        <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
+                                    </svg></a>
+                            </li> -->
+                            <li class="main-submenu"><a class="d-flex sidebar-menu sidebarName" href="<?php echo $wwwroot ?>/setting.php">
                                     <svg class="stroke-icon">
                                         <use href="assets/svg/icon-sprite.svg#home"></use>
                                     </svg>
@@ -197,6 +217,7 @@ require_once("include/library.php");
                                         <use href="assets/svg/icon-sprite.svg#Arrow-right"></use>
                                     </svg></a>
                             </li>
+
                         </ul>
                     </li>
                 </ul>

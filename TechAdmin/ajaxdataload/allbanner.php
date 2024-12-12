@@ -64,8 +64,23 @@ $data = array();
 
 $currdate = date('Y-m-d');
 
+
 while ($row = mysqli_fetch_assoc($empRecords)) {
+  if ($_SESSION[$update_banner] > 0) {
+    $update = '<a title="Edit" href="update_banner.php?edit_id=' . $row['id'] . '" style="margin-left: 10px;"><i class="fa fa-pencil"></i></a>';
+  }else{
+    $update = '';
+  }  
+  
+  if ($_SESSION[$delete_banner] > 0) {
+    $delete = '<a title="Delete" href="banner.php?del_id=' . $row['id'] . '"><i class="fa fa-trash-o"></i></a>';
+  }else{
+    $delete = '';
+  }
+
   $data[] = array(
+
+
     "id" => '<input value="' . $row['id'] . '" name="id[]" class="checkbox" type="checkbox">',
     "title1" => $row['title1'],
     "title2" => $row['title2'],
@@ -74,8 +89,8 @@ while ($row = mysqli_fetch_assoc($empRecords)) {
     "button_url" => $row['button_url'],
     "edate" => $row['edate'],
     "etime" => $row['etime'],
-    "action" => '<a title="Delete" href="banner.php?del_id=' . $row['id'] . '"><i class="fa fa-trash-o"></i></a> <a title="Edit" href="update_banner.php?edit_id=' . $row['id'] . '" style="margin-left: 10px;"><i class="fa fa-pencil"></i></a>',
- 
+    "action" => ''.$delete.' '.$update.'' ,
+
   );
 }
 

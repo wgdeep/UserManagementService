@@ -16,10 +16,14 @@ date_default_timezone_set('Asia/Kolkata');
 	}
 	$wwwroot = "/projects/TechAdmin";
 	$basepath = "/projects/";
-	$create_u = 'user_add';
-	$view_u = 'user_show';
-	$update_u = 'user_edit';
-	$delete_u = 'user_remove';
+	$view_user = 'user_show';
+	$create_user = 'user_add';
+	$update_user = 'user_edit';
+	$delete_user = 'user_edit';
+	$view_banner = 'banner_show';
+	$create_banner = 'banner_add';
+	$update_banner = 'banner_edit';
+	$delete_banner = 'banner_remove';
 
 	
 	

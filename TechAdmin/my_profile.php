@@ -9,7 +9,7 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Update Profile") {
 
     $profile_id = $_SESSION['ID'];
     $userinfo = mysqli_fetch_assoc(mysqli_query($con, "select * from user where id = '" . $profile_id . "'"));
-    $old_password = $userinfo['user_password'];
+    $old_password = trim($userinfo['user_password']);
     $input_password = trim(md5($_REQUEST['old_password']));
     if ($input_password == $old_password) {
         updateProfile($con, $_REQUEST, $error);
@@ -17,6 +17,8 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Update Profile") {
         $spanError   = 'Incorrect old password.';
     }
 }
+
+$imageinfo = viewData($con, 'user', $_SESSION['ID']); 
 ?>
 
 
@@ -78,6 +80,10 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Update Profile") {
             margin-bottom: .5rem;
             margin: 0px 20px 0px 0px;
         }
+
+        .show-hide {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -131,9 +137,8 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Update Profile") {
                                             <input type="hidden" name="status" value="<?php echo $_SESSION['Status'] ?>">
 
                                             <div class="col-sm-6">
-                                                <label for="password">Old Password:</label>
-                                                <input class="form-control" style="margin-bottom: 10px;" id="password" type="text"
-                                                    placeholder="Enter Password" name="old_password" required="">
+                                                <label for="Old">Old Password:</label>
+                                                <input class="form-control" style="margin-bottom: 10px;" id="Old" type="password" name="old_password" required="" autocomplete="off">
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <?php
                                                 if ($spanError) {  ?>
@@ -143,9 +148,11 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Update Profile") {
                                             </div>
 
                                             <div class="col-sm-6">
-                                                <label for="password">New Password:</label>
-                                                <input class="form-control" style="margin-bottom: 10px;" id="password" type="text"
+                                                <label for="New">New Password:</label>
+                                                <input class="form-control" style="margin-bottom: 10px;" id="New" type="password"
                                                     placeholder="Enter Password" name="new_password" required="">
+
+
                                                 <div class="valid-feedback">Looks good!</div>
                                             </div>
 
@@ -154,12 +161,13 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Update Profile") {
 
                                             <div class="col-sm-6" style="padding-top: 15px;padding-left: 0px;left: 15px;"">
                                                     <div class=" input-group mb-3">
-                                                <div class="input-group-prepend" style="padding-left: -0.25rem;border-left-style: solid;margin-left: 13px;border-left-width: 0px;"><span class="input-group-text">Banner</span></div>
+                                                <div class="input-group-prepend" style="padding-left: -0.25rem;border-left-style: solid;margin-left: 13px;border-left-width: 0px;"><span class="input-group-text">Profile Image</span></div>
                                                 <div class="card form-control" style="display: flex; flex-direction:row;margin-left: calc(var(--bs-border-width) * 17);padding-right: 4.75rem;border-right-width: 1px;">
                                                     <?php
-                                                    $Image = $userinfo['image'];
+                                                    
+                                                    $Image = $imageinfo['image'];
                                                     if (!empty($Image)) {
-                                                        $imagePath = "./data/user/image/" . htmlspecialchars(trim($Image));
+                                                        $imagePath = "./data/user/image/" . $Image;
                                                         echo "<a class='socialContainerBanner'><img id='bannerImg' width='150' class='socialSvg instagramSvg' src='$imagePath' alt='Image'></a>";
                                                     } else {
                                                         echo "<p style='margin-left: 25px;margin-bottom: 0rem;'>No banner image available.</p>";
@@ -195,6 +203,7 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Update Profile") {
                     <?php include('include/footer.php'); ?>
                 </div>
             </div>
+
             <!-- latest jquery-->
             <script src="assets/js/jquery.min.js"></script>
             <!-- Bootstrap js-->

@@ -123,6 +123,14 @@ function Login($con, $req, &$outputMsg)
 
       $_SESSION['user_add'] = $dataRole->user_add;
 
+      $_SESSION['banner_show'] = $dataRole->banner_show;
+
+      $_SESSION['banner_add'] = $dataRole->banner_add;
+
+      $_SESSION['banner_edit'] = $dataRole->banner_edit;
+
+      $_SESSION['banner_remove'] = $dataRole->banner_remove;
+
       $_SESSION['role_show'] = $dataRole->role_show;
 
       $_SESSION['role_edit'] = $dataRole->role_edit;
@@ -224,20 +232,93 @@ function addEvent($con, $req, &$outputMsg)
     $banner_image = $_POST['existing_banner'] ?? '';
   }
 
-  $uploaded_images = [];
+  // $uploaded_images = [];
 
+
+  // if (isset($_FILES['attached_images']['name']) && count($_FILES['attached_images']['name']) > 0) {
+  //   foreach ($_FILES['attached_images']['name'] as $index => $original_filenames) {
+  //     if ($_FILES['attached_images']['error'][$index] == 0) {
+  //       $file_ext = substr($original_filenames, strripos($original_filenames, '.'));
+
+  //       if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+  //         $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+  //         continue;
+  //       }
+
+  //       $filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filenames, PATHINFO_FILENAME)) . $file_ext;
+
+  //       $minute = date('i');
+  //       $second = date('s');
+
+  //       $renamed_image = $minute . $second . $filename_without_numbers;
+
+  //       $new_filename = $renamed_image;
+  //       $target_img = "./data/event/gallery/" . $new_filename;
+
+  //       if (move_uploaded_file($_FILES['attached_images']['tmp_name'][$index], $target_img)) {
+  //         $uploaded_images[] = $new_filename;
+  //       } else {
+  //         $outputMsg = "File upload failed for {$new_filename}.";
+  //       }
+  //     }
+  //   }
+  // }
+
+  // $uploaded_images_str = implode(',', $uploaded_images);
+
+
+  function compressImageEvent($source, $destination, $file_ext, $quality)
+  {
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save the compressed image
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // JPEG compression
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // PNG compression
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF doesn't support quality parameter
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
+
+  $uploaded_images = [];
 
   if (isset($_FILES['attached_images']['name']) && count($_FILES['attached_images']['name']) > 0) {
     foreach ($_FILES['attached_images']['name'] as $index => $original_filenames) {
       if ($_FILES['attached_images']['error'][$index] == 0) {
-        $file_ext = substr($original_filenames, strripos($original_filenames, '.'));
+        $file_ext = strtolower(pathinfo($original_filenames, PATHINFO_EXTENSION));
 
-        if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+        if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
           $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
           continue;
         }
 
-        $filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filenames, PATHINFO_FILENAME)) . $file_ext;
+        $filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filenames, PATHINFO_FILENAME)) . '.' . $file_ext;
 
         $minute = date('i');
         $second = date('s');
@@ -247,16 +328,25 @@ function addEvent($con, $req, &$outputMsg)
         $new_filename = $renamed_image;
         $target_img = "./data/event/gallery/" . $new_filename;
 
-        if (move_uploaded_file($_FILES['attached_images']['tmp_name'][$index], $target_img)) {
+        // Compress and save the image
+        $source_img = $_FILES['attached_images']['tmp_name'][$index];
+        $quality = 75; // Compression quality (0-100 for JPEG, lower for higher compression)
+
+        if (compressImageEvent($source_img, $target_img, $file_ext, $quality)) {
           $uploaded_images[] = $new_filename;
         } else {
-          $outputMsg = "File upload failed for {$new_filename}.";
+          $outputMsg = "File upload failed during compression for {$new_filename}.";
         }
       }
     }
   }
 
   $uploaded_images_str = implode(',', $uploaded_images);
+
+  // Function to compress and save the image
+
+
+
 
   $unitsql = mysqli_query($con, "insert into event set title = '" . $title . "', url = '" . $url . "', date = '" . $date . "', venue = '" . $venue . "', description = '" . $description . "' , banner_image = '" . $banner_image . "', gallery_images = '" . $uploaded_images_str . "', status = '', edate= '" . $curdate . "', etime= '" . $curtime . "', meta_title= '', meta_description='', meta_keyword='',header='',footer=''") or die(mysqli_error($con));
 
@@ -321,13 +411,56 @@ function addLatestUpdate($con, $req, &$outputMsg)
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
 
+
+
+  function compressImageLatestUpdate($source, $destination, $file_ext, $quality)
+  {
+    // Create an image resource based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save compressed image based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // For JPG/JPEG, compression quality is used
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // For PNG, quality is 0-9
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF does not support quality
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
+
+
   $image = '';
 
   if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
     $original_filename = $_FILES['attached_image']['name'];
-    $file_ext = substr($original_filename, strripos($original_filename, '.')); // Get extension
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION)); // Get extension
 
-    if (($file_ext != '.png') && ($file_ext != '.jpg') && ($file_ext != '.jpeg') && ($file_ext != '.gif')) {
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
       $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
       return false;
     }
@@ -336,15 +469,21 @@ function addLatestUpdate($con, $req, &$outputMsg)
     $second = date('s');
 
     $renamed_image = $minute . $second . $original_filename;
-
     $image = $renamed_image;
-    $target_img   = "./data/latest_update/image/" . $image;
+    $target_img = "./data/latest_update/image/" . $image;
 
-    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
-      $outputMsg = "File upload failed.";
+    // Compress and save the image
+    $source_img = $_FILES["attached_image"]["tmp_name"];
+    $quality = 75; // Compression quality (0-100)
+
+    if (!compressImageLatestUpdate($source_img, $target_img, $file_ext, $quality)) {
+      $outputMsg = "File upload failed during compression.";
       return false;
     }
   }
+
+  // Function to compress and save the image
+
 
 
   $unitsql = mysqli_query($con, "insert into latest_update set title = '" . htmlentities($title) . "', image = '" . $image . "', edate= '" . $curdate . "', etime= '" . $curtime . "', status = ''") or die(mysqli_error($con));
@@ -677,14 +816,14 @@ function addRole($con, $req, &$outputMsg)
 
   $sqlQry = mysqli_query($con, "select * from permission where id = '1'");
 
-  $permissionInfo = array_slice(mysqli_fetch_assoc($sqlQry), 1);
+  $permissionInfo = array_slice(mysqli_fetch_fields($sqlQry), 1);
 
-  foreach ($permissionInfo as $permissionInfo) {
-    ${$permissionInfo} = '0';
-  }
+  // foreach ($permissionInfo as $permissionName) {
+  //   ${$permissionName} = 0;
+  // }
 
   foreach ($req['permission'] as $permission) {
-    ${preg_replace('/\s+/', '', $permission)} = '1';
+    ${$permission} = 1;
   }
 
   $name = trim($req['role_name']);
@@ -692,7 +831,60 @@ function addRole($con, $req, &$outputMsg)
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
 
-  $sqlQry = mysqli_query($con, "INSERT INTO role SET role_name = '" . $name . "', user_show = '" . $UserShow . "', user_edit = '" . $UserEdit . "', user_remove = '" . $UserRemove . "', user_add = '" . $UserAdd . "', role_show = '" . $RoleShow . "', role_edit = '" . $RoleEdit . "', role_remove = '" . $RoleRemove . "',  role_add = '" . $RoleAdd . "', status = '" . $status . "', edate = '" . $curdate . "', etime = '" . $curtime . "'") or die(mysqli_error($con));
+  $sqlQry = mysqli_query($con, "
+  INSERT INTO role SET 
+  role_name = '" . $name . "', 
+  user_show = '" . $user_show . "', 
+  user_edit = '" . $user_edit . "', 
+  user_remove = '" . $user_remove . "', 
+  user_add = '" . $user_add . "', 
+  banner_show = '" . $banner_show . "', 
+  banner_edit = '" . $banner_edit . "', 
+  banner_remove = '" . $banner_remove . "', 
+  banner_add = '" . $banner_add . "', 
+  latest_show = '" . $latest_show . "', 
+  latest_edit = '" . $latest_edit . "', 
+  latest_remove = '" . $latest_remove . "', 
+  latest_add = '" . $latest_add . "', 
+  people_show = '" . $people_show . "', 
+  people_edit = '" . $people_edit . "', 
+  people_remove = '" . $people_remove . "', 
+  people_add = '" . $people_add . "', 
+  purpose_show = '" . $purpose_show . "', 
+  purpose_edit = '" . $purpose_edit . "', 
+  purpose_remove = '" . $purpose_remove . "', 
+  purpose_add = '" . $purpose_add . "', 
+  event_show = '" . $event_show . "', 
+  event_edit = '" . $event_edit . "', 
+  event_remove = '" . $event_remove . "', 
+  event_add = '" . $event_add . "', 
+  publication_show = '" . $publication_show . "', 
+  publication_edit = '" . $publication_edit . "', 
+  publication_remove = '" . $publication_remove . "', 
+  publication_add = '" . $publication_add . "', 
+  reports_show = '" . $reports_show . "', 
+  reports_edit = '" . $reports_edit . "', 
+  reports_remove = '" . $reports_remove . "', 
+  reports_add = '" . $reports_add . "', 
+  form = '" . $form . "', 
+  seo_show = '" . $seo_show . "', 
+  seo_edit = '" . $seo_edit . "', 
+  seo_remove = '" . $seo_remove . "', 
+  seo_add = '" . $seo_add . "', 
+  role_show = '" . $role_show . "', 
+  role_edit = '" . $role_edit . "', 
+  role_remove = '" . $role_remove . "', 
+  role_add = '" . $role_add . "', 
+  setting_show = '" . $setting_show . "', 
+  setting_edit = '" . $setting_edit . "', 
+  setting_remove = '" . $setting_remove . "', 
+  setting_add = '" . $setting_add . "', 
+  status = '" . $status . "', 
+  edate = '" . $curdate . "', 
+  etime = '" . $curtime . "'
+") or die(mysqli_error($con));
+
+
 
   header("location: role_management.php?act=add");
   // Always include exit after a header redirect
@@ -706,7 +898,7 @@ function addUser($con, $req, &$outputMsg)
   $email = trim($req['user_email']);
   $password = trim(md5($req['user_password']));
   $role = trim($req['role_name']);
-  $status = trim($req['status']);
+  $status = '0';
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
 
@@ -748,7 +940,7 @@ function updateProfile($con, $req, &$outputMsg)
   $email = trim($req['user_email']);
   $password = trim(md5($req['new_password']));
   $role = trim($req['role_name']);
-  $status = trim($req['status']);
+  $status = '1';
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
   $edit_id = $req['id'];
@@ -995,37 +1187,109 @@ function updateLatestUpdate($con, $req, &$outputMsg)
   $edit_id = $req['id'];
 
 
+
+  function compressImageUpdateLatestUpdate($source, $destination, $file_ext, $quality)
+  {
+    // Create an image resource based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save compressed image based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // For JPG/JPEG, compression quality is used
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // For PNG, quality is 0-9
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF does not support quality
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
+
+
   $image = '';
 
   if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
     $original_filename = $_FILES['attached_image']['name'];
-    $file_ext = substr($original_filename, strripos($original_filename, '.'));
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION)); // Get extension
 
-    if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
       $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
       return false;
     }
 
-    $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
-
-
     $minute = date('i');
     $second = date('s');
 
-    $renamed_image = $minute . $second . $original_filename_without_numbers;
-
-
+    $renamed_image = $minute . $second . $original_filename;
     $image = $renamed_image;
     $target_img = "./data/latest_update/image/" . $image;
 
+    // Compress and save the image
+    $source_img = $_FILES["attached_image"]["tmp_name"];
+    $quality = 75; // Compression quality (0-100)
 
-    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
-      $outputMsg = "File upload failed.";
+    if (!compressImageUpdateLatestUpdate($source_img, $target_img, $file_ext, $quality)) {
+      $outputMsg = "File upload failed during compression.";
       return false;
     }
   } else {
     $image = $_POST['existing_image'] ?? '';
   }
+
+  // $image = '';
+
+  // if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
+  //   $original_filename = $_FILES['attached_image']['name'];
+  //   $file_ext = substr($original_filename, strripos($original_filename, '.'));
+
+  //   if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+  //     $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+  //     return false;
+  //   }
+
+  //   $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
+
+
+  //   $minute = date('i');
+  //   $second = date('s');
+
+  //   $renamed_image = $minute . $second . $original_filename_without_numbers;
+
+
+  //   $image = $renamed_image;
+  //   $target_img = "./data/latest_update/image/" . $image;
+
+
+  //   if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
+  //     $outputMsg = "File upload failed.";
+  //     return false;
+  //   }
+  // } else {
+  //   $image = $_POST['existing_image'] ?? '';
+  // }
 
   // echo "update publication set title = '" . htmlentities($title) . "',date = '" . $date . "',venue  = '" . $venue  . "',media  = '" . $media  . "',description = '" . htmlentities($description) . "', banner_image = '" . $banner_image . "',url = '" . htmlentities($url) . "', edate = '" . $curdate . "', etime = '" . $curtime . "' where id='" . $edit_id . "'"; die;
 
@@ -1369,12 +1633,148 @@ function updateRole($con, $req, &$outputMsg)
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
 
-  $sqlQry = mysqli_query($con, "update role SET role_name = '" . $name . "', user_show = '" . $UserShow . "', user_edit = '" . $UserEdit . "', user_remove = '" . $UserRemove . "', user_add = '" . $UserAdd . "', role_show = '" . $RoleShow . "', role_edit = '" . $RoleEdit . "', role_remove = '" . $RoleRemove . "',  role_add = '" . $RoleAdd . "', status = '" . $status . "', edate = '" . $curdate . "', etime = '" . $curtime . "' where id = '" . $edit_id . "'") or die(mysqli_error($con));
+  $sqlQry = mysqli_query($con, "
+  update role SET 
+  role_name = '" . $name . "', 
+  user_show = '" . $user_show . "', 
+  user_edit = '" . $user_edit . "', 
+  user_remove = '" . $user_remove . "', 
+  user_add = '" . $user_add . "', 
+  banner_show = '" . $banner_show . "', 
+  banner_edit = '" . $banner_edit . "', 
+  banner_remove = '" . $banner_remove . "', 
+  banner_add = '" . $banner_add . "', 
+  latest_show = '" . $latest_show . "', 
+  latest_edit = '" . $latest_edit . "', 
+  latest_remove = '" . $latest_remove . "', 
+  latest_add = '" . $latest_add . "', 
+  people_show = '" . $people_show . "', 
+  people_edit = '" . $people_edit . "', 
+  people_remove = '" . $people_remove . "', 
+  people_add = '" . $people_add . "', 
+  purpose_show = '" . $purpose_show . "', 
+  purpose_edit = '" . $purpose_edit . "', 
+  purpose_remove = '" . $purpose_remove . "', 
+  purpose_add = '" . $purpose_add . "', 
+  event_show = '" . $event_show . "', 
+  event_edit = '" . $event_edit . "', 
+  event_remove = '" . $event_remove . "', 
+  event_add = '" . $event_add . "', 
+  publication_show = '" . $publication_show . "', 
+  publication_edit = '" . $publication_edit . "', 
+  publication_remove = '" . $publication_remove . "', 
+  publication_add = '" . $publication_add . "', 
+  reports_show = '" . $reports_show . "', 
+  reports_edit = '" . $reports_edit . "', 
+  reports_remove = '" . $reports_remove . "', 
+  reports_add = '" . $reports_add . "', 
+  form = '" . $form . "', 
+  seo_show = '" . $seo_show . "', 
+  seo_edit = '" . $seo_edit . "', 
+  seo_remove = '" . $seo_remove . "', 
+  seo_add = '" . $seo_add . "', 
+  role_show = '" . $role_show . "', 
+  role_edit = '" . $role_edit . "', 
+  role_remove = '" . $role_remove . "', 
+  role_add = '" . $role_add . "', 
+  setting_show = '" . $setting_show . "', 
+  setting_edit = '" . $setting_edit . "', 
+  setting_remove = '" . $setting_remove . "', 
+  setting_add = '" . $setting_add . "', 
+  status = '" . $status . "', 
+  edate = '" . $curdate . "', 
+  etime = '" . $curtime . "' 
+  where id = '" . $edit_id . "'
+") or die(mysqli_error($con));
 
   header("location: role_management.php?act=edit");
   // Always include exit after a header redirect
   return true;
 }
+
+function updatePermission($con, $req, &$outputMsg)
+{
+
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+
+  $edit_id = $req['id'];
+
+  $name = trim($req['name']);
+
+  if ($req['show'] == true) {
+    $show = '1';
+  } else {
+    $show = '0';
+  }
+  if ($req['add'] == true) {
+    $add = '1';
+  } else {
+    $add = '0';
+  }
+  if ($req['edit'] == true) {
+    $edit = '1';
+  } else {
+    $edit = '0';
+  }
+  if ($req['remove'] == true) {
+    $remove = '1';
+  } else {
+    $remove = '0';
+  }
+
+
+  $edit_id = $req['id'];
+
+
+  $curtime = date('H:i:s');
+  $curdate = date('Y-m-d');
+
+
+  $unitsql = mysqli_query($con, "UPDATE `permission` SET `name`='" . $name . "',`show`='" . $show . "',`add`='" . $add . "',`edit`='" . $edit . "',`remove`='" . $remove . "' WHERE id = '" . $edit_id . "'") or die(mysqli_error($con));
+  // $unitsql = mysqli_query($con, "UPDATE `permission` SET `name`='" . $name . "',`show`='" . $show . "' WHERE id = '".$edit_id."'") or die(mysqli_error($con));
+
+  header("location: permission_management.php?act=edit");
+  // Always include exit after a header redirect
+  return true;
+}
+
+
+// Database connection (assuming `$con` is established properly)
+
+function addPermission($inputData, $con)
+{
+  if ($inputData) {
+    foreach ($inputData as $key => $value) {
+      $escapedValue = $con->real_escape_string($value);
+
+      $columnCheckSql = "SELECT * FROM permission where name = '$escapedValue'";
+      $columnExists = $con->query($columnCheckSql);
+
+      if ($columnExists->num_rows == 0) {
+        // Column does not exist, so add it
+        $updateSql = "insert into permission SET name = '$escapedValue'";
+        if (!$con->query($updateSql)) {
+          echo json_encode([
+            'status' => 'error',
+            'message' => "Error updating column `$key`: " . $con->error,
+          ]);
+          return;
+        }
+      }
+
+      // Update the value for the column
+
+    }
+
+    echo json_encode(['status' => 'success', 'message' => 'Permissions updated successfully.']);
+  } else {
+    echo json_encode(['status' => 'error', 'message' => 'No data received.']);
+  }
+}
+
+
 
 function viewData($con, $table, $id)
 {
@@ -1409,10 +1809,22 @@ function editData($con, $table, $id)
 }
 
 
-function deleteDataWithImg($con, $table, $id)
+function deleteDataWithImg($con, $table, $id, $imgPath)
 {
   $result = mysqli_fetch_assoc(mysqli_query($con, "select * from $table WHERE id = '" . $id . "'"));
-  unlink('upload/' . $table . '/' . $result['image']);
+
+
+  if (file_exists($imgPath)) {
+    // Attempt to unlink (delete) the file
+    if (unlink($imgPath)) {
+      echo "The file has been deleted successfully.";
+    } else {
+      echo "Error: Unable to delete the file.";
+    }
+  } else {
+    echo "Error: File does not exist.";
+  }
+
   $true = mysqli_query($con, "delete from $table WHERE id = '" . $id . "'");
 
   return $true;

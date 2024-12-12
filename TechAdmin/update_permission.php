@@ -1,14 +1,21 @@
-<?php
+role<?php
 
-require_once("include/config.php");
-require_once("include/library.php");
+    require_once("include/config.php");
+    require_once("include/library.php");
+    require_once("include/header.php");
 
+    $error = '';
 
-$error = '';
-if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add User") {
-    addUser($con, $_REQUEST, $error);
-}
-?>
+    if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Edit Permission") {
+        updatePermission($con, $_REQUEST, $error);
+    }
+
+    if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
+        $edit_id = $_REQUEST['edit_id'];
+        $permissioninfo = editData($con, 'permission', $edit_id);
+        $permissionName = getPermissionName($con, 'permission');
+    }
+    ?>
 
 
 <!DOCTYPE html>
@@ -74,11 +81,18 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add User") {
 
 <body>
     <!-- Loader starts-->
-
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+    <!-- Loader ends-->
+    <!-- tap on top starts-->
+    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <!-- tap on tap ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper" id="pageWrapper">
         <!-- Page Header Start-->
-        <?php
-          require_once("include/header.php");  
-        ?>
+
+
         <!-- Page Header Ends-->
         <!-- Page Body Start-->
         <div class="page-body-wrapper" style="margin-top: 0px;">
@@ -102,45 +116,52 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add User") {
                                     <div class="card">
                                         <div class="card-body add-post">
                                             <form class="row needs-validation" method="post" action="" novalidate="" enctype="multipart/form-data">
+                                                <input type="hidden" name="id" value="<?php echo $permissioninfo['id'] ?>">
                                                 <div class="col-sm-6">
                                                     <label for="Name">Name:</label>
-                                                    <input class="form-control" style="margin-bottom: 10px;" id="Name" type="text"
-                                                        placeholder="Enter Name" name="user_name" required="">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="Email">Email:</label>
-                                                    <input class="form-control" style="margin-bottom: 10px;" id="Email" type="text"
-                                                        placeholder="Enter Email" name="user_email" required="">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="Password">Passwrod:</label>
-                                                    <input class="form-control" style="margin-bottom: 10px;" id="Password" type="password"
-                                                    placeholder="Enter Password" name="user_password" required="">
+                                                    <input class="form-control" id="Name" type="text"
+                                                        placeholder="Enter Name" name="name" value="<?php echo $permissioninfo['name'] ?>" required="">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
 
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-12">
+                                                    <fieldset>
+                                                        <legend class="mt-4">Permission</legend>
+                                                        <div class="d-flex" style="margin: 2px 2px 25px 2px;margin-left: 10px;">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" <?php echo ($permissioninfo['show'] > 0) ? 'checked' : ''; ?> type="checkbox" name="show" id="show">
+                                                                <label class="form-check-label per-label" for="show">
+                                                                    Show
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" <?php echo ($permissioninfo['add'] > 0) ? 'checked' : ''; ?> type="checkbox" name="add" id="add">
+                                                                <label class="form-check-label per-label" for="add">
+                                                                    Add
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" <?php echo ($permissioninfo['edit'] > 0) ? 'checked' : ''; ?> type="checkbox" name="edit" id="edit">
+                                                                <label class="form-check-label per-label" for="edit">
+                                                                    Show
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" <?php echo ($permissioninfo['remove'] > 0) ? 'checked' : ''; ?> type="checkbox" name="remove" id="remove">
+                                                                <label class="form-check-label per-label" for="remove">
+                                                                    Remove
+                                                                </label>
+                                                            </div>
 
-                                                    <label for="exampleSelect1" class="form-label">Role</label>
-                                                    <select class="form-select" name="role_name" id="exampleSelect1">
-                                                        <?php
-                                                        // Execute the query to get all roles
-                                                        $roleQry = mysqli_query($con, "SELECT role_name FROM role");
 
-                                                        // Loop through each row of the result set
-                                                        while ($role = mysqli_fetch_assoc($roleQry)) {
-                                                        ?>
-                                                            <option value="<?php echo $role['role_name']; ?>"><?php echo $role['role_name']; ?></option>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-
+                                                        </div>
+                                                    </fieldset>
                                                 </div>
+
+
+
                                                 <div class="btn-showcase text-end">
-                                                    <button class="btn btn-primary" name="submit" value="Add User" type="submit">Add</button>
+                                                    <button class="btn btn-primary" name="submit" value="Edit Permission" type="submit">Add</button>
                                                 </div>
 
                                             </form>

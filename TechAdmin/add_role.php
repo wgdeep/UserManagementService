@@ -69,6 +69,10 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Role") {
             margin-bottom: .5rem;
             margin: 0px 20px 0px 0px;
         }
+
+        .permission-card{
+            margin-left:10px;
+        }
     </style>
 </head>
 
@@ -117,28 +121,376 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Role") {
                                                 </div>
                                                 <div class="col-sm-12">
                                                     <fieldset>
-                                                        <legend class="mt-4">Permission</legend>
-                                                        <div class="d-flex" style="margin: 2px 2px 25px 2px;">
-                                                            <?php
-                                                            $edit_id = '1';
-                                                            $permissionInfo = viewData($con, 'permission', $edit_id);
-                                                            $permissionInfo = array_slice($permissionInfo, 1);
-                                                            ?>
-                                                            <?php foreach ($permissionInfo as $index => $permission) { ?>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" name="permission[]" value="<?php echo $permission; ?>" id="flexCheckDefault<?php echo $index; ?>">
-                                                                    <label class="form-check-label per-label" for="flexCheckDefault<?php echo $index; ?>">
-                                                                        <?php echo $permission; ?>
+                                                        <legend class="mt-4">Permission:</legend>
+                                                        <div class="permission-card">
+                                                            <p>Banner</p>
+                                                            <div class="d-flex flex-wrap" style="margin: 2px 2px 25px 2px;">
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[banner_show]" value="banner_show" id="banner_show">
+                                                                    <label class="form-check-label per-label" for="banner_show">
+                                                                        Show
                                                                     </label>
                                                                 </div>
-                                                            <?php } ?>
 
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[banner_add]" value="banner_add" id="banner_add">
+                                                                    <label class="form-check-label per-label" for="banner_add">
+                                                                        Add
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[banner_edit]" value="banner_edit" id="banner_edit">
+                                                                    <label class="form-check-label per-label" for="banner_edit">
+                                                                        Edit
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[banner_remove]" value="banner_remove" id="banner_remove">
+                                                                    <label class="form-check-label per-label" for="banner_remove">
+                                                                        Remove
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                       <div class="permission-card">
+                                                            <p>Latest Update</p>
+                                                            <div class="d-flex flex-wrap" style="margin: 2px 2px 25px 2px;">
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[latest_show]" value="latest_show" id="latest_show">
+                                                                    <label class="form-check-label per-label" for="latest_show">
+                                                                        Show
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[latest_add]" value="latest_add" id="latest_add">
+                                                                    <label class="form-check-label per-label" for="latest_add">
+                                                                        Add
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[latest_edit]" value="latest_edit" id="latest_edit">
+                                                                    <label class="form-check-label per-label" for="latest_edit">
+                                                                        Edit
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[latest_remove]" value="latest_remove" id="latest_remove">
+                                                                    <label class="form-check-label per-label" for="latest_remove">
+                                                                        Remove
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                         <div class="permission-card">
+                                                            <p>People</p>
+                                                            <div class="d-flex flex-wrap" style="margin: 2px 2px 25px 2px;">
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[people_show]" value="people_show" id="people_show">
+                                                                    <label class="form-check-label per-label" for="people_show">
+                                                                        Show
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[people_add]" value="people_add" id="people_add">
+                                                                    <label class="form-check-label per-label" for="people_add">
+                                                                        Add
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[people_edit]" value="people_edit" id="people_edit">
+                                                                    <label class="form-check-label per-label" for="people_edit">
+                                                                        Edit
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[people_remove]" value="people_remove" id="people_remove">
+                                                                    <label class="form-check-label per-label" for="people_remove">
+                                                                        Remove
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="permission-card">
+                                                            <p>Purpose</p>
+                                                            <div class="d-flex flex-wrap" style="margin: 2px 2px 25px 2px;">
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[purpose_show]" value="purpose_show" id="purpose_show">
+                                                                    <label class="form-check-label per-label" for="purpose_show">
+                                                                        Show
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[purpose_add]" value="purpose_add" id="purpose_add">
+                                                                    <label class="form-check-label per-label" for="purpose_add">
+                                                                        Add
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[purpose_edit]" value="purpose_edit" id="purpose_edit">
+                                                                    <label class="form-check-label per-label" for="purpose_edit">
+                                                                        Edit
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[purpose_remove]" value="purpose_remove" id="purpose_remove">
+                                                                    <label class="form-check-label per-label" for="purpose_remove">
+                                                                        Remove
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="permission-card">
+                                                            <p>Event</p>
+                                                            <div class="d-flex flex-wrap" style="margin: 2px 2px 25px 2px;">
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[event_show]" value="event_show" id="event_show">
+                                                                    <label class="form-check-label per-label" for="event_show">
+                                                                        Show
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[event_add]" value="event_add" id="event_add">
+                                                                    <label class="form-check-label per-label" for="event_add">
+                                                                        Add
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[event_edit]" value="event_edit" id="event_edit">
+                                                                    <label class="form-check-label per-label" for="event_edit">
+                                                                        Edit
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[event_remove]" value="event_remove" id="event_remove">
+                                                                    <label class="form-check-label per-label" for="event_remove">
+                                                                        Remove
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="permission-card">
+                                                            <p>Publication</p>
+                                                            <div class="d-flex flex-wrap" style="margin: 2px 2px 25px 2px;">
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[publication_show]" value="publication_show" id="publication_show">
+                                                                    <label class="form-check-label per-label" for="publication_show">
+                                                                        Show
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[publication_add]" value="publication_add" id="publication_add">
+                                                                    <label class="form-check-label per-label" for="publication_add">
+                                                                        Add
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[publication_edit]" value="publication_edit" id="publication_edit">
+                                                                    <label class="form-check-label per-label" for="publication_edit">
+                                                                        Edit
+                                                                    </label>
+                                                                </div>
+                                                            
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[publication_remove]" value="publication_remove" id="publication_remove">
+                                                                    <label class="form-check-label per-label" for="publication_remove">
+                                                                        Remove
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="permission-card">
+                                                            <p>Reports</p>
+                                                            <div class="d-flex flex-wrap" style="margin: 2px 2px 25px 2px;">
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[reports_show]" value="reports_show" id="reports_show">
+                                                                    <label class="form-check-label per-label" for="reports_show">
+                                                                        Show
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[reports_add]" value="reports_add" id="reports_add">
+                                                                    <label class="form-check-label per-label" for="reports_add">
+                                                                        Add
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[reports_edit]" value="reports_edit" id="reports_edit">
+                                                                    <label class="form-check-label per-label" for="reports_edit">
+                                                                        Edit
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[reports_remove]" value="reports_remove" id="reports_remove">
+                                                                    <label class="form-check-label per-label" for="reports_remove">
+                                                                        Remove
+                                                                    </label>
+                                                                </div> 
+                                                                
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[form]" value="form" id="form">
+                                                                    <label class="form-check-label per-label" for="form">
+                                                                        Form
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="permission-card">
+                                                            <p>SEO</p>
+                                                            <div class="d-flex flex-wrap" style="margin: 2px 2px 25px 2px;">
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[seo_show]" value="seo_show" id="seo_show">
+                                                                    <label class="form-check-label per-label" for="seo_show">
+                                                                        Show
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[seo_add]" value="seo_add" id="seo_add">
+                                                                    <label class="form-check-label per-label" for="seo_add">
+                                                                        Add
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[seo_edit]" value="seo_edit" id="seo_edit">
+                                                                    <label class="form-check-label per-label" for="seo_edit">
+                                                                        Edit
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[seo_remove]" value="seo_remove" id="seo_remove">
+                                                                    <label class="form-check-label per-label" for="seo_remove">
+                                                                        Remove
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="permission-card">
+                                                            <p>User Management</p>
+                                                            <div class="d-flex flex-wrap" style="margin: 2px 2px 25px 2px;">
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[user_show]" value="user_show" id="user_show">
+                                                                    <label class="form-check-label per-label" for="user_show">
+                                                                        Show
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[user_add]" value="user_add" id="user_add">
+                                                                    <label class="form-check-label per-label" for="user_add">
+                                                                        Add
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[user_edit]" value="user_edit" id="user_edit">
+                                                                    <label class="form-check-label per-label" for="user_edit">
+                                                                        Edit
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[user_remove]" value="user_remove" id="user_remove">
+                                                                    <label class="form-check-label per-label" for="user_remove">
+                                                                        Remove
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="permission-card">
+                                                            <p>Role Management</p>
+                                                            <div class="d-flex flex-wrap" style="margin: 2px 2px 25px 2px;">
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[role_show]" value="role_show" id="role_show">
+                                                                    <label class="form-check-label per-label" for="role_show">
+                                                                        Show
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[role_add]" value="role_add" id="role_add">
+                                                                    <label class="form-check-label per-label" for="role_add">
+                                                                        Add
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[role_edit]" value="role_edit" id="role_edit">
+                                                                    <label class="form-check-label per-label" for="role_edit">
+                                                                        Edit
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[role_remove]" value="role_remove" id="role_remove">
+                                                                    <label class="form-check-label per-label" for="role_remove">
+                                                                        Remove
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="permission-card">
+                                                            <p>Setting</p>
+                                                            <div class="d-flex flex-wrap" style="margin: 2px 2px 25px 2px;">
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[setting_show]" value="setting_show" id="setting_show">
+                                                                    <label class="form-check-label per-label" for="setting_show">
+                                                                        Show
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[setting_add]" value="setting_add" id="setting_add">
+                                                                    <label class="form-check-label per-label" for="setting_add">
+                                                                        Add
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[setting_edit]" value="setting_edit" id="setting_edit">
+                                                                    <label class="form-check-label per-label" for="setting_edit">
+                                                                        Edit
+                                                                    </label>
+                                                                </div>
+                                                           
+                                                                <div class="form-check" style="margin-right: 15px; margin-bottom: 10px;">
+                                                                    <input class="form-check-input" type="checkbox" name="permission[setting_remove]" value="setting_remove" id="setting_remove">
+                                                                    <label class="form-check-label per-label" for="setting_remove">
+                                                                        Remove
+                                                                    </label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </fieldset>
                                                 </div>
+                                          
+
+
+
                                                 <div class="col-sm-6">
 
-                                                    <label for="exampleSelect1"  class="form-label">Status</label>
+                                                    <label for="exampleSelect1" class="form-label">Status</label>
                                                     <select class="form-select" name="status" id="exampleSelect1">
                                                         <option value="1">Active</option>
                                                         <option value="0">Inactive</option>

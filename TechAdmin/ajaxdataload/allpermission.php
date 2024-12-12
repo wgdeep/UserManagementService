@@ -26,9 +26,8 @@ $searchQuery = "";
 if ($searchValue != '') {
   $searchQuery = " AND (
 
-        role_name LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' OR
-        status LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%' 
-
+        name LIKE '%" . mysqli_real_escape_string($con, $searchValue) . "%'
+    
     )";
 }
 
@@ -39,13 +38,13 @@ $records = mysqli_fetch_assoc($sel);
 
 $totalRecords = $records['total'];
 
-$sel = mysqli_query($con, "select count(*) as allcount from role WHERE 1 " . $searchQuery);
+$sel = mysqli_query($con, "select count(*) as allcount from permission WHERE 1 " . $searchQuery);
 
 $records = mysqli_fetch_assoc($sel);
 
 $totalRecordwithFilter = $records['allcount'];
 
-$empQuery = "SELECT * FROM role 
+$empQuery = "SELECT * FROM permission_name 
              WHERE 1 " . $searchQuery . " 
              ORDER BY id ASC, " . $columnName . " " . $columnSortOrder . " 
              LIMIT " . $row . "," . $rowperpage;
@@ -59,18 +58,14 @@ $currdate = date('Y-m-d');
 
 
 while ($row = mysqli_fetch_assoc($empRecords)) {
-  if ($row['status'] > 0) {
-    $status = '<span class="active"> Active </span>';
-  } else {
-    $status = '<span class="inactive"> Inactive </span>';
-  }
-
   $data[] = array(
     "id" => '<input value="' . $row['id'] . '" name="id[]" class="checkbox" type="checkbox">',
-    "role_name" => $row['role_name'],
-    "status" => $status,
-    "edit" => '<a class="btn btn-primary" title="Edit" href="update_role.php?edit_id=' . $row['id'] . '">Edit</a>',
-    "remove" => '<a class="btn btn-danger" title="Remove" href="role_management.php?del_id=' . $row['id'] . '">Remove</a>',
+    "name" => $row['user_show'],
+    "show" => $row['show'],
+    "add" => $row['add'],
+    "edit" => $row['edit'],
+    "remove" => $row['remove'],
+    "action" => '<a title="Edit" href="update_permission.php?edit_id=' . $row['id'] . '" style="margin-left: 10px;"><i class="fa fa-pencil"></i></a>',
   );
 }
 
