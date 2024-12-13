@@ -146,114 +146,136 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                                                         placeholder="Button URL" name="button_url" value="<?php echo $bannerinfo['button_url'] ?>">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
-
-                                                <div class="btn-showcase text-end">
-                                                    <button class="btn btn-primary" name="submit" value="Edit Banner" type="submit">Update</button>
+                                                <div class="col-sm-6" style="padding-top: 15px;padding-left: 0px;left: 15px;"">
+                                                    <div class=" input-group mb-3">
+                                                    <div class="input-group-prepend" style="padding-left: -0.25rem;border-left-style: solid;margin-left: 13px;border-left-width: 0px;"><span class="input-group-text">Banner</span></div>
+                                                    <div class="card form-control" style="display: flex; flex-direction:row;margin-left: calc(var(--bs-border-width) * 17);padding-right: 4.75rem;border-right-width: 1px;">
+                                                        <?php
+                                                        $Image = $bannerinfo['image'];
+                                                        if (!empty($Image)) {
+                                                            $imagePath = "./data/banner/image/" . htmlspecialchars(trim($Image));
+                                                            echo "<a class='socialContainerBanner'><img id='bannerImg' width='150' class='socialSvg instagramSvg' src='$imagePath' alt='Image'></a>";
+                                                        } else {
+                                                            echo "<p style='margin-left: 25px;margin-bottom: 0rem;'>No banner image available.</p>";
+                                                        }
+                                                        ?>
+                                                    </div>
                                                 </div>
-
-                                            </form>
-
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <input class="col-sm-6" type="hidden" name="existing_image" value="<?php echo htmlspecialchars($Image); ?>">
                                         </div>
 
+                                        <div class="col-sm-6" style="padding-left: 0px;padding-bottom: 15px;">
+                                            <input style="padding-left: 10px;padding-top: 10px;border-left-width: 0px;margin-left: 15px;" type="file" name="attached_image" id="image" class="form-control">
+                                        </div>
+                                        <div class="btn-showcase text-end">
+                                            <button class="btn btn-primary" name="submit" value="Edit Banner" type="submit">Update</button>
+                                        </div>
+
+                                        </form>
+
                                     </div>
+
                                 </div>
                             </div>
-                            <!-- Container-fluid Ends-->
                         </div>
-                        <!-- footer start-->
-                        <?php include('include/footer.php'); ?>
+                        <!-- Container-fluid Ends-->
                     </div>
+                    <!-- footer start-->
+                    <?php include('include/footer.php'); ?>
                 </div>
-                <!-- latest jquery-->
-                <script src="assets/js/jquery.min.js"></script>
-                <!-- Bootstrap js-->
-                <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-                <!-- feather icon js-->
-                <script src="assets/js/icons/feather-icon/feather.min.js"></script>
-                <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
-                <!-- scrollbar js-->
-                <script src="assets/js/scrollbar/simplebar.js"></script>
-                <script src="assets/js/scrollbar/custom.js"></script>
-                <!-- Sidebar jquery-->
-                <script src="assets/js/config.js"></script>
-                <!-- Plugins JS start-->
-                <script src="assets/js/sidebar-menu.js"></script>
-                <script src="assets/js/slick/slick.min.js"></script>
-                <script src="assets/js/slick/slick.js"></script>
-                <script src="assets/js/header-slick.js"></script>
-                <script src="assets/js/editor/ckeditor/ckeditor.js"></script>
-                <script src="assets/js/editor/ckeditor/adapters/jquery.js"></script>
-                <script src="assets/js/dropzone/dropzone.js"></script>
-                <script src="assets/js/dropzone/dropzone-script.js"></script>
-                <script src="assets/js/select2/select2.full.min.js"></script>
-                <script src="assets/js/select2/select2-custom.js"></script>
-                <script src="assets/js/email-app.js"></script>
-                <script src="assets/js/form-validation-custom.js"></script>
-                <!-- Plugins JS Ends-->
-                <!-- Theme js-->
-                <script src="assets/js/script.js"></script>
-                <script src="assets/js/theme-customizer/customizer.js"></script>
+            </div>
+            <!-- latest jquery-->
+            <script src="assets/js/jquery.min.js"></script>
+            <!-- Bootstrap js-->
+            <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+            <!-- feather icon js-->
+            <script src="assets/js/icons/feather-icon/feather.min.js"></script>
+            <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
+            <!-- scrollbar js-->
+            <script src="assets/js/scrollbar/simplebar.js"></script>
+            <script src="assets/js/scrollbar/custom.js"></script>
+            <!-- Sidebar jquery-->
+            <script src="assets/js/config.js"></script>
+            <!-- Plugins JS start-->
+            <script src="assets/js/sidebar-menu.js"></script>
+            <script src="assets/js/slick/slick.min.js"></script>
+            <script src="assets/js/slick/slick.js"></script>
+            <script src="assets/js/header-slick.js"></script>
+            <script src="assets/js/editor/ckeditor/ckeditor.js"></script>
+            <script src="assets/js/editor/ckeditor/adapters/jquery.js"></script>
+            <script src="assets/js/dropzone/dropzone.js"></script>
+            <script src="assets/js/dropzone/dropzone-script.js"></script>
+            <script src="assets/js/select2/select2.full.min.js"></script>
+            <script src="assets/js/select2/select2-custom.js"></script>
+            <script src="assets/js/email-app.js"></script>
+            <script src="assets/js/form-validation-custom.js"></script>
+            <!-- Plugins JS Ends-->
+            <!-- Theme js-->
+            <script src="assets/js/script.js"></script>
+            <script src="assets/js/theme-customizer/customizer.js"></script>
 
-                <!-- toastr js -->
-                <script src="assets/js/toastr.min.js"></script>
+            <!-- toastr js -->
+            <script src="assets/js/toastr.min.js"></script>
 
-                <script>
-                    $(document).ready(function() {
-                        $(document).on('change', '.toggle-status', function() {
-                            let status = $(this).prop('checked') ? 1 : 0;
-                            let url = $(this).data('route');
-                            let clickedToggle = $(this);
-                            $.ajax({
-                                type: "POST",
-                                url: url,
-                                data: {
-                                    status: status,
-                                    _token: 'xq1sRXci9mJD7CPntesosEA0EJxzvhPdwg6knEKt',
-                                },
-                                success: function(data) {
-                                    clickedToggle.prop('checked', status);
-                                    toastr.success("Status Updated Successfully");
-                                },
-                                error: function(xhr, status, error) {
-                                    console.log(error)
-                                }
-                            });
-                        });
-                    });
-                </script>
-
-
-                <script>
-                    $(document).ready(function() {
-                        $('.toastr-message').each(function() {
-                            var messageType = $(this).data('type');
-                            var messageText = $(this).text();
-                            toastr.options = {
-                                "closeButton": false,
-                                "progressBar": true,
-                                "extendedTimeOut": 0,
-                                "timeOut": 0,
-                            };
-
-                            switch (messageType) {
-                                case 'success':
-                                    toastr.success(messageText);
-                                    break;
-                                case 'error':
-                                    toastr.error(messageText);
-                                    break;
-                                case 'info':
-                                    toastr.info(messageText);
-                                    break;
-                                case 'warning':
-                                    toastr.warning(messageText);
-                                    break;
-                                default:
-                                    toastr.info(messageText);
+            <script>
+                $(document).ready(function() {
+                    $(document).on('change', '.toggle-status', function() {
+                        let status = $(this).prop('checked') ? 1 : 0;
+                        let url = $(this).data('route');
+                        let clickedToggle = $(this);
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: {
+                                status: status,
+                                _token: 'xq1sRXci9mJD7CPntesosEA0EJxzvhPdwg6knEKt',
+                            },
+                            success: function(data) {
+                                clickedToggle.prop('checked', status);
+                                toastr.success("Status Updated Successfully");
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(error)
                             }
                         });
                     });
-                </script>
+                });
+            </script>
+
+
+            <script>
+                $(document).ready(function() {
+                    $('.toastr-message').each(function() {
+                        var messageType = $(this).data('type');
+                        var messageText = $(this).text();
+                        toastr.options = {
+                            "closeButton": false,
+                            "progressBar": true,
+                            "extendedTimeOut": 0,
+                            "timeOut": 0,
+                        };
+
+                        switch (messageType) {
+                            case 'success':
+                                toastr.success(messageText);
+                                break;
+                            case 'error':
+                                toastr.error(messageText);
+                                break;
+                            case 'info':
+                                toastr.info(messageText);
+                                break;
+                            case 'warning':
+                                toastr.warning(messageText);
+                                break;
+                            default:
+                                toastr.info(messageText);
+                        }
+                    });
+                });
+            </script>
 
 </body>
 

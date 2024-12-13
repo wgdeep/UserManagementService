@@ -451,7 +451,7 @@ function addLatestUpdate($con, $req, &$outputMsg)
 
 
 
-  function compressImageLatestUpdate($source, $destination, $file_ext, $quality)
+  function compressImageBanner($source, $destination, $file_ext, $quality)
   {
     // Create an image resource based on file type
     switch ($file_ext) {
@@ -514,7 +514,7 @@ function addLatestUpdate($con, $req, &$outputMsg)
     $source_img = $_FILES["attached_image"]["tmp_name"];
     $quality = 75; // Compression quality (0-100)
 
-    if (!compressImageLatestUpdate($source_img, $target_img, $file_ext, $quality)) {
+    if (!compressImageBanner($source_img, $target_img, $file_ext, $quality)) {
       $outputMsg = "File upload failed during compression.";
       return false;
     }
@@ -615,7 +615,7 @@ function addBanner($con, $req, &$outputMsg)
 
 
 
-  $unitsql = mysqli_query($con, "insert into banner set title1 = '" . htmlentities($title1) . "', title2 = '" . $title2 . "', title3 = '" . $title3 . "', button_name = '" . $button_name . "', button_url = '" . htmlentities($button_url) . "', edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
+  $unitsql = mysqli_query($con, "insert into banner set title1 = '" . htmlentities($title1) . "', title2 = '" . $title2 . "', title3 = '" . $title3 . "', button_name = '" . $button_name . "', button_url = '" . htmlentities($button_url) . "',image = '" . $image . "', edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
 
   header("location:banner.php?act=add");
   return true;
@@ -1411,7 +1411,79 @@ function updateBanner($con, $req, &$outputMsg)
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
 
-  $unitsql = mysqli_query($con, "update banner set title1 = '" . htmlentities($title1) . "', title2 = '" . $title2 . "', title3 = '" . $title3 . "', button_name = '" . $button_name . "', button_url = '" . htmlentities($button_url) . "', edate= '" . $curdate . "', etime= '" . $curtime . "' where id = '" . $id . "'") or die(mysqli_error($con));
+  function compressImageUpdateBanner($source, $destination, $file_ext, $quality)
+  {
+    // Create an image resource based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save compressed image based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // For JPG/JPEG, compression quality is used
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // For PNG, quality is 0-9
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF does not support quality
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
+
+
+  $image = '';
+
+  if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
+    $original_filename = $_FILES['attached_image']['name'];
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION)); // Get extension
+
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
+      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+      return false;
+    }
+
+    $minute = date('i');
+    $second = date('s');
+
+    $renamed_image = 'u' . $minute . $second . $original_filename;
+    $image = $renamed_image;
+    $target_img = "./data/banner/image/" . $image;
+
+    // Compress and save the image
+    $source_img = $_FILES["attached_image"]["tmp_name"];
+    $quality = 75; // Compression quality (0-100)
+
+    if (!compressImageUpdateBanner($source_img, $target_img, $file_ext, $quality)) {
+      $outputMsg = "File upload failed during compression.";
+      return false;
+    }
+    unlink('./data/banner/image/' . $_POST['existing_image']);
+  } else {
+    $image = $_POST['existing_image'] ?? '';
+  }
+
+  $unitsql = mysqli_query($con, "update banner set title1 = '" . htmlentities($title1) . "', title2 = '" . $title2 . "', title3 = '" . $title3 . "', button_name = '" . $button_name . "', button_url = '" . htmlentities($button_url) . "',image = '" . $image . "', edate= '" . $curdate . "', etime= '" . $curtime . "' where id = '" . $id . "'") or die(mysqli_error($con));
 
   header("location:banner.php?act=edit");
   return true;
@@ -1704,7 +1776,7 @@ function updatePublication($con, $req, &$outputMsg)
 
     // Compress and save the banner image
     $source_img = $_FILES["attached_banner"]["tmp_name"];
-    $quality = 75; // Compression quality
+    $quality = 2; // Compression quality
 
     if (compressUpdatePublicationImage($source_img, $target_img, $file_ext, $quality)) {
       // Unlink the previous banner image if it exists

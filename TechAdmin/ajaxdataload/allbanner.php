@@ -79,14 +79,13 @@ while ($row = mysqli_fetch_assoc($empRecords)) {
   }
 
   $data[] = array(
-
-
     "id" => '<input value="' . $row['id'] . '" name="id[]" class="checkbox" type="checkbox">',
     "title1" => $row['title1'],
     "title2" => $row['title2'],
     "title3" => $row['title3'],
     "button_name" => $row['button_name'],
     "button_url" => $row['button_url'],
+    "image" => '<img src="./data/banner/image/'.$row['image'].'" width="50" alt="'.$row['image'].'">',
     "edate" => $row['edate'],
     "etime" => $row['etime'],
     "action" => ''.$delete.' '.$update.'' ,

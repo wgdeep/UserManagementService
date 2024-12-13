@@ -136,6 +136,7 @@ date_default_timezone_set("Asia/Kolkata");
                                                 <th>Title2</th>
                                                 <th>Title3</th>
                                                 <th>Button Name</th>
+                                                <th>Image</th>
                                                 <th>Date</th>
                                                 <th>Time</th>
                                             </tr>
@@ -165,9 +166,19 @@ date_default_timezone_set("Asia/Kolkata");
                                                 $('#tableshowid').DataTable({
 
                                                     "columnDefs": [{
-                                                        "orderable": false,
-                                                        "targets": 0
-                                                    }],
+                                                            "orderable": false,
+                                                            "targets": 0
+                                                        },
+                                                        {
+                                                            "targets": 4, // Assuming "Meta Description" is the 4th column (index starts from 0)
+                                                            "render": function(data, type, row) {
+                                                                // Truncate if text length exceeds 50 characters and decode HTML entities
+                                                                let decodedData = $('<div>').html(data).text(); // Decode HTML entities
+                                                                return decodedData.length > 20 ? decodedData.substring(0, 20) + '...' : decodedData;
+                                                            }
+                                                        }
+
+                                                    ],
 
                                                     dom: 'Blfrtip',
 
@@ -212,6 +223,9 @@ date_default_timezone_set("Asia/Kolkata");
                                                         },
                                                         {
                                                             data: 'button_name'
+                                                        },
+                                                        {
+                                                            data: 'image'
                                                         },
                                                         {
                                                             data: 'edate'
