@@ -9,7 +9,7 @@ require_once("include/header.php");
 
 if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '') {
 
-    deleteDataWithImg($con, 'banner', $_REQUEST['del_id']);
+    deleteData($con, 'banner', $_REQUEST['del_id']);
 
     echo "<script>window.location = '" . $wwwroot . "/banner.php';</script>";
 

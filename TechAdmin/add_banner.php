@@ -135,9 +135,14 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] == "Add Banner") {
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
 
+                                                <div class="col-sm-6">
+                                                    <label for="Image">Image:</label>
+                                                    <input type="file" name="attached_image" id="Image" class="form-control" multiple>
+                                                    <div class="valid-feedback">Looks good!</div>
+                                                </div>
 
                                                 <div class="btn-showcase text-end">
-                                                    <button class="btn btn-primary" name="submit" value="Add Banner" type="submit">Add</button>
+                                                    <button class="btn btn-primary" style="margin-top: 10px;" name="submit" value="Add Banner" type="submit">Add</button>
                                                 </div>
 
                                             </form>

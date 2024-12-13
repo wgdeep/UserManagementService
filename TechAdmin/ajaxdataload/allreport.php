@@ -65,7 +65,7 @@ while ($row = mysqli_fetch_assoc($empRecords)) {
     "pdf" => '<a href="' . $row['pdf'] . '" target="_blank"><img src="./data/pdf_img/pdficon.webp" title="' . htmlspecialchars($row['pdf']) . '" alt="PDF" width="50" style="cursor: pointer;"></a>',
     "edate" => $row['edate'],
     "etime" => $row['etime'],
-    "action" => '<a title="Delete" href="report.php?del_id=' . $row['id'] . '"><i class="fa fa-trash-o"></i></a> <a title="Edit" href="update_report.php?edit_id=' . $row['id'] . '" style="margin-left: 10px;"><i class="fa fa-pencil"></i></a>',
+    "action" => '<a title="Delete" href="report.php?del_id=' . $row['id'] . '&img_Path=./data/report/image/' . $row['image'] . '"><i class="fa fa-trash-o"></i></a> <a title="Edit" href="update_report.php?edit_id=' . $row['id'] . '" style="margin-left: 10px;"><i class="fa fa-pencil"></i></a>',
  
   );
 }

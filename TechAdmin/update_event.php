@@ -142,8 +142,8 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
 
                                                 <script>
                                                     // Get references to title and URL input fields
-                                                    const titleField = document.getElementById('title');
-                                                    const urlField = document.getElementById('url');
+                                                    const titleField = document.getElementById('Title');
+                                                    const urlField = document.getElementById('URL');
 
                                                     // Add event listener to the title field
                                                     titleField.addEventListener('input', function() {

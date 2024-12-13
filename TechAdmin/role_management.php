@@ -5,6 +5,10 @@ require_once("include/config.php");
 
 require_once("include/library.php");
 
+
+require_once("include/header.php");
+
+
 $inputData = json_decode(file_get_contents('php://input'), true);
 
 if (isset($_REQUEST)) {
@@ -13,7 +17,7 @@ if (isset($_REQUEST)) {
 
 if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '') {
 
-    deleteDataWithImg($con, 'role', $_REQUEST['del_id']);
+    deleteData($con, 'role', $_REQUEST['del_id']);
 
     echo "<script>window.location = '" . $wwwroot . "/role_management.php?act=del';</script>";
 
@@ -93,10 +97,7 @@ date_default_timezone_set("Asia/Kolkata");
 </head>
 
 <body>
-    <?php
-
-    require_once("include/header.php");
-    ?>
+  
     <!-- Page Header Ends-->
     <!-- Page Body Start-->
     <div class="page-body-wrapper" style="margin-top: 0px;">

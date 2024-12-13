@@ -7,7 +7,7 @@ require_once("include/library.php");
 
 if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '') {
 
-    deleteDataWithImg($con, 'role', $_REQUEST['del_id']);
+    deleteData($con, 'role', $_REQUEST['del_id']);
 
     echo "<script>window.location = '" . $wwwroot . "/role_management.php?act=del';</script>";
 

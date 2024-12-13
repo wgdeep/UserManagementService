@@ -7,9 +7,9 @@ require_once("include/library.php");
 
 
 
-if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '') {
+if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '' && $_REQUEST['img_Path'] != '') {
 
-    deleteDataWithImg($con, 'purpose', $_REQUEST['del_id']);
+    deleteDataWithImg($con, 'purpose', $_REQUEST['del_id'], $_REQUEST['img_Path']);
 
     echo "<script>window.location = '" . $wwwroot . "/purpose.php?act=del';</script>";
 

@@ -205,69 +205,7 @@ function addEvent($con, $req, &$outputMsg)
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
 
-  $banner_image = '';
-
-  if (isset($_FILES['attached_banner']['name']) && $_FILES['attached_banner']['error'] == 0) {
-    $original_filename = $_FILES['attached_banner']['name'];
-    $file_ext = substr($original_filename, strripos($original_filename, '.')); // Get extension
-
-    if (($file_ext != '.png') && ($file_ext != '.jpg') && ($file_ext != '.jpeg') && ($file_ext != '.gif')) {
-      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
-      return false;
-    }
-
-    $minute = date('i');
-    $second = date('s');
-
-    $renamed_banner = $minute . $second . $original_filename;
-
-    $banner_image = $renamed_banner;
-    $target_img   = "./data/event/banner/" . $banner_image;
-
-    if (!move_uploaded_file($_FILES["attached_banner"]["tmp_name"], $target_img)) {
-      $outputMsg = "File upload failed.";
-      return false;
-    }
-  } else {
-    $banner_image = $_POST['existing_banner'] ?? '';
-  }
-
-  // $uploaded_images = [];
-
-
-  // if (isset($_FILES['attached_images']['name']) && count($_FILES['attached_images']['name']) > 0) {
-  //   foreach ($_FILES['attached_images']['name'] as $index => $original_filenames) {
-  //     if ($_FILES['attached_images']['error'][$index] == 0) {
-  //       $file_ext = substr($original_filenames, strripos($original_filenames, '.'));
-
-  //       if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
-  //         $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
-  //         continue;
-  //       }
-
-  //       $filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filenames, PATHINFO_FILENAME)) . $file_ext;
-
-  //       $minute = date('i');
-  //       $second = date('s');
-
-  //       $renamed_image = $minute . $second . $filename_without_numbers;
-
-  //       $new_filename = $renamed_image;
-  //       $target_img = "./data/event/gallery/" . $new_filename;
-
-  //       if (move_uploaded_file($_FILES['attached_images']['tmp_name'][$index], $target_img)) {
-  //         $uploaded_images[] = $new_filename;
-  //       } else {
-  //         $outputMsg = "File upload failed for {$new_filename}.";
-  //       }
-  //     }
-  //   }
-  // }
-
-  // $uploaded_images_str = implode(',', $uploaded_images);
-
-
-  function compressImageEvent($source, $destination, $file_ext, $quality)
+  function compressImage($source, $destination, $file_ext, $quality)
   {
     switch ($file_ext) {
       case 'jpg':
@@ -305,6 +243,35 @@ function addEvent($con, $req, &$outputMsg)
 
     return $result;
   }
+  $banner_image = '';
+
+  if (isset($_FILES['attached_banner']['name']) && $_FILES['attached_banner']['error'] == 0) {
+    $original_filename = $_FILES['attached_banner']['name'];
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION));
+
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
+      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+      return false;
+    }
+
+    $minute = date('i');
+    $second = date('s');
+
+    $renamed_banner =  $minute . $second . $original_filename;
+    $banner_image = $renamed_banner;
+    $target_img = "./data/event/banner/" . $banner_image;
+
+    // Compress and save the banner image
+    $source_img = $_FILES["attached_banner"]["tmp_name"];
+    $quality = 75; // Compression quality (adjust as needed)
+
+    if (!compressImage($source_img, $target_img, $file_ext, $quality)) {
+      $outputMsg = "File upload failed during compression.";
+      return false;
+    }
+  } else {
+    $banner_image = $_POST['existing_banner'] ?? '';
+  }
 
   $uploaded_images = [];
 
@@ -324,15 +291,14 @@ function addEvent($con, $req, &$outputMsg)
         $second = date('s');
 
         $renamed_image = $minute . $second . $filename_without_numbers;
-
         $new_filename = $renamed_image;
         $target_img = "./data/event/gallery/" . $new_filename;
 
         // Compress and save the image
         $source_img = $_FILES['attached_images']['tmp_name'][$index];
-        $quality = 75; // Compression quality (0-100 for JPEG, lower for higher compression)
+        $quality = 75; // Compression quality (adjust as needed)
 
-        if (compressImageEvent($source_img, $target_img, $file_ext, $quality)) {
+        if (compressImage($source_img, $target_img, $file_ext, $quality)) {
           $uploaded_images[] = $new_filename;
         } else {
           $outputMsg = "File upload failed during compression for {$new_filename}.";
@@ -344,6 +310,8 @@ function addEvent($con, $req, &$outputMsg)
   $uploaded_images_str = implode(',', $uploaded_images);
 
   // Function to compress and save the image
+
+
 
 
 
@@ -369,13 +337,76 @@ function addPublication($con, $req, &$outputMsg)
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
 
+  // $banner_image = '';
+
+  // if (isset($_FILES['attached_banner']['name']) && $_FILES['attached_banner']['error'] == 0) {
+  //   $original_filename = $_FILES['attached_banner']['name'];
+  //   $file_ext = substr($original_filename, strripos($original_filename, '.')); // Get extension
+
+  //   if (($file_ext != '.png') && ($file_ext != '.jpg') && ($file_ext != '.jpeg') && ($file_ext != '.gif')) {
+  //     $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+  //     return false;
+  //   }
+
+  //   $minute = date('i');
+  //   $second = date('s');
+
+  //   $renamed_banner = $minute . $second . $original_filename;
+
+  //   $banner_image = $renamed_banner;
+  //   $target_img   = "./data/publication/banner/" . $banner_image;
+
+  //   if (!move_uploaded_file($_FILES["attached_banner"]["tmp_name"], $target_img)) {
+  //     $outputMsg = "File upload failed.";
+  //     return false;
+  //   }
+  // }
+
+  function compressImagePublication($source, $destination, $file_ext, $quality)
+  {
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save the compressed image
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // JPEG compression
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // PNG compression
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF doesn't support quality parameter
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
   $banner_image = '';
 
   if (isset($_FILES['attached_banner']['name']) && $_FILES['attached_banner']['error'] == 0) {
     $original_filename = $_FILES['attached_banner']['name'];
-    $file_ext = substr($original_filename, strripos($original_filename, '.')); // Get extension
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION));
 
-    if (($file_ext != '.png') && ($file_ext != '.jpg') && ($file_ext != '.jpeg') && ($file_ext != '.gif')) {
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
       $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
       return false;
     }
@@ -383,16 +414,23 @@ function addPublication($con, $req, &$outputMsg)
     $minute = date('i');
     $second = date('s');
 
-    $renamed_banner = $minute . $second . $original_filename;
-
+    $renamed_banner =  $minute . $second . $original_filename;
     $banner_image = $renamed_banner;
-    $target_img   = "./data/publication/banner/" . $banner_image;
+    $target_img = "./data/publication/banner/" . $banner_image;
 
-    if (!move_uploaded_file($_FILES["attached_banner"]["tmp_name"], $target_img)) {
-      $outputMsg = "File upload failed.";
+    // Compress and save the banner image
+    $source_img = $_FILES["attached_banner"]["tmp_name"];
+    $quality = 75; // Compression quality (adjust as needed)
+
+    if (!compressImagePublication($source_img, $target_img, $file_ext, $quality)) {
+      $outputMsg = "File upload failed during compression.";
       return false;
     }
+  } else {
+    $banner_image = $_POST['existing_banner'] ?? '';
   }
+
+
 
 
   $unitsql = mysqli_query($con, "insert into publication set title = '" . htmlentities($title) . "', date = '" . $date . "', venue = '" . $venue . "', media = '" . $media . "', description = '" . htmlentities($description) . "' , banner_image = '" . $banner_image . "',url = '" . htmlentities($url) . "', status = '', edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
@@ -506,6 +544,77 @@ function addBanner($con, $req, &$outputMsg)
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
 
+  function compressImageLatestUpdate($source, $destination, $file_ext, $quality)
+  {
+    // Create an image resource based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save compressed image based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // For JPG/JPEG, compression quality is used
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // For PNG, quality is 0-9
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF does not support quality
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
+
+
+  $image = '';
+
+  if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
+    $original_filename = $_FILES['attached_image']['name'];
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION)); // Get extension
+
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
+      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+      return false;
+    }
+
+    $minute = date('i');
+    $second = date('s');
+
+    $renamed_image = $minute . $second . $original_filename;
+    $image = $renamed_image;
+    $target_img = "./data/banner/image/" . $image;
+
+    // Compress and save the image
+    $source_img = $_FILES["attached_image"]["tmp_name"];
+    $quality = 75; // Compression quality (0-100)
+
+    if (!compressImageLatestUpdate($source_img, $target_img, $file_ext, $quality)) {
+      $outputMsg = "File upload failed during compression.";
+      return false;
+    }
+  }
+
+
+
   $unitsql = mysqli_query($con, "insert into banner set title1 = '" . htmlentities($title1) . "', title2 = '" . $title2 . "', title3 = '" . $title3 . "', button_name = '" . $button_name . "', button_url = '" . htmlentities($button_url) . "', edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
 
   header("location:banner.php?act=add");
@@ -527,13 +636,54 @@ function addPeople($con, $req, &$outputMsg)
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
 
+  function compressImagePeople($source, $destination, $file_ext, $quality)
+  {
+    // Create an image resource based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save compressed image based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // For JPG/JPEG, compression quality is used
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // For PNG, quality is 0-9
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF does not support quality
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
+
+
   $image = '';
 
   if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
     $original_filename = $_FILES['attached_image']['name'];
-    $file_ext = substr($original_filename, strripos($original_filename, '.')); // Get extension
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION)); // Get extension
 
-    if (($file_ext != '.png') && ($file_ext != '.jpg') && ($file_ext != '.jpeg') && ($file_ext != '.gif')) {
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
       $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
       return false;
     }
@@ -541,16 +691,45 @@ function addPeople($con, $req, &$outputMsg)
     $minute = date('i');
     $second = date('s');
 
-    $renamed_banner = $minute . $second . $original_filename;
+    $renamed_image = $minute . $second . $original_filename;
+    $image = $renamed_image;
+    $target_img = "./data/people/" . $image;
 
-    $image = $renamed_banner;
-    $target_img   = "./data/people/" . $image;
+    // Compress and save the image
+    $source_img = $_FILES["attached_image"]["tmp_name"];
+    $quality = 75; // Compression quality (0-100)
 
-    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
-      $outputMsg = "File upload failed.";
+    if (!compressImagePeople($source_img, $target_img, $file_ext, $quality)) {
+      $outputMsg = "File upload failed during compression.";
       return false;
     }
   }
+
+
+  // $image = '';
+
+  // if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
+  //   $original_filename = $_FILES['attached_image']['name'];
+  //   $file_ext = substr($original_filename, strripos($original_filename, '.')); // Get extension
+
+  //   if (($file_ext != '.png') && ($file_ext != '.jpg') && ($file_ext != '.jpeg') && ($file_ext != '.gif')) {
+  //     $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+  //     return false;
+  //   }
+
+  //   $minute = date('i');
+  //   $second = date('s');
+
+  //   $renamed_banner = $minute . $second . $original_filename;
+
+  //   $image = $renamed_banner;
+  //   $target_img   = "./data/people/" . $image;
+
+  //   if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
+  //     $outputMsg = "File upload failed.";
+  //     return false;
+  //   }
+  // }
 
   $unitsql = mysqli_query($con, "insert into people set title = '" . $title . "', post1 = '" . $post1 . "', post2 = '" . $post2 . "',post3 = '" . $post3 . "', description = '" . htmlentities($description) . "', mail = '" . $mail . "',image = '" . $image . "', edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
 
@@ -698,13 +877,55 @@ function addPurpose($con, $req, &$outputMsg)
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
 
+
+  function compressImagePurpose($source, $destination, $file_ext, $quality)
+  {
+    // Create an image resource based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save compressed image based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // For JPG/JPEG, compression quality is used
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // For PNG, quality is 0-9
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF does not support quality
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
+
+
   $image = '';
 
   if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
     $original_filename = $_FILES['attached_image']['name'];
-    $file_ext = substr($original_filename, strripos($original_filename, '.')); // Get extension
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION)); // Get extension
 
-    if (($file_ext != '.png') && ($file_ext != '.jpg') && ($file_ext != '.jpeg') && ($file_ext != '.gif')) {
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
       $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
       return false;
     }
@@ -712,16 +933,44 @@ function addPurpose($con, $req, &$outputMsg)
     $minute = date('i');
     $second = date('s');
 
-    $renamed_banner = $minute . $second . $original_filename;
+    $renamed_image = $minute . $second . $original_filename;
+    $image = $renamed_image;
+    $target_img = "./data/purpose/image/" . $image;
 
-    $image = $renamed_banner;
-    $target_img   = "./data/purpose/image/" . $image;
+    // Compress and save the image
+    $source_img = $_FILES["attached_image"]["tmp_name"];
+    $quality = 75; // Compression quality (0-100)
 
-    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
-      $outputMsg = "File upload failed.";
+    if (!compressImagePurpose($source_img, $target_img, $file_ext, $quality)) {
+      $outputMsg = "File upload failed during compression.";
       return false;
     }
   }
+
+  // $image = '';
+
+  // if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
+  //   $original_filename = $_FILES['attached_image']['name'];
+  //   $file_ext = substr($original_filename, strripos($original_filename, '.')); // Get extension
+
+  //   if (($file_ext != '.png') && ($file_ext != '.jpg') && ($file_ext != '.jpeg') && ($file_ext != '.gif')) {
+  //     $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+  //     return false;
+  //   }
+
+  //   $minute = date('i');
+  //   $second = date('s');
+
+  //   $renamed_banner = $minute . $second . $original_filename;
+
+  //   $image = $renamed_banner;
+  //   $target_img   = "./data/purpose/image/" . $image;
+
+  //   if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
+  //     $outputMsg = "File upload failed.";
+  //     return false;
+  //   }
+  // }
 
   $unitsql = mysqli_query($con, "insert into purpose set title = '" . $title . "', sub_title = '" . $sub_title . "', description = '" . $description . "',image = '" . $image . "', status ='1' ,edate= '" . $curdate . "', etime= '" . $curtime . "'") or die(mysqli_error($con));
 
@@ -737,37 +986,108 @@ function addReport($con, $req, &$outputMsg)
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
 
+
+  function compressImageReport($source, $destination, $file_ext, $quality)
+  {
+    // Create an image resource based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save compressed image based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // For JPG/JPEG, compression quality is used
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // For PNG, quality is 0-9
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF does not support quality
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
+
+
   $image = '';
 
   if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
     $original_filename = $_FILES['attached_image']['name'];
-    $file_ext = substr($original_filename, strripos($original_filename, '.'));
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION)); // Get extension
 
-    if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
       $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
       return false;
     }
 
-    $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
-
-
     $minute = date('i');
     $second = date('s');
 
-    $renamed_image = $minute . $second . $original_filename_without_numbers;
-
-
+    $renamed_image = $minute . $second . $original_filename;
     $image = $renamed_image;
     $target_img = "./data/report/image/" . $image;
 
+    // Compress and save the image
+    $source_img = $_FILES["attached_image"]["tmp_name"];
+    $quality = 75; // Compression quality (0-100)
 
-    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
-      $outputMsg = "File upload failed.";
+    if (!compressImageReport($source_img, $target_img, $file_ext, $quality)) {
+      $outputMsg = "File upload failed during compression.";
       return false;
     }
-  } else {
-    $image = $_POST['existing_image'] ?? '';
   }
+
+
+  // $image = '';
+
+  // if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
+  //   $original_filename = $_FILES['attached_image']['name'];
+  //   $file_ext = substr($original_filename, strripos($original_filename, '.'));
+
+  //   if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+  //     $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+  //     return false;
+  //   }
+
+  //   $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
+
+
+  //   $minute = date('i');
+  //   $second = date('s');
+
+  //   $renamed_image = $minute . $second . $original_filename_without_numbers;
+
+
+  //   $image = $renamed_image;
+  //   $target_img = "./data/report/image/" . $image;
+
+
+  //   if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
+  //     $outputMsg = "File upload failed.";
+  //     return false;
+  //   }
+  // } else {
+  //   $image = $_POST['existing_image'] ?? '';
+  // }
 
   // echo "update publication set title = '" . htmlentities($title) . "',date = '" . $date . "',venue  = '" . $venue  . "',media  = '" . $media  . "',description = '" . htmlentities($description) . "', banner_image = '" . $banner_image . "',url = '" . htmlentities($url) . "', edate = '" . $curdate . "', etime = '" . $curtime . "' where id='" . $edit_id . "'"; die;
 
@@ -947,37 +1267,107 @@ function updateProfile($con, $req, &$outputMsg)
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
 
+
+  function compressImageupdateProfilee($source, $destination, $file_ext, $quality)
+  {
+    // Create an image resource based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save compressed image based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // For JPG/JPEG, compression quality is used
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // For PNG, quality is 0-9
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF does not support quality
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
+
+
   $image = '';
 
   if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
     $original_filename = $_FILES['attached_image']['name'];
-    $file_ext = substr($original_filename, strripos($original_filename, '.'));
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION)); // Get extension
 
-    if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
       $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
       return false;
     }
 
-    $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
-
-
     $minute = date('i');
     $second = date('s');
 
-    $renamed_image = $minute . $second . $original_filename_without_numbers;
-
-
+    $renamed_image = 'u' . $minute . $second . $original_filename;
     $image = $renamed_image;
     $target_img = "./data/user/image/" . $image;
 
+    // Compress and save the image
+    $source_img = $_FILES["attached_image"]["tmp_name"];
+    $quality = 75; // Compression quality (0-100)
 
-    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
-      $outputMsg = "File upload failed.";
-      return false;
-    }
+    unlink('./data/user/image/' . $_POST['existing_image']);
   } else {
     $image = $_POST['existing_image'] ?? '';
   }
+
+
+  // $image = '';
+
+  // if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
+  //   $original_filename = $_FILES['attached_image']['name'];
+  //   $file_ext = substr($original_filename, strripos($original_filename, '.'));
+
+  //   if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+  //     $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+  //     return false;
+  //   }
+
+  //   $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
+
+
+  //   $minute = date('i');
+  //   $second = date('s');
+
+  //   $renamed_image = $minute . $second . $original_filename_without_numbers;
+
+
+  //   $image = $renamed_image;
+  //   $target_img = "./data/user/image/" . $image;
+
+
+  //   if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
+  //     $outputMsg = "File upload failed.";
+  //     return false;
+  //   }
+  // } else {
+  //   $image = $_POST['existing_image'] ?? '';
+  // }
 
   $sqlQry = mysqli_query($con, "UPDATE user SET user_name = '" . $name . "', user_email = '" . $email . "', user_password = '" . $password . "', role= '" . $role . "',status = '" . $status . "',image = '" . $image . "', edate = '" . $curdate . "', etime = '" . $curtime . "' where id = '" . $edit_id . "' ") or die(mysqli_error($con));
 
@@ -1036,72 +1426,96 @@ function updateEvent($con, $req, &$outputMsg)
   $description = trim($req['description']);
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
-  $banner_image = '';
   $edit_id = $req['id'];
 
-  // Banner image handling (unchanged)
-  if (isset($_FILES['attached_banner']['name']) && $_FILES['attached_banner']['error'] == 0) {
-    $original_filename = $_FILES['attached_banner']['name'];
-    $file_ext = substr($original_filename, strripos($original_filename, '.'));
 
-    if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
-      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
-      return false;
+
+  // Function to compress and save the image
+  function compressUpdateEventImage($source, $destination, $file_ext, $quality)
+  {
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
     }
 
-    $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
-
-
-    $minute = date('i');
-    $second = date('s');
-
-    $renamed_banner = $minute . $second . $original_filename_without_numbers;
-
-
-    $banner_image = $renamed_banner;
-    $target_img = "./data/event/banner/" . $banner_image;
-
-
-    if (!move_uploaded_file($_FILES["attached_banner"]["tmp_name"], $target_img)) {
-      $outputMsg = "File upload failed.";
-      return false;
+    // Save the compressed image
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // JPEG compression
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // PNG compression
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF doesn't support quality parameter
+        break;
+      default:
+        return false;
     }
-  } else {
-    $banner_image = $_POST['existing_banner'] ?? '';
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
   }
 
-  // Handle existing images and removed images
+  // Banner image handling (unchanged)
   $uploaded_images = [];
+  $removedImages = [];
+
   if (!empty($_POST['existing_images'])) {
     $existing_images = explode(',', $_POST['existing_images']);
+
     if (isset($_POST['removed_images'])) {
       $removedImages = explode(',', $_POST['removed_images']);
-      // Handle image deletions here
+
+      // Unlink removed images from the server
+      foreach ($removedImages as $removedImage) {
+        $filePath = "./data/event/gallery/" . $removedImage;
+        if (file_exists($filePath)) {
+          unlink($filePath);
+        }
+      }
+
+      // Filter out removed images by filename
+      $uploaded_images = array_diff($existing_images, $removedImages);
+    } else {
+      $uploaded_images = $existing_images;
     }
-
-
-    // Filter out removed images by filename
-    $uploaded_images = array_diff($existing_images, $removedImages);
   }
 
-  // Handle new uploads
+  // Handle new image uploads with compression
   if (isset($_FILES['attached_images']['name']) && count($_FILES['attached_images']['name']) > 0) {
     foreach ($_FILES['attached_images']['name'] as $index => $original_filename) {
       if ($_FILES['attached_images']['error'][$index] == 0) {
-        // File validation and renaming logic
-        $file_ext = substr($original_filename, strripos($original_filename, '.'));
-        if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+        $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION));
+        if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
           $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
           continue;
         }
 
-        $renamed_image = date('i') . date('s') . preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
+        $renamed_image = date('i') . date('s') . preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . '.' . $file_ext;
         $target_img = "./data/event/gallery/" . $renamed_image;
 
-        if (move_uploaded_file($_FILES['attached_images']['tmp_name'][$index], $target_img)) {
+        // Compress and save the image
+        $source_img = $_FILES['attached_images']['tmp_name'][$index];
+        $quality = 75; // Compression quality
+
+        if (compressUpdateEventImage($source_img, $target_img, $file_ext, $quality)) {
           $uploaded_images[] = $renamed_image;
         } else {
-          $outputMsg = "File upload failed for {$renamed_image}.";
+          $outputMsg = "File upload failed during compression for {$renamed_image}.";
         }
       }
     }
@@ -1109,6 +1523,75 @@ function updateEvent($con, $req, &$outputMsg)
 
   // Finalize the image list
   $uploaded_images_str = implode(',', $uploaded_images);
+
+  // Handle banner image upload and compression
+  $banner_image = '';
+
+  if (isset($_FILES['attached_banner']['name']) && $_FILES['attached_banner']['error'] == 0) {
+    $original_filename = $_FILES['attached_banner']['name'];
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION));
+
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
+      $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+      return false;
+    }
+
+    $renamed_banner = date('i') . date('s') . $original_filename;
+    $target_img = "./data/event/banner/" . $renamed_banner;
+
+    // Compress and save the banner image
+    $source_img = $_FILES["attached_banner"]["tmp_name"];
+    $quality = 75; // Compression quality
+
+    if (compressUpdateEventImage($source_img, $target_img, $file_ext, $quality)) {
+      // Unlink the previous banner image if it exists
+      // if (!empty($_POST['existing_banner'])) {
+      //   $old_banner_path = "./data/event/banner/" . $_POST['existing_banner'];
+      //   if (file_exists($old_banner_path)) {
+      //     unlink($old_banner_path);
+      //   }
+      // }
+
+      $directory = "./data/event/banner/";
+      $exclude_image = $renamed_banner;
+
+      // Check if the directory exists
+      if (is_dir($directory)) {
+        // Get all files in the directory
+        $files = scandir($directory);
+
+        foreach ($files as $file) {
+          $fileFirstFour =  substr($file, 0, 3);
+          $bannerFirstFour = substr($_POST['existing_banner'], 0, 3);
+
+          if ($fileFirstFour == $bannerFirstFour) {
+
+            $file_path = $directory . $file;
+
+            // Exclude directories (`.` and `..`) and the attached_banner file
+            if ($file !== '.' && $file !== '..' && $file !== $exclude_image && is_file($file_path)) {
+              // Delete the file
+              unlink($file_path);
+            }
+          }
+        }
+      } else {
+        echo "Directory does not exist.";
+      }
+
+
+
+      $banner_image = $renamed_banner;
+    } else {
+      $outputMsg = "Banner upload failed during compression.";
+      return false;
+    }
+  } else {
+    $banner_image = $_POST['existing_banner'] ?? '';
+  }
+
+
+
 
   $update_query = mysqli_query($con, "update event set title = '" . $title . "', date = '" . $date . "', venue = '" . $venue . "', description = '" . $description . "' , banner_image = '" . $banner_image . "', gallery_images = '" . $uploaded_images_str . "',url = '" . $url . "', status = '', edate= '" . $curdate . "', etime= '" . $curtime . "' where id='" . $edit_id . "'") or die(mysqli_error($con));
 
@@ -1134,37 +1617,142 @@ function updatePublication($con, $req, &$outputMsg)
   $edit_id = $req['id'];
 
 
+  // $banner_image = '';
+
+  // if (isset($_FILES['attached_banner']['name']) && $_FILES['attached_banner']['error'] == 0) {
+  //   $original_filename = $_FILES['attached_banner']['name'];
+  //   $file_ext = substr($original_filename, strripos($original_filename, '.'));
+
+  //   if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+  //     $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+  //     return false;
+  //   }
+
+  //   $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
+
+
+  //   $minute = date('i');
+  //   $second = date('s');
+
+  //   $renamed_banner = $minute . $second . $original_filename_without_numbers;
+
+
+  //   $banner_image = $renamed_banner;
+  //   $target_img = "./data/publication/banner/" . $banner_image;
+
+
+  //   if (!move_uploaded_file($_FILES["attached_banner"]["tmp_name"], $target_img)) {
+  //     $outputMsg = "File upload failed.";
+  //     return false;
+  //   }
+  // } else {
+  //   $banner_image = $_POST['existing_banner'] ?? '';
+  // }
+
+  function compressUpdatePublicationImage($source, $destination, $file_ext, $quality)
+  {
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save the compressed image
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // JPEG compression
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // PNG compression
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF doesn't support quality parameter
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
+
   $banner_image = '';
 
   if (isset($_FILES['attached_banner']['name']) && $_FILES['attached_banner']['error'] == 0) {
     $original_filename = $_FILES['attached_banner']['name'];
-    $file_ext = substr($original_filename, strripos($original_filename, '.'));
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION));
 
-    if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
       $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
       return false;
     }
 
-    $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
+    $renamed_banner = date('i') . date('s') . $original_filename;
+    $target_img = "./data/publication/banner/" . $renamed_banner;
+
+    // Compress and save the banner image
+    $source_img = $_FILES["attached_banner"]["tmp_name"];
+    $quality = 75; // Compression quality
+
+    if (compressUpdatePublicationImage($source_img, $target_img, $file_ext, $quality)) {
+      // Unlink the previous banner image if it exists
+      // if (!empty($_POST['existing_banner'])) {
+      //   $old_banner_path = "./data/event/banner/" . $_POST['existing_banner'];
+      //   if (file_exists($old_banner_path)) {
+      //     unlink($old_banner_path);
+      //   }
+      // }
+
+      $directory = "./data/publication/banner/";
+      $exclude_image = $renamed_banner;
+
+      // Check if the directory exists
+      if (is_dir($directory)) {
+        // Get all files in the directory
+        $files = scandir($directory);
+
+        foreach ($files as $file) {
+          $fileFirstFour =  substr($file, 0, 3);
+          $bannerFirstFour = substr($_POST['existing_banner'], 0, 3);
+
+          if ($fileFirstFour == $bannerFirstFour) {
+
+            $file_path = $directory . $file;
+
+            // Exclude directories (`.` and `..`) and the attached_banner file
+            if ($file !== '.' && $file !== '..' && $file !== $exclude_image && is_file($file_path)) {
+              // Delete the file
+              unlink($file_path);
+            }
+          }
+        }
+      } else {
+        echo "Directory does not exist.";
+      }
 
 
-    $minute = date('i');
-    $second = date('s');
 
-    $renamed_banner = $minute . $second . $original_filename_without_numbers;
-
-
-    $banner_image = $renamed_banner;
-    $target_img = "./data/publication/banner/" . $banner_image;
-
-
-    if (!move_uploaded_file($_FILES["attached_banner"]["tmp_name"], $target_img)) {
-      $outputMsg = "File upload failed.";
+      $banner_image = $renamed_banner;
+    } else {
+      $outputMsg = "Banner upload failed during compression.";
       return false;
     }
   } else {
     $banner_image = $_POST['existing_banner'] ?? '';
   }
+
 
   // echo "update publication set title = '" . htmlentities($title) . "',date = '" . $date . "',venue  = '" . $venue  . "',media  = '" . $media  . "',description = '" . htmlentities($description) . "', banner_image = '" . $banner_image . "',url = '" . htmlentities($url) . "', edate = '" . $curdate . "', etime = '" . $curtime . "' where id='" . $edit_id . "'"; die;
 
@@ -1243,7 +1831,7 @@ function updateLatestUpdate($con, $req, &$outputMsg)
     $minute = date('i');
     $second = date('s');
 
-    $renamed_image = $minute . $second . $original_filename;
+    $renamed_image = 'u' . $minute . $second . $original_filename;
     $image = $renamed_image;
     $target_img = "./data/latest_update/image/" . $image;
 
@@ -1255,6 +1843,7 @@ function updateLatestUpdate($con, $req, &$outputMsg)
       $outputMsg = "File upload failed during compression.";
       return false;
     }
+    unlink('./data/latest_update/image/' . $_POST['existing_image']);
   } else {
     $image = $_POST['existing_image'] ?? '';
   }
@@ -1307,37 +1896,147 @@ function updateReport($con, $req, &$outputMsg)
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
   $edit_id = $req['id'];
+
+
+
+  function compressUpdateReportImage($source, $destination, $file_ext, $quality)
+  {
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save the compressed image
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // JPEG compression
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // PNG compression
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF doesn't support quality parameter
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
+
   $image = '';
 
   if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
     $original_filename = $_FILES['attached_image']['name'];
-    $file_ext = substr($original_filename, strripos($original_filename, '.'));
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION));
 
-    if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
       $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
       return false;
     }
 
-    $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
+    $renamed_image = date('i') . date('s') . $original_filename;
+    $target_img = "./data/report/image/" . $renamed_image;
+
+    // Compress and save the banner image
+    $source_img = $_FILES["attached_image"]["tmp_name"];
+    $quality = 75; // Compression quality
+
+    if (compressUpdateReportImage($source_img, $target_img, $file_ext, $quality)) {
+      // Unlink the previous banner image if it exists
+      // if (!empty($_POST['existing_banner'])) {
+      //   $old_banner_path = "./data/event/banner/" . $_POST['existing_banner'];
+      //   if (file_exists($old_banner_path)) {
+      //     unlink($old_banner_path);
+      //   }
+      // }
+
+      $directory = "./data/report/image/";
+      $exclude_image = $image;
+
+      // Check if the directory exists
+      if (is_dir($directory)) {
+        // Get all files in the directory
+        $files = scandir($directory);
+
+        foreach ($files as $file) {
+          $fileFirstFour =  substr($file, 0, 3);
+          $bannerFirstFour = substr($_POST['existing_image'], 0, 3);
+
+          if ($fileFirstFour == $bannerFirstFour) {
+
+            $file_path = $directory . $file;
+
+            // Exclude directories (`.` and `..`) and the attached_banner file
+            if ($file !== '.' && $file !== '..' && $file !== $exclude_image && is_file($file_path)) {
+              // Delete the file
+              unlink($file_path);
+            }
+          }
+        }
+      } else {
+        echo "Directory does not exist.";
+      }
 
 
-    $minute = date('i');
-    $second = date('s');
 
-    $renamed_image = $minute . $second . $original_filename_without_numbers;
-
-
-    $image = $renamed_image;
-    $target_img = "./data/report/image/" . $image;
-
-
-    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
-      $outputMsg = "File upload failed.";
+      $image = $renamed_image;
+    } else {
+      $outputMsg = "Banner upload failed during compression.";
       return false;
     }
   } else {
     $image = $_POST['existing_image'] ?? '';
   }
+
+
+
+
+  // $image = '';
+
+  // if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
+  //   $original_filename = $_FILES['attached_image']['name'];
+  //   $file_ext = substr($original_filename, strripos($original_filename, '.'));
+
+  //   if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+  //     $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
+  //     return false;
+  //   }
+
+  //   $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
+
+
+  //   $minute = date('i');
+  //   $second = date('s');
+
+  //   $renamed_image = $minute . $second . $original_filename_without_numbers;
+
+
+  //   $image = $renamed_image;
+  //   $target_img = "./data/report/image/" . $image;
+
+
+  //   if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
+  //     $outputMsg = "File upload failed.";
+  //     return false;
+  //   }
+  // } else {
+  //   $image = $_POST['existing_image'] ?? '';
+  // }
 
   // echo "update publication set title = '" . htmlentities($title) . "',date = '" . $date . "',venue  = '" . $venue  . "',media  = '" . $media  . "',description = '" . htmlentities($description) . "', banner_image = '" . $banner_image . "',url = '" . htmlentities($url) . "', edate = '" . $curdate . "', etime = '" . $curtime . "' where id='" . $edit_id . "'"; die;
 
@@ -1360,34 +2059,75 @@ function updatePeople($con, $req, &$outputMsg)
   $curtime = date('H:i:s');
   $curdate = date('Y-m-d');
   $edit_id = $req['id'];
+
+  function compressImageUpdatePeople($source, $destination, $file_ext, $quality)
+  {
+    // Create an image resource based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save compressed image based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // For JPG/JPEG, compression quality is used
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // For PNG, quality is 0-9
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF does not support quality
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
+
+
   $image = '';
 
   if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
     $original_filename = $_FILES['attached_image']['name'];
-    $file_ext = substr($original_filename, strripos($original_filename, '.'));
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION)); // Get extension
 
-    if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
       $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
       return false;
     }
 
-    $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
-
-
     $minute = date('i');
     $second = date('s');
 
-    $renamed_image = $minute . $second . $original_filename_without_numbers;
-
-
+    $renamed_image = 'u' . $minute . $second . $original_filename;
     $image = $renamed_image;
     $target_img = "./data/people/" . $image;
 
+    // Compress and save the image
+    $source_img = $_FILES["attached_image"]["tmp_name"];
+    $quality = 75; // Compression quality (0-100)
 
-    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
-      $outputMsg = "File upload failed.";
+    if (!compressImageUpdatePeople($source_img, $target_img, $file_ext, $quality)) {
+      $outputMsg = "File upload failed during compression.";
       return false;
     }
+    unlink('./data/people/' . $_POST['existing_image']);
   } else {
     $image = $_POST['existing_image'] ?? '';
   }
@@ -1411,33 +2151,74 @@ function updatePurpose($con, $req, &$outputMsg)
   $edit_id = $req['id'];
 
 
+  function compressImageUpdatePurpose($source, $destination, $file_ext, $quality)
+  {
+    // Create an image resource based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $image = imagecreatefromjpeg($source);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($source);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($source);
+        break;
+      default:
+        return false;
+    }
+
+    // Save compressed image based on file type
+    switch ($file_ext) {
+      case 'jpg':
+      case 'jpeg':
+        $result = imagejpeg($image, $destination, $quality); // For JPG/JPEG, compression quality is used
+        break;
+      case 'png':
+        $result = imagepng($image, $destination, 9 - round($quality / 10)); // For PNG, quality is 0-9
+        break;
+      case 'gif':
+        $result = imagegif($image, $destination); // GIF does not support quality
+        break;
+      default:
+        return false;
+    }
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $result;
+  }
+
+
   $image = '';
 
   if (isset($_FILES['attached_image']['name']) && $_FILES['attached_image']['error'] == 0) {
     $original_filename = $_FILES['attached_image']['name'];
-    $file_ext = substr($original_filename, strripos($original_filename, '.'));
+    $file_ext = strtolower(pathinfo($original_filename, PATHINFO_EXTENSION)); // Get extension
 
-    if (!in_array($file_ext, ['.png', '.jpg', '.jpeg', '.gif'])) {
+    if (!in_array($file_ext, ['png', 'jpg', 'jpeg', 'gif'])) {
       $outputMsg = "Only jpg, jpeg, png, and gif format images are allowed to upload.";
       return false;
     }
 
-    $original_filename_without_numbers = preg_replace('/^\d+/', '', pathinfo($original_filename, PATHINFO_FILENAME)) . $file_ext;
-
-
     $minute = date('i');
     $second = date('s');
 
-    $renamed_image = $minute . $second . $original_filename_without_numbers;
-
+    $renamed_image = 'u' . $minute . $second . $original_filename;
     $image = $renamed_image;
-    $target_img = "./data/people/" . $image;
+    $target_img = "./data/purpose/image/" . $image;
 
+    // Compress and save the image
+    $source_img = $_FILES["attached_image"]["tmp_name"];
+    $quality = 75; // Compression quality (0-100)
 
-    if (!move_uploaded_file($_FILES["attached_image"]["tmp_name"], $target_img)) {
-      $outputMsg = "File upload failed.";
+    if (!compressImageUpdatePurpose($source_img, $target_img, $file_ext, $quality)) {
+      $outputMsg = "File upload failed during compression.";
       return false;
     }
+    unlink('./data/purpose/image/' . $_POST['existing_image']);
   } else {
     $image = $_POST['existing_image'] ?? '';
   }
@@ -1558,13 +2339,15 @@ function editSetting($con, $req, &$outputMsg)
 
 
     $logo = $renamed_logo;
-    $target_img = "./data/logo/" . $logo;
+    $target_img = "./data/setting/logo/" . $logo;
 
 
     if (!move_uploaded_file($_FILES["attached_logo"]["tmp_name"], $target_img)) {
       $outputMsg = "File upload failed.";
       return false;
     }
+
+    unlink("./data/setting/logo/" . $_POST['existing_logo']);
   } else {
     $logo = $_POST['existing_logo'] ?? '';
   }
@@ -1590,13 +2373,14 @@ function editSetting($con, $req, &$outputMsg)
 
 
     $faviconLogo = $renamed_faviconLogo;
-    $target_img = "./data/favicon_logo/" . $faviconLogo;
+    $target_img = "./data/setting/favicon_logo/" . $faviconLogo;
 
 
     if (!move_uploaded_file($_FILES["attached_faviconLogo"]["tmp_name"], $target_img)) {
       $outputMsg = "File upload failed.";
       return false;
     }
+    unlink("./data/setting/favicon_logo/" . $_POST['existing_faviconLogo']);
   } else {
     $faviconLogo = $_POST['existing_faviconLogo'] ?? '';
   }
@@ -1767,10 +2551,6 @@ function addPermission($inputData, $con)
       // Update the value for the column
 
     }
-
-    echo json_encode(['status' => 'success', 'message' => 'Permissions updated successfully.']);
-  } else {
-    echo json_encode(['status' => 'error', 'message' => 'No data received.']);
   }
 }
 
@@ -1824,6 +2604,46 @@ function deleteDataWithImg($con, $table, $id, $imgPath)
   } else {
     echo "Error: File does not exist.";
   }
+
+  $true = mysqli_query($con, "delete from $table WHERE id = '" . $id . "'");
+
+  return $true;
+}
+function deleteDataWithImgEvent($con, $table, $id, $bannerPath, $galleryPath)
+{
+  $result = mysqli_fetch_assoc(mysqli_query($con, "select * from $table WHERE id = '" . $id . "'"));
+
+
+  if (file_exists($bannerPath)) {
+    // Attempt to unlink (delete) the file
+    if (unlink($bannerPath)) {
+      echo "The file has been deleted successfully.";
+    } else {
+      echo "Error: Unable to delete the file.";
+    }
+  } else {
+    echo "Error: File does not exist.";
+  }
+
+  if (file_exists($galleryPath)) {
+    // Attempt to unlink (delete) the file
+    if (unlink($galleryPath)) {
+      echo "The file has been deleted successfully.";
+    } else {
+      echo "Error: Unable to delete the file.";
+    }
+  } else {
+    echo "Error: File does not exist.";
+  }
+
+  $true = mysqli_query($con, "delete from $table WHERE id = '" . $id . "'");
+
+  return $true;
+}
+
+function deleteData($con, $table, $id)
+{
+  $result = mysqli_fetch_assoc(mysqli_query($con, "select * from $table WHERE id = '" . $id . "'"));
 
   $true = mysqli_query($con, "delete from $table WHERE id = '" . $id . "'");
 

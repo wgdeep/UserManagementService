@@ -232,7 +232,7 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                                                                 <?php
                                                                 $logo = $settinginfo['logo'];
                                                                 if (!empty($logo)) {
-                                                                    $logoPath = "./data/logo/" . htmlspecialchars(trim($logo));
+                                                                    $logoPath = "./data/setting/logo/" . htmlspecialchars(trim($logo));
                                                                     echo "<a class='socialContainerBanner'><img id='bannerImg' width='150' class='socialSvg instagramSvg' src='$logoPath' alt='logo'></a>";
                                                                 } else {
                                                                     echo "<p>No logo available.</p>";
@@ -258,7 +258,7 @@ if (isset($_REQUEST['edit_id']) && $_REQUEST['edit_id'] != '') {
                                                         <?php
                                                         $favicon = $settinginfo['faviconLogo'];
                                                         if (!empty($favicon)) {
-                                                            $faviconPath = "./data/favicon_logo/" . htmlspecialchars(trim($favicon));
+                                                            $faviconPath = "./data/setting/favicon_logo/" . htmlspecialchars(trim($favicon));
                                                             echo "<a class='socialContainerBanner'><img id='bannerImg' width='150' class='socialSvg instagramSvg' src='$faviconPath' alt='logo'></a>";
                                                         } else {
                                                             echo "<p>No Favicon available.</p>";

@@ -9,7 +9,7 @@ require_once("include/library.php");
 
 if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '') {
 
-    deleteDataWithImg($con, 'setting', $_REQUEST['del_id']);
+    deleteData($con, 'setting', $_REQUEST['del_id']);
 
     echo "<script>window.location = '" . $wwwroot . "/setting.php?act=del';</script>";
 

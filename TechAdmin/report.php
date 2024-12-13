@@ -5,16 +5,14 @@ require_once("include/config.php");
 
 require_once("include/library.php");
 
+if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '' && $_REQUEST['img_Path'] != '') {
 
-if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '') {
+    deleteDataWithImg($con, 'report', $_REQUEST['del_id'], $_REQUEST['img_Path']);
 
-    deleteDataWithImg($con, 'report', $_REQUEST['del_id']);
-
-    echo "<script>window.location = '" . $wwwroot . "/report.php';</script>";
+    echo "<script>window.location = '" . $wwwroot . "/report.php?act=del';</script>";
 
     exit();
 }
-
 
 
 date_default_timezone_set("Asia/Kolkata");

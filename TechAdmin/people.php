@@ -7,11 +7,11 @@ require_once("include/library.php");
 
 
 
-if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '') {
+if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '' && $_REQUEST['img_Path'] != '') {
 
-    deleteDataWithImg($con, 'people', $_REQUEST['del_id']);
+    deleteDataWithImg($con, 'people', $_REQUEST['del_id'], $_REQUEST['img_Path']);
 
-    echo "<script>window.location = '" . $wwwroot . "/people.php';</script>";
+    echo "<script>window.location = '" . $wwwroot . "/people.php?act=del';</script>";
 
     exit();
 }

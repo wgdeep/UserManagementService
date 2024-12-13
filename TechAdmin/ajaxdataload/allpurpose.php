@@ -73,7 +73,7 @@ while ($row = mysqli_fetch_assoc($empRecords)) {
         "image" => '<img src="./data/purpose/image/' . $row['image'] . '"  width="50" alt="">',
         "edate" => $row['edate'],
         "etime" => $row['etime'],
-        "action" => '<a title="Delete" href="purpose.php?del_id=' . $row['id'] . '"><i class="fa fa-trash-o"></i></a> <a title="Edit" href="update_purpose.php?edit_id=' . $row['id'] . '" style="margin-left: 10px;"><i class="fa fa-pencil"></i></a>',
+        "action" => '<a title="Delete" href="purpose.php?del_id=' . $row['id'] . '&img_Path=./data/purpose/image/'.$row['image'].'"><i class="fa fa-trash-o"></i></a> <a title="Edit" href="update_purpose.php?edit_id=' . $row['id'] . '" style="margin-left: 10px;"><i class="fa fa-pencil"></i></a>',
     );
 }
 

@@ -55,10 +55,14 @@ while ($row = mysqli_fetch_assoc($empRecords)) {
 
   $images = explode(',', $row['gallery_images']);
   $image_html = '';
+ 
 
   foreach ($images as $image_filename) {
     $image_html .= '<img src="./data/event/gallery/' . $image_filename . '" width="50" alt="" style="margin-right: 5px;">';
+    $removeImage = '&gallery_Path=./data/event/gallery/' . $image_filename . '';
   }
+
+   
 
   $data[] = array(
     "id" => '<input value="' . $row['id'] . '" name="id[]" class="checkbox" type="checkbox">',
@@ -70,7 +74,7 @@ while ($row = mysqli_fetch_assoc($empRecords)) {
     "status" => $row['status'],
     "edate" => $row['edate'],
     "etime" => $row['etime'],
-    "action" => '<a title="Delete" href="event.php?del_id=' . $row['id'] . '"><i class="fa fa-trash-o"></i></a> <a title="Edit" href="update_event.php?edit_id=' . $row['id'] . '" style="margin-left: 10px;"><i class="fa fa-pencil"></i></a>'
+    "action" => '<a title="Delete" href="event.php?del_id=' . $row['id'] . '&banner_Path=./data/event/banner/' . $row['banner_image'] . $removeImage.'"><i class="fa fa-trash-o"></i></a> <a title="Edit" href="update_event.php?edit_id=' . $row['id'] . '" style="margin-left: 10px;"><i class="fa fa-pencil"></i></a>'
   );
 }
 

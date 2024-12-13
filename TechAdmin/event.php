@@ -3,9 +3,11 @@ require_once("include/config.php");
 require_once("include/library.php");
 
 date_default_timezone_set("Asia/Kolkata");
-if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '') {
 
-    deleteDataWithImg($con, 'event', $_REQUEST['del_id']);
+
+if (isset($_REQUEST['del_id']) && $_REQUEST['del_id'] != '' && $_REQUEST['banner_Path'] != ''&& $_REQUEST['gallery_Path'] != '') {
+
+    deleteDataWithImgEvent($con, 'event', $_REQUEST['del_id'], $_REQUEST['banner_Path'], $_REQUEST['gallery_Path']);
 
     echo "<script>window.location = '" . $wwwroot . "/event.php?act=del';</script>";
 
